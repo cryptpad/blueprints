@@ -17,3 +17,5 @@ development server
 ```
 npm run dev
 ```
+
+Static site builds to the `_site` folder which is ignored by GIT
