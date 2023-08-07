@@ -20,21 +20,11 @@
     <div id="graphDiv"></div>
 
 {# {% roadmap %} #}
-{# 
+
     <script type="module">
         import mermaid from './node_modules/mermaid/dist/mermaid.esm.mjs';
-        mermaid.initialize({ startOnLoad: false });
-
-        // Example of using the render function
-        const drawDiagram = async function () {
-          element = document.querySelector('#graphDiv');
-          const graphDefinition = 'graph TB\na-->b';
-          const { svg } = await mermaid.render('graphDiv', graphDefinition);
-          element.innerHTML = svg;
-        };
-
-        await drawDiagram();
-      </script> #}
+        mermaid.initialize({ startOnLoad: true });
+    </script>
 
 </body>
 </html>
