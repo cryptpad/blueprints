@@ -13,6 +13,21 @@
 </head>
 
 <body>
+  <div id="toc">
+    <a href="/">{{ site.title }}</a>
+    <ol>
+      {% for item in collections.chapter %}
+      <li><a href="{{ item.url }}">{{ item.data.title }}</a>
+        <ol>
+          {% for subitem in collections[item.data.id] %}
+          <li><a href="{{ subitem.url }}">{{ subitem.data.title }}</a></li>
+          {% endfor %}
+        </ol>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+
     {% block content %}
         {{ content | safe }}
     {% endblock %}

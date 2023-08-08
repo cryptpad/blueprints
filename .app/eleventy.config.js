@@ -10,6 +10,11 @@ module.exports = (function(eleventyConfig) {
     watch: ["dist/app.js", "dist/app.*.css"],
   });
 
+  eleventyConfig.addGlobalData("site", {
+    lang: "en",
+    title: "CryptPad Blueprints",
+  });
+
   return {
     dir: {
       input: "./../",
