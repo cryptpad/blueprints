@@ -1,0 +1,50 @@
+\section{Messaging}
+\label{sec:mailbox}
+
+In this section we present CryptPad's own end-to-end encrypted messaging system that allows users to exchange arbitrary messages and metadata with other users.
+The messaging system is further used for, e.g., instance support, team messaging (c.f. \cref{sec:teams}) and forms.
+An important property of the used encryption scheme is anonymity: A user eavesdropping on another user's mailbox can not infer the sender of the message.
+
+The basic block of the message encryption is to use public-key authenticated encryption with $\myAlgofont{Nacl.box}(\cdot)$ which internally derives a shared key between the receiver's and the sender's keys.
+
+We build our encryption $\myASymEnc{\cdot}$ on this by encrypting a plaintext under the sender's public/private keys $\myKeyPair{_A}$ and the receiver's public key $\myPK_B$  as follows:
+\begin{align*}
+&\myASymEnc{\myPK_A, \mySK_A, \myPK_B, m}\\[-2.5ex]
+&\rule{\widthof{$c \gets \myAlgofont{Nacl.box}(m, N, \myPK_B, \mySK_A)$}}{0.4pt}\\ % Draw rule with width of 'c <- ...'
+&N \sample \bin^{192}\\
+&c \gets \myAlgofont{Nacl.box}(m, N, \myPK_B, \mySK_A)\\
+&\pcreturn N || c || \myPK_A
+\end{align*}
+The 24-bytes-sized nonce $N$ is sampled uniformly at random and is prepended to the authenticated ciphertext $c$.
+The sender's public key $\myPK_A$ is further appended to indicate the sender's identity to the receiver.
+
+The receiver can then split the received message into $N$, $c$, and $\myPK_A$ to decrypt it using $\myAlgofont{Nacl.box.open}(c, N, \myPK_A, \mySK_B)$.
+In case that the sender wants to decrypt this message, the server must use $(\myPK_B, \mySK_A)$ instead of $(\myPK_A,\mySK_B$), since the sender does generally not have access to $\mySK_B$.
+
+However, we do not directly encrypt messages using $\myASymEnc{\cdot}$ as this would leak the sender of the message.
+Instead, we apply a second layer of encryption using \textit{ephemeral} keys which are freshly generated for each message and thus are not linkable to the sender.
+Lastly, we may additionally sign the double encrypted messages using a signing key to prove write access.
+
+An exemplary use case for this is the signing of a form answer: the users will receive it from the author to prove that they actually are allowed to send messages answering the form.
+For other cases the signing key may be obtained through the accounts' profile pages, or as a point of contact in documents.
+
+\begin{figure}[t!]
+  \centering
+  \input{figures/mailbox_encryption.tex}
+  \caption{Sealing of a message $m$ to return a ciphertext $c$.}
+  \label{fig:sealing}
+\end{figure}
+
+This sophisticated sealing scheme is depicted in \cref{fig:sealing}.
+It takes as an input a message $m$, the long term encryption key pair $\myKeyPair{_A}$, the ephemeral keys $\myKeyPair{_E}$, and -- optionally -- the signing key $\mySK_{B,S}$ belonging to the receiver's signing/verification key pair $\myKeyPair{_{B,S}}$.
+We first encrypt using the combination of the sender's and the receiver's keys.
+We then apply the second layer encryption using ephemeral keys $\myKeyPair{_E}$.
+Finally, we check whether a signing key $\mySK_{A,S}$ was passed as input.
+If this is the case then we additionally sign the ciphertext before returning it.
+Otherwise, we just return the ciphertext without signing it.
+
+Every user shares its verification key $\myPK_{B,S}$ with the server such that the server can check the signatures of incoming messages.
+Therefore, the receiver does not have to check it.
+The receiver, however, needs to decrypt the outer layer using the private key $\mySK_B$ and the supplied ephemeral key $\myPK_E$.
+Then the receiver can extract the sender's public key $\myPK_A$ and use it together with the private key $\mySK_B$ to decrypt the inner layer.
+

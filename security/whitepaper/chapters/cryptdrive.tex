@@ -1,0 +1,67 @@
+\section{CryptDrive}
+\label{sec:cryptdrive}
+In this section, we introduce \textit{CryptDrive} which provides users an interface to store and manage all their documents.
+We further allow the users to store their long term keys used to, e.g., encrypt messages (c.f. \cref{sec:mailbox}) or to prove ownership of a document (c.f. \cref{sec:storage_mangamenet}).
+However, all this information is encrypted and thus unreadable for the server.
+We first show in \cref{sec:login} the registration and login mechanism during which the server sees neither the username nor the password.
+Second, we show in \cref{sec:storage_mangamenet} that the server is nevertheless able to do storage management and, e.g., impose storage limits.
+
+\subsection{Registration and Login}
+\label{sec:login}
+On a high level, we use the username and the password to generate login keys with which we access an encrypted file containing the user's long term keys as well as pointers to the user's documents and folders.
+The mechanism is depicted in \cref{fig:login_mechanism} and is explained below.
+
+\begin{figure}[t!]
+  \centering
+  \input{figures/login_mechanisms.tex}
+  \caption{Derivation and storage of the login and long term keys.}
+  \label{fig:login_mechanism}
+\end{figure}
+
+During registration and login, we locally derive login keys using the \ac{KDF} \texttt{scrypt}~\cite{Percival2009} which is designed to be memory expensive and therefore renders brute force attacks impractical as they are not feasible in a reasonable amount of time.
+More specifically, we derive from the password a symmetric encryption key $\mySymKey_L$ and an asymmetric signing key pair $\myKeyPair{_L}$.
+We let the salt for this key derivation be the concatenation of the username and the per-instance string $\myAlgofont{salt_I}$.
+The usage of a per-instance salt prevents the attacker from precomputing rainbow tables for all instances and cracking passwords easily after a potential database compromise.
+Note that the selection of the used bytes (see \cref{fig:login_mechanism}) is not continuous due to legacy reasons.
+
+A password change will result in a change of the login keys.
+Since we want some keys, such as the user's long term signing keys, to be invariant, we cannot rely on the login key to derive all further keys.
+Instead, we randomly generate long term encryption and signing keys $\myKeyPair{_E}$ and $\myKeyPair{_S}$ during registration to store them in an encrypted data structure.
+This data structure is the same that we use for encrypting documents (c.f. \cref{sec:pad_encryption}), hence we refer to it as an encrypted \enquote{document}.
+We then read/write URL providing access to this document using the login key $\mySymKey_L$ and store them in a symmetrically encrypted blob on the server.
+We further add the verification key $\myPK_L$ to the metadata of this blob to mark the ownership to the server.
+
+To log in, the user derives the exact same keys $\mySymKey_L, \myKeyPair{_L}$ and submits then the public key to the server.
+Since the user has derived the symmetric encryption key $\mySymKey_L$, the user can decrypt the blob and obtain the read-write URL of the encrypted document containing the long term keys.
+
+This layer of indirection allows changing the password since we only need to re-encrypt the access to the encrypted document under new login keys $\mySymKey_L'$ and $\myKeyPair{_L'}$.
+To change the password, the user first signs the public key $\myPK_L$ with $\mySK_L$ to prove the ownership.
+The user then sends this signature together with the re-encrypted blob under $\mySymKey_L'$ and the attached $\myPK_L'$ to the server.
+Next, the server uses $\myPK_L$ stored in the metadata to verify the correctness of the signature.
+If the verification succeeds, the server can safely replace the encrypted blob and store $\myPK_L'$ as the new verification key.
+
+To let the user access all their folders and documents, we store pointers to these in the same encrypted document that contains the long term keys.
+The access to the user's folders and documents will therefore also be safely migrated during a password change.
+
+Note that this login mechanism does not require the server to store the username, neither in plaintext nor in any hashed form.
+The server can therefore not check whether a given username has an account or not.
+Another consequence is that multiple users may register with the same username -- as long as their passwords are different.
+
+\subsection{Storage Management}
+\label{sec:storage_mangamenet}
+% See https://docs.cryptpad.org/en/dev_guide/general.html?highlight=pins#drive-and-pins-log
+So far, we have shown how the data owned by or related to a user is encrypted.
+Nevertheless, we want the server to be able to manage the data storage.
+
+First, the server should be able to impose storage limits so that users cannot allocate more storage than they are supposed to do.
+We therefore create a list of \textit{pins} for each registered user where each list is identified by the user's long term public signing key.
+Every pin contains a document/blob identifier, a list of owners (represented with their public keys), and a creation date.
+The list of pins of a specific user therefore contains all the documents (co-)owned by this user.
+To compute the disk usage of a specific user, the server simply sums up the size of all documents and blobs contained in the pins.
+If the maximal storage quota for a user is reached, then the server hinders the user from pinning newly created documents and blobs.
+
+Second, we also want the server to be able to identify unused documents created by guests.
+This allows the server to delete documents which have not been opened during certain time period and to thus free disk space.
+We therefore add to each (encrypted) file a metadata file not only an owner list (c.f. \cref{sec:ownership}) but also the creation time.
+When the server periodically iterates over all documents, it can first check whether the document is owned by a CryptDrive user.
+If this is not the case, then the server can delete documents that have not been accessed during, e.g., the last 3 months.

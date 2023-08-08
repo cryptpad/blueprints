@@ -1,0 +1,41 @@
+%! TeX root = ../main.tex
+
+% Set minimum height of boxes (especially 'K' and 'y').
+\newlength{\myminheightteam}
+\settoheight{\myminheightteam}{$\mySK_{T,S}$}
+
+\begin{tikzpicture}[minimum height=\myminheightteam,node distance=1.2cm,auto,>=latex']
+  \def \ydist{1.3cm}
+  \node (seed) [init] {$\myseed$};
+
+  \node (mid) [below of=seed, coordinate, node distance=\ydist] {};
+  \node (left) [left of = mid] {};
+  \node [int] (hash) [left of=left] {$\myHash{\cdot}$};
+  \node [int] (kgens) [right of=mid] {$\myKGen[_S]{\cdot}$};
+
+  \node (mid2) [below of=mid, coordinate, node distance=\ydist] {};
+  \node (left2) [left of = mid2, coordinate] {};
+  \node (belowhash) [below of = hash, coordinate, node distance = \ydist] {};
+  \node [int] (kgene) [below of =hash, node distance = \ydist] {$\myKGen[_E]{\cdot}$};
+
+  \node (SKE) [below of = kgene, node distance = \ydist] {$\mySK_T$};
+  \node (PKE) [right of = SKE] {$\myPK_T$};
+  \node (chanID) [right of = PKE] {\mychanID\vphantom{$\mySK{_{T,S}}$}};
+  \node (SKS) [right of = chanID] {$\mySK_{T,S}$\vphantom{$\mySK_{T,S}$}};
+  \node (PKS) [right of = SKS] {$\myPK_{T,S}$\vphantom{$\mySK_{T,S}$}};
+
+  \def \offset{1mm}
+
+  \draw[->] ($(seed.south) - (\offset, 0)$)  |- ($(seed)!0.5!(hash)$) node[above, bits] {0..31} -| (hash);
+  \draw[->] ($(seed.south) + (\offset, 0)$) |- ($(seed)!0.5!(kgens)$) node[above, xshift=1mm, bits] {32..63} -| (kgens);
+
+
+  \draw[->] (hash) -- node [left, bits] {0..31} (kgene);
+  \draw[->] ($(hash.south) + (2*\offset, 0)$) |- ($(hash)!0.25!(chanID)$) node[above, xshift=5mm, bits] {32..47} -| (chanID);
+
+  \draw[->] (kgene) -- (SKE);
+  \draw[->] ($(kgene.south) + (2*\offset, 0)$) |- ($(kgene)!0.5!(PKE)$) -| (PKE);
+
+  \draw[->] (kgens) -- (SKS);
+  \draw[->] ($(kgens.south) + (2*\offset, 0)$) |- ($(kgens)!0.5!(PKS)$) -| (PKS);
+\end{tikzpicture}

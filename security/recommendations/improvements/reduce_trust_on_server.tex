@@ -1,0 +1,24 @@
+\subsection{Reduce Trust on Server}
+
+\paragraph{Problem:}
+Users have to trust the server to deliver the correct client code.
+
+\paragraph{Consequences:}
+The threat model is reduced to a honest-but-curious server.
+Without the limitation of trusting correct client code delivery, CryptPad could defend against an attacker with more active capabilities.
+
+\paragraph{Suggestions:}
+There are multiple approaches:
+\begin{enumerate}
+  \item Providing an API so that a client can be distributed over an independent channel (App-store, GitHub, Browser extensions, ...).
+  \item Trust on First Use (TOFU): users are warned when their client code changes and are asked whether they want to accept the update or not.
+  \item Sign the client code and allow users to verify the signature.
+\end{enumerate}
+
+\paragraph{Drawbacks:}
+\begin{enumerate}
+  \item It gets more complicated to use CryptPad, when users first need to download a client. Hence, the webclient should still be accessible.
+  \item Currently, all users have the same client version. If this is no more the case, there might be incompatible features, or even \enquote{client fights}, i.e., clients are resolving patches differently and thus always trying to push their version of the document.
+  \item Some measures such as signed code may only be effective if the users verify them. As experience in the context of HTTPS verification with extended validation have shown~\cite{Keizer2019}, this might not be the case.
+  \item The code should not only be verified for the flagship instance, but also for custom instances. However, they might want to customize the client code.
+\end{enumerate}

@@ -1,0 +1,16 @@
+\subsection{Instance salt is rarely set}
+
+\paragraph{Problem:}
+Instance administrators need to set a custom \texttt{loginSalt} before running CryptPad in a production environment.
+This value is supposedly only rarely changed from the default.
+
+\paragraph{Consequences:}
+The \texttt{loginSalt} makes it such attackers who want to brute-force common credentials must do so again on each CryptPad instance that they wish to attack. If \texttt{loginSalt} is the default one, then there is no protection against this.
+
+\paragraph{Suggestions:}
+\begin{enumerate}
+  \item Mention the \texttt{loginSalt} more prominently in the documentation.
+  \item Write an installation script that initializes this salt to a random value.
+\end{enumerate}
+
+\paragraph{Drawbacks:}

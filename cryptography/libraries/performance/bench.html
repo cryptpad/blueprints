@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Benchmark.js test</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/benchmark@2.1.4/benchmark.min.js"></script>
+        <!-- NaCl -->
+        <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
+
+        <!-- libsodium -->
+        <script>
+            window.sodium = {
+                onload: function (sodium) {
+                    window.sodium = sodium;
+                    for (const key in sodium) {
+                        window[key] = sodium[key];
+                    }
+                }
+            };
+        </script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/libsodium@0.7.10/dist/modules/libsodium.min.js"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/libsodium-wrappers@0.7.10/dist/modules/libsodium-wrappers.min.js"></script> -->
+        <script src="sodium.js"></script>
+        <script type="text/javascript" src="bower_components/crypto-js/crypto-js.js"></script>
+
+        <script src="bench.js"></script>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+%! TEX root = ../main.tex
+
+\tikzstyle{int}=[draw, fill=blue!20, minimum size=2em]
+\tikzstyle{init} = [pin edge={to-,thin,black}]
+
+\begin{tikzpicture}[node distance=1.3cm,auto,>=latex']
+  \node (seed) [init] {$\myFileKeyStr$};
+  \node (mid) [right of=seed, coordinate] {};
+  \node (password) [right of=mid] {\mypwd};
+  % \node (superseed) [below of=mid] {$\mySuperseed$};
+  \node [int] (hash) [below of=mid] {$\myHash{\cdot}$};
+  % \path[->] (b) edge node {$a$} (a);
+  % \path[->] (a) edge node {$v$} (c);
+  % \draw[->] (c) edge node {$p$} (end) ;
+  % (password) |- node[near end]{} |- node[near end] {} (hash);
+  \def \offset{1mm}
+  \draw[->] (password) % go right and up to anchor
+  |- ($(password)!0.5!(hash)$)
+  % go right and up to target
+  -| ($(hash.north) +(\offset, 0) $)
+  ;
+  \draw[->] (seed) % go right and up to anchor
+  |- ($(seed)!0.5!(hash)$)
+  % go right and up to target
+  -| ($(hash.north) -(\offset, 0) $)
+  ;
+
+  % \draw[->] (superseed) -- (hash);
+
+  \node (mid2) [below of = hash, coordinate] {};
+  \node (cryptKey) [right of=mid2] {$\mySymKey$};
+  \node (chanID) [left of =mid2] {$\mychanID$};
+
+  \def \yoffset{2mm}
+  \draw[->] (hash.south) % go right and up to anchor
+  |- ($(hash)!0.5!(chanID)$)
+  % go right and up to target
+  -|
+  node[right, xshift=-\yoffset, yshift=\yoffset, bits] {0..23}
+  (chanID)
+  ;
+  \draw[->] (hash.south) % go right and up to anchor
+  |-
+  ($(hash)!0.5!(cryptKey)$)
+  % go right and up to target
+% node[above, xshift=0.7cm] {32..63}
+  -|
+  node[left, xshift=+3mm, yshift=\yoffset, bits] {24..55}
+  (cryptKey)
+  ;
+\end{tikzpicture}

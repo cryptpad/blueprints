@@ -1,0 +1,145 @@
+% \usepackage{bytefield}
+\usepackage{enumitem}
+\usepackage{changelog}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{siunitx}
+% \sisetup{text-family-to-math = true, text-series-to-math = true, group-separator = {,}}
+\usepackage[ main=english,]{babel}
+%% These additional packages are used within the document:
+\usepackage{booktabs}  % Tables
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{tikz}      % Diagrams
+\usetikzlibrary{arrows, calc, shapes, backgrounds, shadows, positioning}
+\usetikzlibrary{fit}
+\usetikzlibrary{patterns}
+
+\tikzstyle{int}=[draw, fill=blue!20, minimum size=2em]
+\tikzstyle{init} = [pin edge={to-,thin,black}]
+\tikzstyle{bits} = [font=\footnotesize]
+\usepackage{pgf}
+\usepackage{pgf-umlsd}
+\usepackage[utf8]{inputenc}
+\usepackage{lipsum}
+\usepackage{xspace}
+\usepackage{calc}
+
+
+\setlength{\marginparwidth}{1.5cm}
+\usepackage{todonotes}
+% \usepackage{natbib}
+\usepackage{csquotes}
+\usepackage[nolist]{acronym}
+
+\usepackage[backend=biber, style=ieee, sortcites, maxcitenames=1,mincitenames=1]{biblatex}
+\AtEveryBibitem{
+   \clearfield{month}
+   \clearfield{series}
+%    \clearfield{venue}
+   \clearname{editor}
+   \clearlist{publisher}
+   \clearlist{location} % alias to field 'address'
+   \clearfield{eprint}
+   \clearfield{doi}
+%    % \clearfield{url}
+   % \clearfield{venue}
+   \clearfield{issn}
+   \clearfield{isbn}
+   \clearfield{note}
+%    \clearfield{urldate}
+%    \clearfield{urlday}
+%    \clearfield{urlmonth}
+%    \clearfield{urlyear}
+   \clearfield{eventdate}
+   \clearfield{pages}
+   \clearlist{language}
+   % \clearfield{booktitle}
+   % \clearfield{journaltitle}
+   \clearfield{volume}
+    \ifentrytype{article}{
+      \clearfield{number}
+      \clearfield{url}
+      \clearfield{urlday}
+      \clearfield{urlmonth}
+      \clearfield{urlyear}
+  }{}
+    \ifentrytype{inproceedings}{
+      \clearfield{number}
+      \clearfield{url}
+      \clearfield{urlday}
+      \clearfield{urlmonth}
+      \clearfield{urlyear}
+  }{}
+}
+
+
+\usepackage{stackrel}
+\usepackage{amsmath, amssymb}
+\usepackage{nicefrac}
+
+\usepackage{float}
+\floatstyle{plain}
+\newfloat{lstfloat}{tpbh}{lop}
+\floatname{lstfloat}{Listing}
+\def\lstfloatautorefname{Listing}
+
+\usepackage{xurl}       % `\url`s
+\usepackage{listings}  % Code listings
+
+\usepackage{tablefootnote}
+\usepackage{pifont}
+
+
+\lstset{%
+  basicstyle=\small\ttfamily,
+  breakatwhitespace=false,
+  breaklines=true,
+  commentstyle=\color{green!60!black},
+  extendedchars=true,
+  keywordstyle=\color{blue},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stringstyle=\color{violet},
+  numberstyle=\tiny\color{gray},
+  numbers=left,
+  numbersep=5pt,
+  frame=single,
+  tabsize=2,
+}
+% Fix space after caption,
+% see https://tex.stackexchange.com/questions/248804/ieee-latex-listing
+\makeatletter
+\def\lst@makecapton{%
+  \def\@captype{table}%
+  \@makecaption
+}
+\makeatother
+
+% \usepackage{fontawesome5}
+
+% Crypto stuff
+% \usepackage{algorithm}
+\usepackage[ n, advantage, operators, sets, adversary, landau, probability,
+notions, logic, ff, mm, primitives, events, complexity, asymptotics, keys,
+% oracles
+]{cryptocode}
+% \usepackage{algpseudocode}
+\usepackage{algorithmicx}
+
+\usepackage[capitalise]{cleveref}
+\crefname{enumi}{}{}
+
+\newcommand{\authnote}[2]{{\bf \textcolor{blue}{#1}: \em \textcolor{red}{#2}}}
+
+\newenvironment{packeditemize}{
+\begin{list}{$\bullet$}{
+\setlength{\itemsep}{1.5pt}
+\setlength{\labelwidth}{8pt}
+\setlength{\leftmargin}{10pt}
+\setlength{\labelsep}{3pt}
+\setlength{\listparindent}{\parindent}
+\setlength{\parsep}{1.5pt}
+\setlength{\parskip}{1.5pt}
+\setlength{\topsep}{1.5pt}}}{\end{list}}

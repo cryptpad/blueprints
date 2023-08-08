@@ -1,0 +1,69 @@
+%! TeX root = ../main.tex
+
+% Set minimum height of boxes (especially 'K' and 'y').
+\newlength{\myminheight}
+\settoheight{\myminheight}{\myViewKeyStr}
+
+\begin{tikzpicture}[minimum height=\myminheight, node distance=1.6cm,auto,>=latex']
+  \def\ydist{1.1cm}
+  \node (seed) [init] {$\myAlgofont{editKeyStr}$};
+  \node (mid) [right of=seed, coordinate] {};
+  \node (right) [right of=mid, coordinate] {};
+  \node (password) [init, right of=mid] {\mypwd};
+  % \node (superseed) [below of=mid, node distance = \ydist] {$\mySuperseed$};
+  \node [int] (hash) [below of=mid, node distance=\ydist] {$\myHash{\cdot}$};
+  \def\offset{1mm}
+  \draw[->] ($(password.south) + (\offset, 0)$) % go right and up to anchor
+  |- ($(password)!0.5!(hash)$)
+  -| ($(hash.north) +(\offset, 0) $)
+  ;
+  \draw[->] (seed) % go right and up to anchor
+  |- ($(seed)!0.5!(hash)$)
+  -| ($(hash.north) -(\offset, 0) $)
+  ;
+
+  % \draw[->] (superseed) -- (hash);
+
+  \node (mid2) [below of=hash, node distance=\ydist ] {};
+  \node (keypair) [left of=mid2, int] {$\myKGen{\cdot}$};
+  \node (mid3) [coordinate, below of=hash, node distance = \ydist] {};
+  \node (viewCryptor) [int, right of=mid2] {\myHash{\cdot}};
+  \node (signKey) [below of=keypair] {$\mySK\vphantom{y}$};
+  \node (verifyKey) [left of=signKey] {$\myPK\vphantom{y}$};
+  \node (viewKeyStr) [right of=signKey] {$\myAlgofont{viewKeyStr}$};
+  \node (chanID) [right of=viewKeyStr] {\mychanID\vphantom{y}};
+  \node (cryptKey) [right of=chanID] {$\mySymKey$\vphantom{y}};
+
+  \draw[->] ($(hash.south) $) % go right and up to anchor
+  |- ($(hash)!0.5!(viewCryptor)$)
+node[above, xshift=+0.3cm, bits] {32..63}
+  -| (viewCryptor)
+  ;
+  \draw[->] ($(hash.south)  $) % go right and up to anchor
+  |- ($(hash)!0.5!(keypair)$) node[above, xshift=-0.3cm, bits] {0..31}
+  -| (keypair)
+  ;
+
+
+\draw[->] (hash.south)  -- node [bits, right, yshift=-8mm] {32..63} ($(viewKeyStr.north) $);
+  \draw[->] ($(password.south) + (\offset, 0)$) % go right and up to anchor
+  |- ($(password)!0.5!(hash)$)
+  -| ($(viewCryptor.north) +(\offset, 0) $)
+  ;
+
+\draw[->] (viewCryptor) -- node [right, bits, yshift=-2.5mm] {0..15} (chanID);
+
+  \draw[->] ($(viewCryptor.south)$) % go right and up to anchor
+  |- ($(viewCryptor.south)!0.25!(cryptKey)$)
+  -|
+node [right, bits, yshift=-3.5mm] {16..47}
+  (cryptKey)
+  ;
+
+  \draw[->] ($(keypair.south) - (\offset, 0)$) % go right and up to anchor
+  |- ($(keypair.south)!0.5!(verifyKey) + (0, \offset)$)
+  -| (verifyKey)
+  ;
+  \draw[->] ($(keypair.south) + (\offset,0)$) -- ($(signKey.north) + (\offset, 0)$);
+
+\end{tikzpicture}

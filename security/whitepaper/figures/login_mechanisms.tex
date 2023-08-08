@@ -1,0 +1,80 @@
+%! TEX root = ../main.tex
+\begin{tikzpicture}[x=2.0cm,y=1.5cm,auto,>=latex, ->] \newlength{\offset}
+  \setlength{\offset}{2mm}
+
+  % Nodes of the login key derivation
+
+  \node (pwd)    at (0.5 ,  0) {\mypwd};
+  \node (uname)  at (1.5 ,  0) {$\myUsername|| \myAlgofont{salt}_I$};
+
+\node (kdf)    at (1   , -1) [int] {$\myKDF{\cdot}{\cdot}$};
+
+  \node (kgenl)  at (0.75, -2) [int] {$\myKGen[_S]{\cdot}$};
+
+  \node (PKL)    at (0.5 , -3) {$\myPK_L$};
+  \node (SKL)    at (1   , -3) {$\mySK_L$};
+  \node (KL)     at (1.5 , -3) {$\mySymKey_L$};
+
+
+  % Nodes of Longterm keys
+
+  \node (rand)   at (3   ,  0) {192 \myAlgofont{random bytes}};
+
+  \node (kgene)  at (2.5, -1) [int] {$\myKGen[_E]{\cdot}$};
+  \node (kgens)  at (3.5, -1) [int] {$\myKGen[_S]{\cdot}$};
+
+  \node (PKE)    at (2.25, -2) {$\myPK_E$};
+  \node (SKE)    at (2.75, -2) {$\mySK_E$};
+  \node (PKS)    at (3.25, -2) {$\myPK_S$};
+  \node (SKS)    at (3.75, -2) {$\mySK_S$};
+
+\node (encp)   at (3   , -3) [int, align=center] {\myAlgofont{store in encrypted document}\\ \myAlgofont{get read/write URL}};
+  \node (URL)    at (3   , -4) {\myEditKeyStr};
+
+
+  % Nodes of encryption
+  \node (enc)    at (2.25   , -5) [int] {$\mySymEnc{\cdot}{\cdot}$};
+  \node (blob)   at (2   , -6) {$\myPK_L || \text{\myAlgofont{encrypted blob}}$};
+
+
+  % Lines for the login key derivation
+
+  \draw (pwd)   |- ($(pwd)  !0.5!(kdf)$) -| ($(kdf.north) - (\offset, 0)$);
+  \draw (uname) |- ($(uname)!0.5!(kdf)$) -| ($(kdf.north) + (\offset, 0)$);
+
+  \draw (kdf) |- node [above, bits, xshift=-5mm, yshift=-0.5mm] {66..97}   ($(kdf)!0.5!(kgenl)$) -| (kgenl);
+  \draw (kdf) |- node [above, bits, xshift=+8mm, yshift=-0.5mm] {130..161} ($(kdf)!0.25!(KL)$) -| (KL);
+
+  \draw ($(kgenl.south) - (\offset, 0)$) |- ($(kgenl)!0.5!(PKL)$) -| (PKL);
+  \draw ($(kgenl.south) + (\offset, 0)$) |- ($(kgenl)!0.5!(SKL)$) -| (SKL);
+
+
+  % Lines for long term keys
+
+  \draw (rand) |- node [above, bits, xshift=-6mm] {34..65} ($(rand)!0.5!(kgene)$) -| (kgene);
+  \draw (rand) |- node [above, bits, xshift=+6mm] {98..129} ($(rand)!0.5!(kgens)$) -| (kgens);
+
+
+  \draw ($(kgene.south) - (\offset, 0)$) |- ($(kgene)!0.5!(PKE)$) -| (PKE);
+  \draw ($(kgene.south) + (\offset, 0)$) |- ($(kgene)!0.5!(SKE)$) -| (SKE);
+  \draw ($(kgens.south) - (\offset, 0)$) |- ($(kgens)!0.5!(PKS)$) -| (PKS);
+  \draw ($(kgens.south) + (\offset, 0)$) |- ($(kgens)!0.5!(SKS)$) -| (SKS);
+
+  \draw (PKE) |- ($(PKE)!0.5!(encp.north)$) -| (encp);
+  \draw (SKE) |- ($(SKE)!0.5!(encp.north)$) -| (encp);
+  \draw (PKS) |- ($(PKS)!0.5!(encp.north)$) -| (encp);
+  \draw (SKS) |- ($(SKS)!0.5!(encp.north)$) -| (encp);
+
+  \draw (encp) -- (URL);
+
+  % Lines for encryption
+  \draw (URL) |-  ($(URL)!0.5!(enc)$) -| (enc);
+  \draw (KL)  |-                         (enc);
+
+  \draw (PKL) |- ($(PKL)!0.5!(blob)$) -| ($(blob.north) -(7*\offset, 0)$);
+
+  \draw (enc) -- (enc|- blob.north);
+
+
+\end{tikzpicture}
+

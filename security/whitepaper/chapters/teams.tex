@@ -1,0 +1,65 @@
+\section{Teams}
+\label{sec:teams}
+
+In this section, we present CryptPad's team encryption which is similar to the general messaging encryption, but suitable for the use case where we want to have fine-grained control over reading and writing access.
+We first show in \cref{sec:team_key_derivation} how we derive the team's keys and how we use them for message encryption and the control of the team's drive.
+Next, we present in \cref{sec:roles_and_permissions} the different roles and permissions in team and how we enforce them.
+
+\subsection{Key derivation}
+\label{sec:team_key_derivation}
+We want that all users of a team can read messages, but not necessarily all of them to be able to write to the mailbox.
+We therefore generate not only an encryption key pair, but also a signing key pair which allows proving writing capabilities.
+
+\begin{figure}[t!]
+  \centering
+  \input{figures/team_keys.tex}
+  \caption{Derivation of team keys}
+  \label{fig:team_keys}
+\end{figure}
+
+The key generation for a team is depicted in \cref{fig:team_keys}.
+We sample 18 Bytes uniformly at random for \myseed and split it into two halves.
+We hash the first half and build from this hash the \mychanID and an encryption/decryption key pair $\myKeyPair{_T}$.
+The second half forms the input to $\myKGen[_S]{\cdot}$ which generates a signing key pair $\myKeyPair{_{T,S}}$.
+
+To send a message to a team, the user encrypts it with the same mechanism as described in \cref{sec:mailbox}.
+However, the user must set the team's $\myPK_T$ as the public key of the receiver and use the team's $\mySK_{T,S}$ as the signing key.
+
+The public signing key is further used to control a team's drive which works the same way as one of a single user.
+For example, we can use the signing key to pin a document, i.e., to indicate to the server that a specific document is owned.
+In the perspective of the server, the public key of this pin is, however, undistinguishable from the one of a single user.
+Based on an offline view of the database (i.e., after a seizure of law enforcement), the server can thus neither know which entities are teams, nor can the server match users to teams.
+
+\subsection{Roles and Permissions}
+\label{sec:roles_and_permissions}
+
+\begin{table}[t!]
+  \centering
+  \caption{Different roles and their permissions}
+  \label{tab:roles_and_permissions}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Role    & View & Edit & \parbox[c]{1.4cm}{Manage\\  Members} &  \parbox[c]{1.4cm}{Manage\\ Team} \\ \midrule
+Viewer & \checkmark &      &  &\\
+Member & \checkmark & \checkmark & &\\
+Admin  & \checkmark & \checkmark & \checkmark &\\
+Owner  & \checkmark & \checkmark & \checkmark & \checkmark \\ \bottomrule
+\end{tabular}
+\end{table}
+
+As shown in \cref{tab:roles_and_permissions}, there are four different roles in a team: viewers, members, admins, and owners.
+The permissions are the following:
+\begin{description}[itemsep=0pt]
+  \item[View:]  read-only access to folders and documents.
+  \item[Edit:]  create, modify, and delete folders and documents.
+  \item[Manage users:]  invite and revoke users, change user roles up to admin.
+  \item[Manage team:]  change team name and avatar, add or remove owners, change team subscription, delete team.
+\end{description}
+The number of permissions is strictly increasing, i.e., a role inherits all access rights from a weaker one, but has one additional permission.
+
+All users keep a local copy of their teams including their rosters.
+To manage members and the team itself, admins (respectively owners) send the corresponding control message to all users of the team.
+They then check the authenticity of the message and whether the sender has sufficient rights to perform the desired action.
+If this is the case, then they update their local view of the team.
+
+In order to, e.g., add a new document to the team's drive, the user sends the viewing keys to the viewers, and the editing keys to the teams' members, admins, and owners.

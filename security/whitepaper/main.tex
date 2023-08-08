@@ -1,0 +1,72 @@
+\documentclass[a4paper, 11pt, twocolumn]{article}
+
+\input{header.tex}
+\addbibresource{bibliography.bib}
+
+\graphicspath{{figures/}}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+
+%-------------------------------------------------------------------------------
+\input{acronyms.tex}
+
+% Definitions
+\newcommand{\myAlgofont}[1]{\ifmmode\mathsf{{#1}}\else\textsf{{#1}}\fi\xspace}
+\newcommand{\myHash}[1]{\ensuremath{\myAlgofont{H}({#1})}}
+\newcommand{\myKGen}[2][]{\ensuremath{\myAlgofont{KGen}\ifthenelse{\equal{#1}{}}{}{#1}({#2})}}
+\newcommand{\mypwd}{\myAlgofont{pwd}}
+\newcommand{\mySalt}{\myAlgofont{salt}}
+\newcommand{\myUsername}{\myAlgofont{user name}}
+\newcommand{\myseed}{\myAlgofont{seed}}
+\newcommand{\mychanID}{\myAlgofont{chanID}}
+\newcommand{\mySuperseed}{\myAlgofont{superseed}}
+\newcommand{\myViewKeyStr}{\myAlgofont{viewKeyStr}}
+\newcommand{\myFileKeyStr}{\myAlgofont{fileKeyStr}}
+\newcommand{\myEditKeyStr}{\myAlgofont{editKeyStr}}
+\newcommand{\myPK}{\myAlgofont{PK}}
+\newcommand{\mySK}{\myAlgofont{SK}}
+\newcommand{\myKeyPair}[1]{\ensuremath{(\myPK{#1}, \mySK{#1})}\xspace}
+\newcommand{\mySymKey}{\myAlgofont{K}}
+\newcommand{\mySymEnc}[2]{\ensuremath{\myAlgofont{SymEnc}({#1}, {#2})}}
+\newcommand{\myASymEnc}[1]{\ensuremath{\myAlgofont{ASymEnc}({#1})}}
+\newcommand{\myCtxt}{\ensuremath{c}}
+\newcommand{\mySig}{\ensuremath{sig}}
+\newcommand{\myKDF}[2]{\ensuremath{\myAlgofont{KDF}({#1}, {#2})}}
+\newcommand{\mySign}[2]{\myAlgofont{Sign}({#1}, {#2})}
+
+\author{CryptPad Team @ XWiki SAS\footnote{ \href{mailto:contact@cryptpad.fr}{contact@cryptpad.fr}}}
+
+\title{CryptPad: End-to-End Encrypted Collaboration Suite}
+
+% The CryptPad Version that is reflected in this document.
+\newcommand{\myCryptPadVersion}{5.1.0\xspace}
+
+% The version of this document.
+\newcommand{\myDocVersion}{1.1.0\xspace}
+
+\date{Version: \myDocVersion (Changelog in \cref{sec:changelog})}
+\maketitle
+
+\input{chapters/abstract}
+\input{chapters/introduction}
+\input{chapters/threat_model.tex}
+\input{chapters/client_server.tex}
+\input{chapters/notation.tex}
+\input{chapters/pads.tex}
+\input{chapters/cryptdrive.tex}
+\input{chapters/mailbox.tex}
+\input{chapters/teams.tex}
+\input{chapters/conclusion.tex}
+
+%-------------------------------------------------------------------------------
+
+
+\printbibliography
+
+\appendix
+\input{chapters/changelog.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

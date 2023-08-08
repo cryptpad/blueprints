@@ -1,0 +1,65 @@
+\documentclass[a4paper, 11pt]{article}
+
+\input{header.tex}
+\addbibresource{bibliography.bib}
+
+\graphicspath{{figures/}}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+
+%-------------------------------------------------------------------------------
+\input{acronyms.tex}
+\author{Theo von Arx and Aaron MacSween}
+
+\title{Security Recommendations for CryptPad 5}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+  During the writing of the cryptography white paper, we discovered multiple issues and limitations in the current version of CryptPad.
+  While none of them are classified severe, requiring immediate action, or posing a serious threat for users, they nevertheless should be addressed.
+
+  In this document, we list the problems, show their consequences, suggest how to fix them and outline possible drawbacks.
+  We classified them into three different categories: short-term improvements (c.f. \cref{sec:shortterm}) that can be done immediately within the current version of CryptPad, mid-term improvements (c.f. \cref{sec:midterm}) that require the introduction of a new version of the encryption schemes, and long-term improvements (c.f. \cref{sec:longterm}) that can only be addressed with architectural changes.
+
+
+\section{Short-Term Improvements} \label{sec:shortterm} % Can be done within current system
+  In this section, we list improvements that can be done without requiring bigger changes of the underlying encryption schemes or architecture.
+
+  \input{improvements/update_tweetnacl.tex}
+  \input{improvements/name_of_team_roles.tex}
+  \input{improvements/thumbnails_of_destroyed_documents.tex}
+  \input{improvements/asynchronous_cryptography_functions.tex}
+  \input{improvements/enforcing_of_self-destructing_links.tex}
+  \input{improvements/contact_verification.tex}
+  \input{improvements/prevent_replay_of_old_patches.tex}
+  \input{improvements/concurrent_uploads.tex}
+  \input{improvements/more_entropy_for_login_keys.tex}
+  \input{improvements/limit_login_block_size.tex}
+  \input{improvements/instance_salt_is_rarely_set.tex}
+
+\section{Medium-Term Improvements} \label{sec:midterm} % Can be done within a new Crypto version
+  In this section, we outline improvements that should be addressed with the introduction of a new version of the encryption scheme.
+  \input{improvements/fix_bit_overlap_in_viewcryptor2.tex}
+  \input{improvements/deduplicate_code.tex}
+  \input{improvements/transition_to_new_encryption_schemes.tex}
+
+\section{Long-Term Improvements} \label{sec:longterm} % Require a new architecture
+  In this section, we discuss improvements that require an architectural change to address the underlying problems.
+  \input{improvements/reduce_trust_on_server.tex}
+  \input{improvements/team_key_revocation.tex}
+  \input{improvements/traitor_tracing.tex}
+
+
+%-------------------------------------------------------------------------------
+
+
+\printbibliography
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

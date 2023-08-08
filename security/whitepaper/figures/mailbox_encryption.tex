@@ -1,0 +1,46 @@
+%! TEX root = ../main.tex
+\tikzstyle{int}=[draw, fill=blue!20, minimum size=2em]
+\tikzstyle{init} = [pin edge={to-,thin,black}]
+\tikzstyle{enc} = [minimum height=1.5cm,text width=2.5em,align=center,fill=blue!20,draw]
+\tikzstyle{ifelse} = [font=\footnotesize]
+
+\begin{tikzpicture}[node distance=1.3cm,auto,>=latex']
+  \def \ydist{1.5cm}
+  \def \encdist{0.5cm}
+  \node (m) {$m$};
+
+  \node (enc1) [enc, below of=m, node distance=\ydist] {\myAlgofont{Enc}};
+  \node (left) [left of=enc1, coordinate] {};
+  \node (PKA) [ left of=left] {$\myPK_A$};
+  \node (SKA) [ above of=PKA, node distance = \encdist] {$\mySK_A$};
+  \node (PKB) [ below of=PKA, node distance = \encdist] {$\myPK_B$};
+
+  \node (enc2) [enc, below of=enc1, node distance=1.5*\ydist] {\myAlgofont{Enc}};
+  \node (PKE) [ left of=enc2] {$\myPK_E$};
+  \node (SKE) [ above of=PKE, node distance = \encdist] {$\mySK_E$};
+
+  \node (mid) [below of=enc2, node distance=1.5*\ydist, coordinate] {};
+  \node (sign) [int, left of=mid] {\myAlgofont{Sign}};
+  \node (SKS) [left of=sign] {$\mySK_{B,S}$};
+
+  \node (c)    [below of=mid, node distance=\ydist] {c};
+
+  \draw[->] (m) -- (enc1);
+
+  \draw[->] (SKA) -- ($(enc1.west) + (0,\encdist)$);
+  \draw[->] (PKA) -- (enc1);
+  \draw[->] (PKB) -- ($(enc1.west) - (0,\encdist)$);
+
+  \draw[->] (SKE) -- ($(enc2.west) + (0,\encdist)$);
+  \draw[->] (PKE) -- (enc2);
+  \draw[->] ($(PKB.east) + (0.1cm,0)$) |- ($(enc2.west) - (0,\encdist)$);
+
+  \draw[->] (enc1) -- (enc2);
+  \draw[->] (enc2) -- node[left, ifelse] {if $\mySK_{B,S}$} (sign);
+  \draw[->] (SKS) --  (sign);
+  \draw[->] (sign) -- (c);
+  \draw[->] (enc2) -- node [right, ifelse] {else}(c);
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\end{tikzpicture}

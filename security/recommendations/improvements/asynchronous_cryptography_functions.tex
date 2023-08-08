@@ -1,0 +1,15 @@
+\subsection{Asynchronous Cryptography Functions}
+
+\paragraph{Problem:}
+The current cryptography functions including encryption and key derivation (such as \texttt{ViewCryptor2}) are synchronous and do block all resources.
+
+\paragraph{Consequences:}
+No operations can be done in parallel to cryptography functions.
+Moreover, natively supported asynchronous functions (e.g., \texttt{SHA-256}) that would bring a speedup cannot be used.
+
+\paragraph{Suggestions:}
+Opt for a more general interface in which cryptography functions are asynchronous
+
+\paragraph{Drawbacks:}
+The additional workload coming from parallel execution may be too resource-intensive on some devices, such as smartphones.
+Refactoring large parts of the code to make it asynchronous is tedious.

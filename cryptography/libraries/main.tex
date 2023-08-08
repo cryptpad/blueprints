@@ -1,0 +1,234 @@
+\documentclass[a4paper, 11pt]{article}
+
+\input{header.tex}
+\usepackage{tablefootnote}
+\usepackage{pgfplots}
+\addbibresource{bibliography.bib}
+
+\graphicspath{{figures/}}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+
+%-------------------------------------------------------------------------------
+\input{acronyms.tex}
+
+% Definitions
+\newcommand{\myAlgofont}[1]{\ifmmode\mathsf{{#1}}\else\textsf{{#1}}\fi\xspace}
+\newcommand{\myHash}[1]{\ensuremath{\myAlgofont{H}({#1})}}
+\newcommand{\myKGen}[2][]{\ensuremath{\myAlgofont{KGen}\ifthenelse{\equal{#1}{}}{}{#1}({#2})}}
+\newcommand{\mypwd}{\myAlgofont{pwd}}
+% \newcommand{\mySalt}{\myAlgofont{salt}}
+% \newcommand{\myUsername}{\myAlgofont{user name}}
+% \newcommand{\myseed}{\myAlgofont{seed}}
+\newcommand{\mychanID}{\myAlgofont{chanID}}
+% \newcommand{\mySuperseed}{\myAlgofont{superseed}}
+\newcommand{\myViewKeyStr}{\myAlgofont{viewKeyStr}}
+% \newcommand{\myFileKeyStr}{\myAlgofont{fileKeyStr}}
+\newcommand{\myEditKeyStr}{\myAlgofont{editKeyStr}}
+\newcommand{\myPK}{\myAlgofont{PK}}
+\newcommand{\mySK}{\myAlgofont{SK}}
+% \newcommand{\myKeyPair}[1]{\ensuremath{(\myPK{#1}, \mySK{#1})}\xspace}
+\newcommand{\mySymKey}{\myAlgofont{K}}
+% \newcommand{\mySymEnc}[2]{\ensuremath{\myAlgofont{SymEnc}({#1}, {#2})}}
+% \newcommand{\myASymEnc}[1]{\ensuremath{\myAlgofont{ASymEnc}({#1})}}
+% \newcommand{\myCtxt}{\ensuremath{c}}
+% \newcommand{\mySig}{\ensuremath{sig}}
+% \newcommand{\myKDF}[2]{\ensuremath{\myAlgofont{KDF}({#1}, {#2})}}
+% \newcommand{\mySign}[2]{\myAlgofont{Sign}({#1}, {#2})}
+
+\author{Theo von Arx}
+
+\title{Cryptographic Libraries for CryptPad}
+
+\maketitle
+
+\begin{abstract}
+Changing the cryptographic primitives in CryptPad is complex and requires
+a lot of work to maintain backwards compatibility. For this reason, a
+possibly new cryptography library has to be chosen carefully.
+
+Since its beginning, CryptPad has used the TweetNaCl-JS library to perform
+cryptographic operations. We re-evaluate it in terms of security and
+performance. We furthermore compare it against other
+popular libraries/APIs such as Libsodium.js and the Web Crypto API.
+
+While NaCl is still considered to be secure and there are no known
+attacks, it lacks performance and native support on current browsers.
+Sodium provides more flexibility in terms of available algorithms (which
+are not necessarily desired for CryptPad). SubtleCrypto provides highly
+performant primitives, which differ from CryptPad's used algorithms. The
+performance gain is most-likely not big enough to justify the workload
+on adapting these algorithms immediately, but only when a bigger refactoring happens anyway.
+\end{abstract}
+
+\tableofcontents
+
+\section{Notation}\label{notation}
+
+We first give informal reminders about security notions required for CryptPad:
+
+\begin{itemize}
+\item \textbf{INT-CTXT} (Ciphertext Integrity): It is computationally infeasible to produce
+  a decryptable ciphertext that has not previously been produced by the sender,
+  whether or not the underlying plaintext is \enquote{new}.
+\item \textbf{IND-CPA} (Indistinguishability of Chosen Plaintext Attack):
+  No adversary, given an encryption of a message randomly
+  chosen from a two-element message space determined by
+  the adversary, can identify the message choice with
+  probability significantly better than that of random guessing.
+\item \textbf{SUF-CMA} (Strong Unforgeabililty against Chosen Message
+  Attack): No adversary can create a new signature for an existing message
+\item \textbf{Pre-Image Resistance:} For essentially all pre-specified outputs, it is computationally infeasible to find any input that hashes to that output.
+\item \textbf{Collision Resistance:} It is hard to find two different inputs that hash to the same output.
+\end{itemize}
+
+
+\section{Problem statement}\label{problem-statement}
+
+In short, the questions are: \emph{If we deploy a new version of CryptPad's encryption schemes, should
+we use another library? And which?}
+
+More specifically, the following cryptographic functions are required:
+
+\begin{itemize}
+  \item \Ac{KDF} that is brute-force resistant (and thus memory and time intense), and that provides good entropy for low-entropy inputs.
+\item Authenticated symmetric encryption
+\item IND-CPA asymmetric encryption
+\item Asymmetric signatures that is resistant to selective forgery in known-message attacks and SUF-CMA
+\item Hashes that are pre-image resistant and collision resistant.
+  \end{itemize}
+
+Further requirements are that the algorithms should be distributed in a maintained, free JavaScript library, fast loadable and compatible with Firefox, Chrome and Safari. Except for the \ac{KDF}, all functions should execute quickly.
+
+\section{Libraries}\label{libraries}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[th]
+\caption{Provided algorithms by various libraries. The Web Crypto API is implemented differently for every browser. }
+\label{tab:overview}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+Library        &  Audit & Last Update  & Algorithms \\ \midrule
+TweetNaCl-JS   & 2017       &  06/2022    & X25519-XSalsa20-Poly1305,\\
+               &            &             & XSalsa20-Poly1305,\\
+               &            &             & Ed25519, SHA-512\\
+libsodium.js   & 2017       &  01/2023    & XChaCha20-Poly1305\\
+               &            &             & XSalsa20-Poly1305,\\
+               &            &             & X25519-XSalsa20-Poly1305,\\
+               &            &             & Ed25519, Ed25519ph\\
+               &            &             & Blake2b, Argon2, Scrypt\\
+Web Crypto API & *             & *        &  RSA-OAEP, \\
+              &             &             & AES-CBC, AES-GCM              \\
+              &             &             & SHA-256, SHA-384, SHA-512\\
+              &             &             & ECDH, HKDF, PBKDF2
+\\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Tweet-NaCl}
+\label{sec:tweet-nacl}
+
+TweetNaCl-JS is the library that is currently in use for CryptPad.
+The algorithms have been described by~\citeauthor{Bernstein2015} in \citeyear{Bernstein2015}.
+The library~\cite{Chestnykhm2016} is written and maintained by Dmitry Chestnykh, is licensed under the GPL-compatible \textit{Unlicense} and was last audit by Cure53 in 2017.
+
+The provided algorithms can be seen in  \cref{tab:overview}.
+They match all the requirements and are considered to be secure.
+While there have been some practical collision attacks against \textit{truncated} SHA-512~\cite{Dobraunig2015}, SHA-512 is nevertheless listed by NIST~\cite{Dworkin2022}.
+
+To sum up, Tweet-NaCl is considered to be secure and to meet CryptPad's requirements.
+Hence, the only reason to change it would be performance or quantum-resistance.
+
+\subsection{LibSodium}
+\label{sec:libsodium}
+Libsodium \enquote{is a portable, cross-compilable, [...] fork of NaCl, with a compatible API}~\cite{Denis2013}.
+The library was last audited Private Internet Access in 2017, is licensed under the GPL-compatible ISC License and provides a library compiled to WebAssembly~\cite{BenMrad2015}.
+
+Libsodium provides a superset of the algorithms implemented by TweetNaCl-JS (c.f. \cref{tab:overview}).
+The library thus offers much more freedom allowing a specific choice of algorithms as well as generic interfaces for which the underlying algorithms can be updated.
+However, this freedom is not necessarily desirable for CryptPad: since ciphertexts are stored permanently, the algorithms cannot be easily exchanged.
+A newer version could modify the default behaviour and therefore break existing documents.
+
+\subsection{Web Crypto API}
+\label{sec:subtlecrypto}
+
+The Web Crypto API~\cite{Huigen2022} is a standardized JavaScript API supported by current versions of all major browsers (Firefox, Chrome, Safari).
+SubtleCrypto, which is part of the Web Crypto API, provides interfaces for symmetric and asymmetric encryption, signing, and hashing (c.f.~\cref{tab:overview}).
+The API also provides a lot of flexibility in terms of choosable  algorithms.
+This might be tricky, since, e.g., AES-CBC does not provide authentication, but could be used in combination with signatures.
+
+The main advantage of the Web Crypto API is the native support by browsers.
+Not only does this eliminate any loading time of library code, but also gives access to hardware-optimized functions.
+
+However, all functions are implemented \textit{asynchronously} and therefore can only be called from within \texttt{async} functions.
+CryptPad currently calls all functions from within synchronous functions.
+Therefore this library is not a drop-in replacement, not even for identical functions such as Web Crypto's SHA-512 and TweetNaCl-JS' SHA-512.
+
+\section{Discarded Libraries}
+\subsection{Stanford Javascript Crypto Library}
+
+While this library seems to be quite popular and is written by renowned experts, it does no longer seem to be maintained: the last commit was from July 2019 and the last release from November 2018~\cite{Stark2015}.
+Furthermore, the library provides only low-level functions.
+
+\subsection{CryptoJS}
+This library is also very popular~\cite{Mott2009} and has seen its last commit in September 2021.
+It provides AES-256 in several modes (among which are CBC, CTR, and ECB), but not in GCM mode.
+Hence, there is no authenticated encryption.
+Furthermore, the library does not provide any digital signatures.
+
+
+\section{Performance Comparison}
+\label{sec:performance-comparison}
+
+\begin{figure}[t!]
+  \centering
+  \input{performance/performance.pgf}
+  \caption{Web Crypto API outperforms the other libraries in the vast majority of scenarios (lower is better).}
+  \label{fig:performance_plot}
+\end{figure}
+
+\Cref{fig:performance_plot} shows the performance of the different
+libraries mentioned above on Firefox, Chromium, and Webkit.
+The measurements where done using Playwright on a Lenovo ThinkPad X1 Carbon 5th Generation (Intel® Core™ i5-7200U CPU @
+2.50GHz × 4), the actual results might therefore vary for different platforms.
+Nevertheless, the figure gives a raw indication to compare the performance.
+
+For better visibility, we only show the default Libsodium functions, which are XSalsa20-Poly1305, Ed25519, and Blake2b.
+Similarly, we show only  AES-GCM, RSA-PSS, and SHA-512 for the Web Crypto API.
+
+When observing \cref{fig:performance_plot}, we see that almost all functions run slower on Firefox.
+Especially Libsodium performs really poorly on Firefox compared to its performance on other browsers.
+
+For symmetric encryption, TweetNaCl-JS and Libsodium.js are the slowest libraries with a runtime of up to 60 ms.
+The AES-GCM of the Web Crypto API performs much better and nearly independent of
+the input size.
+It is up to 19 times faster than NaCl (when decrypting 1MB on webkit).
+
+
+For asymmetric encryption, TweetNaCl-JS performs worst while Libsodium.js and Web Crypto API perform about similar.
+The figure suggests that Webkit does have a bad support for RSA-PSS verification.
+
+For hashing, the Web Crypto API function also outperforms the other two.
+Its running time is (especially compared to the one of TweetNaCl-JS) nearly independent of the input size.
+While Libsodium.js shows a good performance on Chromium and Webkit, its performance on Firefox is even worse than the one of TweetNaCl-JS.
+%-------------------------------------------------------------------------------
+
+\section{Conclusion}
+
+Since TweetNaCl-JS still fulfills the security requirements, and there are no post-quantum safe libraries yet, the only reason to replace it would be performance.
+In this point, the Web Crypto API is the clear winner.
+However, drawbacks are the increased flexibility as well as the requirement of asynchronous caller functions.
+While the first can be mitigated by writing proper wrappers, the second can only be addressed during a major rewrite of CryptPad's cryptography code and all its caller function.
+Rewriting them to be asynchronous gives room for potential more optimizations and might therefore be seen as an opportunity.
+
+\printbibliography
+
+\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

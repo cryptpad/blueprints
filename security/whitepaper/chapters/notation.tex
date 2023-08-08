@@ -1,0 +1,27 @@
+\section{Notation}
+\label{sec:notation}
+
+In this section we introduce the used libraries and notation.
+
+For the \ac{KDF} we use \texttt{scrypt}~\cite{Percival2009}.
+We define $\myKDF{\mypwd}{\mySalt}$ to be the \texttt{scrypt} algorithm using the password \mypwd and \mySalt as an input.
+
+All other cryptographic operations are done using the TweetNaCl.js library~\cite{Bernstein2015,Chestnykhm2016}.
+We also use TweetNaCl.js to sample random bytes, however, TweetNaCl.js itself relies on the browsers' sources of secure randomness.
+
+Symmetric encryption is authenticated and uses XSalsa20-Poly1305.
+We let $\mySymEnc{\mySymKey}{m}$ be the symmetric encryption of the message $m$ under the secret key $\mySymKey$.
+
+Public-key encryption is authenticated and uses x25519-XSalsa20-Poly1305.
+We let $\myKGen[_E]{\myseed}$ be the derivation of an asymmetric key pair $\myKeyPair{}$  from \myseed.
+Here, \myPK denotes the public key and \mySK denotes the private key.
+We use $\myAlgofont{Nacl.box}(m, N, \myPK_B, \mySK_A)$ to explicitly refer to the asymmetric encryption of a message $m$ under a nonce $N$, Bob's public key $\myPK_B$, and Alice' private key $\mySK_A$.
+
+Likewise, we use Ed25519 for signatures and let $\myKGen[_S]{\myseed}$ denote the derivation of an asymmetric signing key pair $\myKeyPair{}$  from \myseed.
+The signing of a message $m$ under a private key $\myPK$ is written as $\mySign{m}{\myPK}$.
+
+Finally, we use SHA-512 for hashes and denote the hash of a string $x$ as $\myHash{x}$.
+To mark a splitting of a string $x$ in diagrams, we annotate the arrows with $i..j$ to denote all \textit{bytes} from the $i$-th to the $j$-th (both included).
+We further let $x || y$ be the concatenation of two strings $x$ and $y$.
+In diagrams, multiple arrows pointing to the same box (e.g., a hash) may implicitly denote string concatenation.
+

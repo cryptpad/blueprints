@@ -1,0 +1,22 @@
+{
+  "name": "CodeMirror over Yjs",
+  "version": "0.1.0",
+  "authors": [
+    "Theo von Arx <theo.vonarx@xwiki.com>"
+  ],
+  "main": "codemirror.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "AGPLv3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tweetnacl": "0.12.2"
+  }
+}

@@ -1,0 +1,28 @@
+\section{Client-Server Communication}
+\label{sec:client_server}
+In this section, we show how we use the NetFlux protocol~\cite{DeLisle2016} to enable communication between web clients and the server.
+We discuss the usage of \ac{TLS} that helps to defend against \ac{MITM} and impersonation.
+
+Each CryptPad instance makes use of a central server:
+while not being able to read any content, the server still acts as an intermediary between different clients.
+This is not only to forward the messages, but also to store them and to guarantee a highly available persistence layer that would not be possible in a purely peer-to-peer solution.
+
+
+Communication between the client and the server is mostly done using a Websocket connection based on the NetFlux protocol.
+Exceptions are static files (images, videos, PDF, etc.) that are stored in an encrypted format and are retrieved by users with \acp{XHR}.
+
+With the NetFlux protocol, users  can join \textit{channels} and send messages to them.
+All users subscribed to a channel will then receive the messages.
+
+Each document is represented on the server by a channel with a unique 32-character hexadecimal identifier called \mychanID.
+The \mychanID associated with a document is derived from its URL, so that users knowing the URL can subscribe to the channel.
+
+While a channel provides a way to communicate messages or changes to a document, channels do not provide confidentiality or authenticity.
+We therefore use \ac{TLS} to encrypt the messages between the server and the client.
+This allows to authenticate the server and therefore rules out \ac{MITM} attacks.
+It further restricts any network adversary from accessing the encrypted content.
+
+However, \ac{TLS} on its own is not enough as the encryption is only between the server and the client, but not between two clients.
+\ac{TLS} can moreover not prevent clients from subscribing to channels they should not have access to.
+To prevent against this, we make use of dedicated encryption schemes hand tailored to CryptPad.
+We present these schemes in the \cref{sec:pads,sec:cryptdrive,sec:mailbox,sec:teams}.

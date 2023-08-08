@@ -1,0 +1,40 @@
+\section{Introduction}
+
+% CryptPad history
+CryptPad is an end-to-end encrypted real-time collaboration suite that is used by hundreds of thousands of people per month.
+It is accessible through a web interface which ensures that all data is encrypted in the browser with no readable user data leaving the local device.
+Even the service administrators can therefore not see the content of documents or user data.
+
+% - online since
+
+Since CryptPad's initial release in 2014, the feature set has grown from a simple editor to a full-blown set of multiple applications including forms, spreadsheets, presentation slides, kanban boards, and whiteboards.
+Nowadays, CryptPad also features additional collaboration utilities such as calendars, teams and simple chats.
+
+% - open source
+CryptPad is an open source project with both client and server code available and licensed under the \ac{AGPL}.\footnote{Source code: \url{https://github.com/xwiki-labs/cryptpad}}
+This means that anyone with the ability to do so is free to use, host, and modify the software as long as any modifications are made available to their users under the same terms.
+CryptPad is developed by XWiki SAS, a company based in Paris, France that has been making open source software since 2004.
+The development has been supported since 2015 by French and European research funding bodies such as BPI France, NLNet Foundation, NGI Trust, and Mozilla Open Source Support.
+
+% - users
+Due to the limited information which is exposed to operators of CryptPad servers, we cannot know exactly which type of users rely on CryptPad and for what kind of activity it is used.
+As several blog posts suggest, among CryptPad's users are journalists~\cite{Jha2022}, people working in the health sector~\cite{InterHop2021}, and activists~\cite{Times2022,Paris2019}.
+There is also a public instance hosted by Germany's Pirate Party~\cite{PPG}.
+This instance was recently seized by police as a consequence of the publication of sensitive material~\cite{Times2022}.
+Altogether, this shows that higher-risk users rely on the security established by CryptPad.
+The users especially do not want to trust the server as it might be corrupt or seized due to legal enforcement.
+
+In previous work~\cite{MacSween2018, MacSween2019} we described CryptPad's general architecture and user interface and compared it to other collaboration tools.
+In this paper, however, we focus on the cryptographic design that is used to secure user-generated information such as documents and messages.
+We show the desired security properties and how we establish them cryptographically.
+We update this paper to align it with CryptPad's newest improvements.
+This paper here reflects \myCryptPadVersion (c.f. the changelog in \cref{sec:changelog}).
+
+% Structure of paper
+The remainder of this paper is structured as follows:
+\Cref{sec:threat_model} summarizes CryptPad's underlying threat model.
+We then explain the communication between the server and the client in \cref{sec:client_server}.
+After introducing the notation in \cref{sec:notation}, we present in \cref{sec:pads} the encryption of pads as the core functionality of CryptPad.
+We next show in \cref{sec:cryptdrive} how the login mechanism makes the documents easily accessible across multiple devices, but keeps them secure.
+\Cref{sec:mailbox} explains the establishment of secure communication between different users.
+Finally, \cref{sec:teams} shows how we enable communication and access control within a team.

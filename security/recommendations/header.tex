@@ -1,0 +1,190 @@
+% \usepackage{bytefield}
+\usepackage{enumitem}
+\usepackage{changelog}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{siunitx}
+% \sisetup{text-family-to-math = true, text-series-to-math = true, group-separator = {,}}
+\usepackage[ main=english,]{babel}
+%% These additional packages are used within the document:
+\usepackage{booktabs}  % Tables
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{tikz}      % Diagrams
+\usetikzlibrary{arrows, calc, shapes, backgrounds, shadows, positioning}
+\usetikzlibrary{fit}
+\usetikzlibrary{patterns}
+
+\tikzstyle{int}=[draw, fill=blue!20, minimum size=2em]
+\tikzstyle{init} = [pin edge={to-,thin,black}]
+\tikzstyle{bits} = [font=\footnotesize]
+\usepackage{pgf}
+\usepackage{pgf-umlsd}
+\usepackage[utf8]{inputenc}
+\usepackage{lipsum}
+\usepackage{xspace}
+\usepackage{calc}
+
+
+\setlength{\marginparwidth}{1.5cm}
+\usepackage{todonotes}
+% \usepackage{natbib}
+\usepackage{csquotes}
+\usepackage[nolist]{acronym}
+
+\usepackage[backend=biber, style=ieee, sortcites, maxcitenames=1,mincitenames=1]{biblatex}
+\AtEveryBibitem{
+   \clearfield{month}
+   \clearfield{series}
+%    \clearfield{venue}
+   \clearname{editor}
+   \clearlist{publisher}
+   \clearlist{location} % alias to field 'address'
+   \clearfield{eprint}
+   \clearfield{doi}
+%    % \clearfield{url}
+   % \clearfield{venue}
+   \clearfield{issn}
+   \clearfield{isbn}
+   \clearfield{note}
+%    \clearfield{urldate}
+%    \clearfield{urlday}
+%    \clearfield{urlmonth}
+%    \clearfield{urlyear}
+   \clearfield{eventdate}
+   \clearfield{pages}
+   \clearlist{language}
+   % \clearfield{booktitle}
+   % \clearfield{journaltitle}
+   \clearfield{volume}
+    \ifentrytype{article}{
+      \clearfield{number}
+      \clearfield{url}
+      \clearfield{urlday}
+      \clearfield{urlmonth}
+      \clearfield{urlyear}
+  }{}
+    \ifentrytype{inproceedings}{
+      \clearfield{number}
+      \clearfield{url}
+      \clearfield{urlday}
+      \clearfield{urlmonth}
+      \clearfield{urlyear}
+  }{}
+}
+
+
+\usepackage{stackrel}
+\usepackage{amsmath, amssymb}
+\usepackage{nicefrac}
+
+\usepackage{float}
+\floatstyle{plain}
+\newfloat{lstfloat}{tpbh}{lop}
+\floatname{lstfloat}{Listing}
+\def\lstfloatautorefname{Listing}
+
+\usepackage{xurl}       % `\url`s
+\usepackage{listings}  % Code listings
+
+\usepackage{tablefootnote}
+\usepackage{pifont}
+
+
+\lstset{%
+  basicstyle=\small\ttfamily,
+  breakatwhitespace=false,
+  breaklines=true,
+  commentstyle=\color{green!60!black},
+  extendedchars=true,
+  keywordstyle=\color{blue},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stringstyle=\color{violet},
+  numberstyle=\tiny\color{gray},
+  numbers=left,
+  numbersep=5pt,
+  frame=single,
+  tabsize=2,
+}
+% Fix space after caption,
+% see https://tex.stackexchange.com/questions/248804/ieee-latex-listing
+\makeatletter
+\def\lst@makecapton{%
+  \def\@captype{table}%
+  \@makecaption
+}
+\makeatother
+
+% \usepackage{fontawesome5}
+
+% Crypto stuff
+% \usepackage{algorithm}
+\usepackage[ n, advantage, operators, sets, adversary, landau, probability,
+notions, logic, ff, mm, primitives, events, complexity, asymptotics, keys,
+% oracles
+]{cryptocode}
+% \usepackage{algpseudocode}
+\usepackage{algorithmicx}
+
+\usepackage[capitalise]{cleveref}
+\crefname{enumi}{}{}
+
+\newcommand{\authnote}[2]{{\bf \textcolor{blue}{#1}: \em \textcolor{red}{#2}}}
+
+\newcommand*\justify{%
+  \fontdimen2\font=0.4em% interword space
+  \fontdimen3\font=0.2em% interword stretch
+  \fontdimen4\font=0.1em% interword shrink
+  \fontdimen7\font=0.1em% extra space
+  \hyphenchar\font=`\-% allowing hyphenation
+}
+
+\renewcommand{\texttt}[1]{%
+  \begingroup
+  \ttfamily
+  \begingroup\lccode`~=`/\lowercase{\endgroup\def~}{/\discretionary{}{}{}}%
+  \begingroup\lccode`~=`[\lowercase{\endgroup\def~}{[\discretionary{}{}{}}%
+  \begingroup\lccode`~=`.\lowercase{\endgroup\def~}{.\discretionary{}{}{}}%
+  \catcode`/=\active\catcode`[=\active\catcode`.=\active
+  \justify\scantokens{#1\noexpand}%
+  \endgroup
+}
+
+\setlist[enumerate]{
+  itemsep=1.5pt,
+  labelwidth=8pt,
+  leftmargin=10pt,
+  labelsep=3pt,
+  listparindent=\parindent,
+  parsep=1.5pt,
+  % parskip=1.5pt,
+  topsep=1.5pt,
+}
+
+
+% Definitions
+\newcommand{\myAlgofont}[1]{\ifmmode\mathsf{{#1}}\else\textsf{{#1}}\fi\xspace}
+\newcommand{\myHash}[1]{\ensuremath{\myAlgofont{H}({#1})}}
+\newcommand{\myKGen}[2][]{\ensuremath{\myAlgofont{KGen}\ifthenelse{\equal{#1}{}}{}{#1}({#2})}}
+\newcommand{\mypwd}{\myAlgofont{pwd}}
+\newcommand{\mySalt}{\myAlgofont{salt}}
+\newcommand{\myUsername}{\myAlgofont{user name}}
+\newcommand{\myseed}{\myAlgofont{seed}}
+\newcommand{\mychanID}{\myAlgofont{chanID}}
+\newcommand{\mySuperseed}{\myAlgofont{superseed}}
+\newcommand{\myViewKeyStr}{\myAlgofont{viewKeyStr}}
+\newcommand{\myFileKeyStr}{\myAlgofont{fileKeyStr}}
+\newcommand{\myEditKeyStr}{\myAlgofont{editKeyStr}}
+\newcommand{\myPK}{\myAlgofont{PK}}
+\newcommand{\mySK}{\myAlgofont{SK}}
+\newcommand{\myKeyPair}[1]{\ensuremath{(\myPK{#1}, \mySK{#1})}\xspace}
+\newcommand{\mySymKey}{\myAlgofont{K}}
+\newcommand{\mySymEnc}[2]{\ensuremath{\myAlgofont{SymEnc}({#1}, {#2})}}
+\newcommand{\myASymEnc}[1]{\ensuremath{\myAlgofont{ASymEnc}({#1})}}
+\newcommand{\myCtxt}{\ensuremath{c}}
+\newcommand{\mySig}{\ensuremath{sig}}
+\newcommand{\myKDF}[2]{\ensuremath{\myAlgofont{KDF}({#1}, {#2})}}
+\newcommand{\mySign}[2]{\myAlgofont{Sign}({#1}, {#2})}
+

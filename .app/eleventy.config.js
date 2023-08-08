@@ -6,6 +6,11 @@ module.exports = (function(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('node_modules/mermaid/');
 
+  eleventyConfig.addPassthroughCopy('../cryptography/agility/');
+  eleventyConfig.addPassthroughCopy('../roadmap/yjs/');
+
+  eleventyConfig.addGlobalData("layout", "layouts/base");
+
   eleventyConfig.setServerOptions({
     watch: ["dist/app.js", "dist/app.*.css"],
   });

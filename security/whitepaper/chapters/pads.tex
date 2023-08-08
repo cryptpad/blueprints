@@ -1,0 +1,222 @@
+\section{Documents}
+\label{sec:pads}
+In this section, we present \textit{documents} as one of the core concepts of CryptPad.
+Historically implemented as encrypted collaboratively editable text documents, the concept of documents has expanded.
+Nowadays, other types of data such as folders, polls and calendars are internally represented as documents on CryptPad.
+
+We first show the basic idea of how we use encryption to control access rights.
+Next, we present the consensus algorithm that ensures that changes to a document are propagated to the users in nearly real-time.
+We then explain in \cref{sec:pad_encryption} the key derivation in multiple different scenarios that enables end-to-end encryption, prevents user abuse attacks, and is easy to use.
+We further explain CryptPad's ownership model in \cref{sec:ownership} to achieve.
+Finally, we discuss in \cref{sec:self-destructing} how we build self-destructing documents depending on either the time or on the opening of the sharing link.
+
+\subsection{Consensus Protocol}
+\label{sec:consensus}
+
+% 1. Realtime collaboration requires handling simultaneous changes
+The main difficulty for near real-time collaboration is in reconciling the fact that it is impossible for two events separated by some distance to interact instantaneously.
+We therefore introduce in this section a protocol that can handle simultaneous edits of documents.
+
+% 2. CryptPad uses its own protocol based on directed acyclic graphs
+CryptPad uses its own protocol based on \ac{OT}~\cite{Ellis1989} and directed acyclic graphs.
+The basic idea is to generate \textit{patches} from one state to the next and to collectively decide the order in which the patches need to be applied.
+
+% As in https://github.com/xwiki-labs/cryptpad/blob/main/docs/ARCHITECTURE.md#consensus
+The user stores a local copy known as the \textit{authoritative document} which is the last known state of the document that is agreed upon by all the users.
+The authoritative document can only be changed as a result of an incoming patch from the server.
+
+The difference between modified document and the authoritative document is represented by a \textit{patch} known as the \textit{uncommitted work}.
+A patch further references the \myAlgofont{SHA-256} hash of the authoritative document.
+The patches therefore build a directed acyclic graph where we call the longest path to be the \textit{chain}.
+
+As the user adds and removes data, this uncommitted work grows.
+Periodically the user transmits the uncommitted work in the form of patches to the server.
+The server will then broadcast these patches to all users listening to the corresponding NetFlux channel.
+The user can afterwards update the authoritative document and reset the uncommitted work.
+
+When receiving a patch from the server, the user first examines the validity and discards the patch if the cryptographic integrity and authenticity checks do not pass.
+If the patch references the current authoritative document, the user applies the patch to the authoritative document and transforms the uncommitted work by that patch.
+
+Otherwise, the user stores it in case that other intermediate patches have not yet been received.
+It could be that a patch references a previous state of the document which is not the authoritative document.
+The user stores the patch in this case as it might be part of a fork of the chain which proves longer than the chain which the engine currently is aware of.
+
+In the event that a fork of the chain becomes longer than the currently accepted chain, a \enquote{reorganization} will occur which will cause the authoritative document to be rolled back to a previous state and then rolled forward along the newly accepted chain.
+During reorganization, users will also revert their own committed work and re-add it to their uncommitted work.
+Conflicts are resolved with a dedicated scheme that depends on the type of changes, e.g., deletions have precedence over replacements.
+It might therefore be the case that some changes are lost during conflict resolution.
+However, due to the short period between two consecutive patches and the fast conversion of chains, this is not a problem in practice.
+
+% 3. New users join: History keeper
+A special type of patch, known as a \textit{checkpoint}, always removes and re-adds all content to the document.
+The server can detect checkpoint patches because they are specifically marked on the wire.
+In order to improve performance of new users joining the document and \enquote{syncing} the chain, the server sends only the second most recent checkpoint and all patches newer than that.
+
+
+\subsection{Encryption}
+\label{sec:pad_encryption}
+
+In this section, we present the encryption scheme for documents.
+We first show how we use symmetric encryption of messages and then how we derive the keys for different types of documents:
+encrypted blobs (\cref{sec:static_pads}), editable documents (\cref{sec:read_write}), and forms (\cref{sec:forms}).
+
+For every document, we want to distinguish between at least two access rights: reading and writing.
+To enforce these access rights cryptographically, we use symmetric encryption to restrict read access and asymmetric signatures to restrict write access.
+
+More specifically: in order to write data $m$ to a document, a user must have a symmetric encryption key $\mySymKey$ and a signing key $\mySK$ that is part of an asymmetric key pair \myKeyPair{}.
+The user first symmetrically encrypts $m$ to a ciphertext $c$ using $\mySymKey$.
+This ciphertext effectively hides its underlying content from anyone not having access to $\mySymKey$ (including the server).
+Then, to prove the write access right, $c$ is further asymmetrically signed using $\mySK$ resulting in a signature \mySig.
+Finally, the signed ciphertext $(c,\mySig)$ is sent over a NetFlux channel to the server which checks the signature.
+If this check succeeds, then the server stores the message and forwards it to all users listening to the same channel.
+Otherwise, the message is neither stored nor forwarded.
+When users receive a ciphertext, they can decrypt it using $\mySK$.
+A user who does not have $\mySK$, but only $\mySymKey$ and $\myPK$ may read new incoming ciphertexts, but cannot draft new ones.
+The separation of encrypting and signing further allows outsourcing the validation of $(\myCtxt, \mySig)$ to the server as it can have $\myPK$, but not $\mySymKey$.
+
+To collaboratively work on a document, users must share the keys with their collaborators.
+Our key derivation scheme is specifically designed to make the sharing of the keys easy.
+We therefore first outline how keys can be shared and then show how we actually derive the keys to enable this simple sharing mechanism for different use cases, i.e., for encrypted blobs, editable documents, and forms.
+
+There are two ways to share a document and its keys: via CryptPad's internal communication mechanisms (c.f \cref{sec:mailbox}) or via sharing a URL.
+For the latter, we use the fact that the URL part after \texttt{\#} is never sent to the server~\cite{BernersLee2005}.
+Users can therefore safely put the information required to derive keys in a URL after \texttt{\#}.%
+\footnote{An example of such a URL looks as follows: \url{https://cryptpad.fr/pad/\#/2/pad/view/GcNjAWmK6YDB3EO2IipRZ0fUe89j43Ryqeb4fjkjehE/}}
+
+Since users may opt for an additional password required to have access to the document, we do not directly put the keys into the URL, but derive them from a seed concatenated to a (possibly empty) password.
+This feature is especially useful in the case that there is no confidential channel to securely share the link:
+If there are two distinct unconfidential channels (e.g., email and SMS), the users can share the URL over one channel and the password over the other channel.
+While not resulting in a truly secure sharing, the probability for an adversary to intercept both components is reduced.
+
+\subsubsection{Encrypted Blobs}
+\label{sec:static_pads}
+
+\begin{figure}[t!]
+  \centering
+  \input{figures/filecryptor2.tex}
+  \caption{Key derivation for encrypted blobs}
+  \label{fig:filecryptor2}
+\end{figure}
+
+Encrypted blobs such as uploaded PDFs, images or videos are encrypted once and stored on the server.
+There is no need for more fine-grained access control as editing the static document is by definition not possible.
+It is therefore enough to only derive a symmetric key $\mySymKey$, but not a signing key pair.
+The key derivation is depicted in \cref{fig:filecryptor2}.
+
+We first concatenate the (possibly empty) password \mypwd with the seed \myFileKeyStr and hash it.
+We then split the hash into 24 bytes for the \mychanID and 32 bytes for the \mySymKey.
+
+In case that the $\myFileKeyStr$ is empty, it is initialized to 18 random bytes and returned as an additional output.
+This will allow anyone in its possession and knowing \mypwd (if it exists) to derive the same \mychanID and \mySymKey and to thus download and decrypt the file.
+
+\subsubsection{Editable Documents}
+\label{sec:read_write}
+%Crypto.createEditCryptor2
+Most of the editable documents are only modifiable by selected users.
+These users are able to not only decrypt the document, but also to sign patches and send them to the server.
+We therefore need to derive both, a symmetric encryption key $\mySymKey$ and a signing key pair \myKeyPair{}.
+
+\begin{figure}[t!]
+  \centering
+  \input{figures/encryptor2.tex}
+  \caption{Key derivation for editable documents}
+  \label{fig:encryptor2}
+\end{figure}
+
+To create a new document with all the above capabilities, we derive the keys as depicted in \cref{fig:encryptor2}.
+The inputs are again a (possibly empty) password \mypwd and a seed \myEditKeyStr.
+In case that the latter is empty, we initialize it with 18 random bytes and return it as an additional output.
+We then hash the concatenated \mypwd and \myEditKeyStr and split the resulting hash into two parts.
+From the first part we generate the signing key pair $\myKeyPair{}$.
+The second part of the hash forms the \myViewKeyStr and is fed together with \mypwd into another hash from which we derive the \mychanID and the symmetric key $\mySymKey$.
+
+Users may want to publish a document (e.g., a blog post) so that others can only read them, but not change them.
+To achieve this, users can publish the \myViewKeyStr since it allows -- together with the knowledge of \mypwd -- to derive the symmetric key $\mySymKey$ as well as the \mychanID.
+Moreover, \myViewKeyStr is independent of the input bits to $\myKGen{\cdot}$ that produced $\myKeyPair{}$.
+It is therefore not possible to deduce the signing key $\mySK$ required to edit the document from $\myViewKeyStr$.
+
+\subsubsection{Forms}
+\label{sec:forms}
+
+There are more complex use cases which require even more fine-grained access control and therefore also more encryption and signing keys to differentiate the access rights.
+One such example is a form having multiple roles:
+the \textit{authors} should be able to write, view and answer the questions, as well as to view all responses to the form.
+The \textit{participants} should be able to view the questions and to answer them. However, participants should not be able to read the responses.
+Furthermore, there are \textit{auditors} with the capability to view all responses, but without the capability to answer the form themselves.
+The auditor role can be used to incorporate answers from a privileged set of form respondents in real time.%
+\footnote{You can, e.g., publish results of an ongoing vote in real time.}
+
+This illustrates the need for two different sets of keys.
+First, we need a symmetric key $\mySymKey_1$ that allows to encrypt/decrypt the questions, as well as a key pair $\myKeyPair{_1}$ to change the questions.
+Second, we need an asymmetric key pair $\myKeyPair{_E}$ to encrypt/decrypt the answers and a signing key pair $\myKeyPair{_2}$ to prove the answer capability.
+We distribute the keys as follows:
+\begin{itemize}
+  \item We derive all keys from a seed \myEditKeyStr and give this seed to the authors so that they can perform any action they want.
+    They will encrypt the questions with $\mySymKey_1$ and sign them with $\myKeyPair{_1}$ to prove write access.
+    Furthermore, they derive a public encryption key pair $\myKeyPair{_E}$ used to encrypt/decrypt form replies.
+    Finally, they use the signing key pair $\myKeyPair{_2}$ to prove/verify the ability to reply.
+  \item The participants get a seed \myViewKeyStr that allows them to derive $\mySymKey_1$ and thus to read the questions.
+    They further get $\myKeyPair{_1}$ to sign their answers and $\myPK_E$ to encrypt their answers.
+    However, they cannot decrypt the answers of others.
+  \item Finally, the auditors get \myViewKeyStr to derive $\mySymKey_1$ and thus to read the questions; $\myKeyPair{_E}$ to decrypt the replies; and $\myPK_1$ to verify their signature.
+\end{itemize}
+
+\begin{figure*}[t!]
+  \centering
+  \input{figures/forms.tex}
+  \caption{Key derivation for a form}
+  \label{fig:forms}
+\end{figure*}
+
+The key derivation is depicted in \cref{fig:forms} and extends the derivation of editable documents.
+The asymmetric signing key pair $\myKeyPair{_1}$, respectively $\mySymKey$, is derived in the same way as $\myKeyPair{}$, respectively $\mySymKey$, in editable documents; and \myViewKeyStr and \mychanID are also identical to their counterparts in editable documents.
+
+However, we derive some more keys:
+We hash $\mySK_1$ to generate $\myKeyPair{_E}$ used for asymmetric encryption of replies.
+We further use the bytes 32 to 63 of the hash of \myViewKeyStr to derive signing key pair $\myKeyPair{_2}$.%
+\footnote{There is a bit overlap between $\mySymKey$ and the input to $\myKGen[_S]{\cdot}$.
+ This overlapping poses no effective threat as there are still 16 independent bytes.
+ However, we will fix this in a future version.}
+This key derivation scheme ensures that the possession of \myViewKeyStr does not allow deducing $\mySK_1$ or $\mySK_E$.
+Also, it is not possible to deduce $\mySK_1$ from $\mySK_E$.
+
+\subsection{Ownership}
+\label{sec:ownership}
+
+CryptPad has a concept of document ownership to restrict some actions such as document deletion and password enabling to \textit{owners}.
+Ownership is not limited to single persons, but can be held by a team, or it can be shared, i.e., an existing owner can add another.
+We implement ownership by relying on public keys, the server can therefore not associate usernames to documents.
+
+When creating a document (or uploading an encrypted blob), users also submit their long term public signing key to mark themselves as owners.
+The server then associates the public key to the document.
+To perform an ownership-restricted action to a document, the owners send a request signed with their public key to the server.
+If the signature is correct and the public key is associated with the document match, the server performs the requested action to the document.
+
+\subsection{Self-destructing Documents}
+\label{sec:self-destructing}
+
+CryptPad includes a feature to create self-destructing documents that will automatically be deleted.
+This feature therefore helps to ensure that confidential data will not be leaked and that sensitive data is not accessible forever.
+
+An exemplary use case is password sharing where the password owner shares it via a URL sent to a peer.
+Fearing that the peer's laptop might be accessed by unauthorized third-parties at a later point in time, the password owner wants to ensure that the document can only be opened once and will be destroyed automatically afterwards.
+
+The self-destruction can be based on two mechanisms: either on an expiration time or on the event of opening a shared link.
+For the first mechanism, the expiration date has to be set during the document creation and cannot be changed afterwards.
+The expiration date is written to the document's metadata which can be read by the server.
+When fetching the document, the server first checks whether the expiration time has elapsed.
+If this is the case, the server deletes the document beforehand to prevent the users from fetching it.
+In the case where the expiration time elapsed while the document is opened by a user, it will be nevertheless deleted and the user will be disconnected.
+However, the user is still able to read the document until closing the corresponding browser tab.
+
+The second mechanism, which we call \enquote{view-once-and-self-destruct}, changes the way a shared link is created and opened.
+To create a view-once-and-self-destruct link, the document owner creates an ephemeral signing key pair and adds the private signing key to the list of owners of the document.
+This signing key is then together with a label \enquote{view-once} appended to the view-only link and sent to the receiver.
+
+When the receiver opens the link, the receiver first fetches the content of the document.
+Then, immediately afterwards, the receiver sends the deletion command to the server.
+To prove the deletion capability, the receiver signs the command with the attached ephemeral signing key.%
+\footnote{
+We assume the receiver to be honest and to correctly issue the deletion command.
+This assumption is implicit in any such scheme, as a malicious user could always take screenshots and thus circumvent deletion.
+}

@@ -1,0 +1,15 @@
+\subsection{Deduplicate Code}
+
+\paragraph{Problem:}
+The functions \href{https://github.com/xwiki-labs/chainpad-crypto/blob/c8b76b895f67719a3b799daac3d832fdfea45613/crypto.js#L191}{\texttt{createViewCryptor2}} and \href{https://github.com/xwiki-labs/chainpad-crypto/blob/c8b76b895f67719a3b799daac3d832fdfea45613/crypto.js#L276}{\texttt{createFileCryptor2}} essentially provide the same functionality:
+provide a read-only access to a document.
+
+\paragraph{Consequences:}
+It is harder to understand and maintain what the two functions do.
+
+\paragraph{Suggestions:}
+Merge the two functions and make them callable with and without a \myAlgofont{keyStr}.
+
+\paragraph{Drawbacks:}
+The \mychanID of \texttt{createViewCryptor2} is 16 bytes long, while the one of \texttt{createFileCryptor2} has 24 bytes.
+Furthermore, \texttt{createFileCryptor2} does not use the secondary signing key pair that is produced by \texttt{createViewCryptor2}.

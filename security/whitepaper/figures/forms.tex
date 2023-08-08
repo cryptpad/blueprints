@@ -1,0 +1,126 @@
+%! TeX root = ../main.tex
+
+  \def\yoffset{3mm}
+\begin{tikzpicture}[node distance=1.6cm,auto,>=latex']
+  \def\ydist{1.1cm}
+  \node (seed) [init] {$\myAlgofont{editKeyStr}$};
+  \node (mid) [right of=seed, coordinate] {};
+  \node (right) [right of=mid, coordinate] {};
+  \node (password) [init, right of=right] {\mypwd};
+  \node [int] (hash) [below of=mid, node distance=\ydist] {$\myHash{\cdot}$};
+  \def\offset{1mm}
+  \draw[->] (password)
+  |- ($(password)!0.5!(hash)$)
+  -| ($(hash.north) + (\offset, 0)$)
+  ;
+  \draw[->] (seed)
+  |- ($(seed)!0.5!(hash)$)
+  -| ($(hash.north)  - (\offset, 0)$)
+  ;
+
+
+  \node (mid2) [below of=hash, node distance=\ydist ] {};
+  \node (left2) [left of=mid2] {};
+  \node (left3) [left of=left2] {};
+  \node (keypair) [left of=left3, int] {$\myKGen[_S]{\cdot}$};
+  \node (belowkeypair) [below of=keypair, node distance=\ydist, coordinate] {};
+  \node (hash2) [int, below of=left3, node distance=\ydist] {$\myHash{\cdot}$};
+  \node (mid3) [coordinate, below of=hash, node distance = \ydist] {};
+  \node (right3) [coordinate, right of=mid3] {};
+  \node (right4) [coordinate, right of=mid3] {};
+
+
+  \node (hash3) [int, right of=right4] {$\myHash{\cdot}$};
+  \def \offset{1mm}
+  \draw[->] (password) -- (hash3);
+  \draw[->] ($(hash.south)$)
+  |- ($(hash)!0.5!(hash3)$)
+  node[above, bits] {32..63}
+  -| ($(hash3.north) -2*(\offset, 0) $)
+  ;
+
+
+\node (keypair3) [below of=hash2, int, node distance = \ydist] {$\myKGen[_E]{\cdot}$};
+  \node (rightofkeypair3) [right of = keypair3, coordinate] {};
+  \node (rightrightofkeypair3) [right of = rightofkeypair3, coordinate] {};
+  \node (r3ofkeypair3) [right of = rightrightofkeypair3, coordinate] {};
+  \node (keypair2) [right of=r3ofkeypair3, int] {$\myKGen[_S]{\cdot}$};
+  \node (signKey3) [below of=keypair3, anchor=west, node distance = \ydist] {$\mySK_E$};
+  \node (verifyKey3) [left of=signKey3] {$\myPK_E$};
+  \node (viewKeyStr) [right of=signKey3] {$\myAlgofont{viewKeyStr}$};
+  \node (chanID) [right of=viewKeyStr] {$\mychanID\vphantom{_1}$};
+  \node (cryptKey) [right of=chanID, node distance =\ydist] {$\mySymKey$};
+  \node (verifyKey2) [right of=cryptKey, node distance = \ydist] {$\myPK_2$};
+  \node (signKey2) [right of=verifyKey2] {$\mySK_2$};
+
+  \draw[->] (hash3)
+    |- ($(keypair2)!0.5!(hash3)$)
+    -|
+  node[right, yshift=-\yoffset, bits] {32..63}
+    (keypair2);
+  \draw[->] (hash2) --
+  node[right, yshift=0, bits] {0..31}
+  (keypair3);
+
+  \draw[->] (hash3.south) % go right and up to anchor
+  |- ($(hash3)!0.5!(keypair2)$)
+  -|
+  node[right, yshift=-\yoffset, bits] {0..15}
+  (chanID)
+  ;
+  \draw[->] (hash3.south) % go right and up to anchor
+  |- (cryptKey |- hash2)
+  -|
+  node[right, yshift=-\yoffset, bits] {16..47}
+  (cryptKey)
+  ;
+  \draw[->] ($(keypair2.south) $) % go right and up to anchor
+  |- ($(keypair2)!0.5!(signKey2)$)
+  -| (signKey2)
+  ;
+  \draw[->] ($(keypair2.south) - (\offset, 0)$) % go right and up to anchor
+  |- ($(keypair2)!0.5!(verifyKey2)$)
+  -| (verifyKey2)
+  ;
+
+  \draw[->] ($(keypair3.south) + (\offset, 0)$) % go right and up to anchor
+  |- ($(keypair3)!0.5!(signKey3)$)
+  -| (signKey3)
+  ;
+  \draw[->] ($(keypair3.south) - (\offset, 0)$) % go right and up to anchor
+  |- ($(keypair3)!0.5!(verifyKey3)$)
+  -| (verifyKey3)
+  ;
+
+  \draw[->] ($(hash.south) $) % go right and up to anchor
+  |- ($(hash)!0.5!(keypair)$) node[above, bits, xshift=-0.3cm] {0..31}
+  -|
+  (keypair)
+  ;
+
+
+  \draw[->] ($(hash.south)$)
+
+  node[right, bits, yshift=-0.4cm] {32..63}
+    |- ($(hash)!0.5!(viewKeyStr)$)
+    -|
+    (viewKeyStr);
+
+  % \draw[->] (hash2) -- node[right, bits, yshift=0] {0..31} (secondaryKey);
+
+  \node (signKey) [left of=verifyKey3] {$\mySK_1$};
+  \node (verifyKey) [left of=signKey] {$\myPK_1$};
+  \draw[->] ($(keypair.south) - (\offset, 0)$) % go right and up to anchor
+  |- ($(keypair.south)!0.5!(verifyKey) + (0, \offset)$)
+  -| (verifyKey)
+  ;
+  \draw[->] ($(keypair.south) + (\offset, 0)$) % go right and up to anchor
+  |- ($(keypair.south)!0.25!(hash2)$)
+  -| (hash2)
+  ;
+  \draw[->] ($(keypair.south) + (\offset, 0)$)
+  |- ($(keypair.south)!0.5!(signKey.north) - (0, 2*\offset)$)
+  -|
+    ($(signKey.north) $);
+
+\end{tikzpicture}

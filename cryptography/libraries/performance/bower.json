@@ -1,0 +1,21 @@
+{
+  "name": "performance",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Theo von Arx <theo.vonarx@xwiki.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "crypto-js": "^4.1.1"
+  }
+}
