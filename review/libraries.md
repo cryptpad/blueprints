@@ -1,12 +1,12 @@
 ---
 title: Comparison of Cryptography Libraries for CryptPad
-tags: cryptography
+tags: review
+showtoc: True
+author: Theo von Arx
+published: 15/12/2022
 ---
 # Comparison of Cryptography Libraries for CryptPad
 
-**Author:** Theo von Arx
-
-**Date:** 15/12/2022
 
 ## Abstract
 

@@ -1,6 +1,6 @@
 ---
 title: Towards More Cryptographic Agility
-tags: cryptography
+tags: review
 ---
 
 # Towards More Cryptographic Agility

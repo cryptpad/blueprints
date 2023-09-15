@@ -1,6 +1,7 @@
 ---
 title: CryptPad User Stories
-tags: security
+order: 4
+tags: document
 ---
 
 # CryptPad User Stories

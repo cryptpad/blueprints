@@ -1,6 +1,7 @@
 ---
 title: Whitepaper
-tags: security
+order: 2
+tags: document
 ---
 # Whitepaper
 

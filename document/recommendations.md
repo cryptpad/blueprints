@@ -1,6 +1,7 @@
 ---
 title: List of Security Recommendations for CryptPad
-tags: security
+order: 3
+tags: document
 ---
 
 # List of Security Recommendations for CryptPad

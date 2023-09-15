@@ -1,6 +1,7 @@
 ---
 title: Threat Model
-tags: security
+order: 1
+tags: document
 ---
 
 Threat Model
