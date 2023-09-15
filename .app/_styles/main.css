@@ -5,10 +5,15 @@
     --col-background: #eee;
 }
 
+@media (prefers-color-scheme: dark) {
+
+}
+
 html, body {
     color: var(--col-primary);
     background-color: var(--col-background);
-    font-family: monospace;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 16px;
 }
 
 body {
