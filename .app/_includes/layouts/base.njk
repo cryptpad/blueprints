@@ -20,7 +20,7 @@
       {% for item in collections.chapter | sortByOrder %}
       <li><a href="{{ item.url }}">{{ item.data.title }}</a>
         <ol>
-          {% for subitem in collections[item.data.id] %}
+          {% for subitem in collections[item.data.id] | sortByOrder %}
           <li><a href="{{ subitem.url }}">{{ subitem.data.title }}</a></li>
           {% endfor %}
         </ol>
@@ -36,8 +36,14 @@
   </main>
 
   <aside id="sidebar">
+    {% if author %}
+      By: {{ author }}
+    {% endif %}
+    {% if published %}
+      Published: {{ published }}
+    {% endif %}
     {% set toc = content | toc %}
-    {% if (toc | length) %}
+    {% if (toc | length) and showtoc %}
     <div class="toc">
       <h2 class="toc__label" id="app-panel-toc">Page Contents</h2>
       <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
