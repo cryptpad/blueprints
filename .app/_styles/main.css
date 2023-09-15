@@ -1,0 +1,23 @@
+
+
+:root{
+    --col-primary: #212121;
+    --col-background: #eee;
+}
+
+html, body {
+    color: var(--col-primary);
+    background-color: var(--col-background);
+    font-family: monospace;
+}
+
+body {
+    display: flex;
+}
+
+/* Page TOC */
+
+.toc__item {
+    margin-block: var(--space-1);
+    margin-inline-start: calc((var(--level, 1) - 1) * 1rem);
+}
