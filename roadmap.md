@@ -2,6 +2,7 @@
 layout: layouts/base
 title: CryptPad Roadmap
 tags: chapter
+order: 3
 id: roadmap
 ---
 

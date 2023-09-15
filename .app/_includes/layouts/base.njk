@@ -13,10 +13,10 @@
 </head>
 
 <body>
-  <div id="toc">
+  <nav id="contents">
     <a href="/">{{ site.title }}</a>
     <ol>
-      {% for item in collections.chapter %}
+      {% for item in collections.chapter | sortByOrder %}
       <li><a href="{{ item.url }}">{{ item.data.title }}</a>
         <ol>
           {% for subitem in collections[item.data.id] %}
@@ -26,7 +26,7 @@
       </li>
       {% endfor %}
     </ol>
-  </div>
+  </nav>
 
     {% block content %}
         {{ content | safe }}

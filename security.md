@@ -2,6 +2,7 @@
 layout: layouts/base
 title: Cryptpad's Security
 tags: chapter
+order: 1
 id: security
 ---
 
