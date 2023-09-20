@@ -3,8 +3,6 @@ layout: layouts/base
 title: CryptPad Blueprints
 ---
 
-# CryptPad Blueprints
-
 CryptPad is an end-to-end encrypted collaboration suite that has been under
 active development since 2015, and is used by hundreds of thousands of people.
 Its feature set has grown from a simple editor to a full-blown set of multiple
@@ -33,5 +31,3 @@ This project is funded through the [NGI0 Entrust](https://nlnet.nl/entrust) Fund
   <img alt="NGI0 Entrust" src="https://nlnet.nl/image/logos/NGI0Entrust_tag.svg" width="100" />
   <img alt="NLNet Foundation" src= "https://nlnet.nl/image/logo_nlnet.svg" width="100" />
 </p>
-
-

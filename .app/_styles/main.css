@@ -2,7 +2,7 @@
 
 :root{
     --col-primary: #212121;
-    --col-background: #eee;
+    --col-background: #eeeeee;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +18,15 @@ html, body {
 
 body {
     display: flex;
+}
+
+main {
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+#sidebar, #contents {
+    max-width: 16rem;
 }
 
 /* Page TOC */
