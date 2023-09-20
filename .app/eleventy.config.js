@@ -5,6 +5,8 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addWatchTarget("_styles");
   eleventyConfig.addPassthroughCopy("_styles");
 
+  eleventyConfig.addPassthroughCopy('../_assets');
+
   eleventyConfig.addPassthroughCopy('node_modules/mermaid/');
 
   eleventyConfig.addPassthroughCopy('../cryptography/agility/');
@@ -22,14 +24,21 @@ module.exports = (function(eleventyConfig) {
   // set markdown footnote processor
   let markdownIt = require("markdown-it");
   let markdownItFootnote = require("markdown-it-footnote");
+  let mdfigcaption = require('markdown-it-image-figures');
 
   let options = {
     html: true, // Enable HTML tags in source
     breaks: true,  // Convert '\n' in paragraphs into <br>
     linkify: true // Autoconvert URL-like text to links
   };
+
+  let figoptions = {
+    figcaption: true
+  };
   // configure the library with options
-  let markdownLib =  markdownIt(options).use(markdownItFootnote);
+  let markdownLib =  markdownIt(options)
+    .use(markdownItFootnote)
+    .use(mdfigcaption, figoptions);
   // set the library to process markdown files
   eleventyConfig.setLibrary("md", markdownLib);
 

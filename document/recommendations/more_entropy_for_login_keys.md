@@ -31,14 +31,13 @@ person's drive.
 Use password strength estimation such as
 `zxvbn-ts` [^1] which rates the password strength
 on a score from 0 to 4 and provides, guessing times, indicators what
-makes the password weak and how it can be improved (see
-[1](#fig:zxvbn){reference-type="ref" reference="fig:zxvbn"}). We may
+makes the password weak and how it can be improved. We may
 display the password strength estimation and/or require a minimum score.
 
 <!-- XXX check image and caption are displayed properly -->
 
-![The library `zxvbn-ts` provides a score, guess times, warnings, and
-suggestions.](../images/zxvbn.png)
+![screenshot](/_assets/zxvbn.png "The library `zxvbn-ts` provides a score, guess times, warnings, and
+suggestions.")
 
 ### Drawbacks:
 
