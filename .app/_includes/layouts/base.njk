@@ -30,20 +30,34 @@
   </nav>
 
   <main>
+    {# Breadcrumb navigation #}
+    {% if eleventyNavigation.parent %}
+      {% set navPages = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true }) %}
+      {# {{ navPages | dump | safe }} #}
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol>
+          {% for page in navPages %}
+            <li><a href={{ page.url }}>{{ page.title }}</a></li>
+          {% endfor %}
+        </ol>
+      </nav>
+    {% endif %}
+    {# Page title #}
+    {% if title %}
+      <h1>{{ title }}</h1>
+    {% endif %}
+    {# Page content #}
     {% block content %}
-        {% if title %}
-          <h1>{{ title }}</h1>
-        {% endif %}
         {{ content | safe }}
     {% endblock %}
   </main>
 
   <aside id="sidebar">
     {% if author %}
-      By: {{ author }}
+      <p>By: {{ author }}</p>
     {% endif %}
     {% if date %}
-      Published: {{ date }}
+      <p>Published: {{ date }}</p>
     {% endif %}
     {% set toc = content | toc %}
     {% if (toc | length) and showtoc %}

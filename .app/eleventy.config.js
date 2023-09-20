@@ -1,14 +1,14 @@
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const { parse } = require("node-html-parser");
 
 module.exports = (function(eleventyConfig) {
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
   // Watch styles folder for changes
   eleventyConfig.addWatchTarget("_styles");
+
   eleventyConfig.addPassthroughCopy("_styles");
-
   eleventyConfig.addPassthroughCopy('../_assets');
-
   eleventyConfig.addPassthroughCopy('node_modules/mermaid/');
-
   eleventyConfig.addPassthroughCopy('../cryptography/agility/');
   eleventyConfig.addPassthroughCopy('../roadmap/yjs/');
 
@@ -19,28 +19,26 @@ module.exports = (function(eleventyConfig) {
   //   watch: ["dist/app.js", "dist/app.*.css"],
   // });
 
-  // footnotes
-  // https://www.alpower.com/tutorials/configuring-footnotes-with-eleventy/
-  // set markdown footnote processor
-  let markdownIt = require("markdown-it");
-  let markdownItFootnote = require("markdown-it-footnote");
-  let mdfigcaption = require('markdown-it-image-figures');
+  // Markdown
+    let markdownIt = require("markdown-it");
+    let markdownItFootnote = require("markdown-it-footnote");
+    let mdfigcaption = require('markdown-it-image-figures');
 
-  let options = {
-    html: true, // Enable HTML tags in source
-    breaks: true,  // Convert '\n' in paragraphs into <br>
-    linkify: true // Autoconvert URL-like text to links
-  };
+    let options = {
+      html: true, // Enable HTML tags in source
+      breaks: false,  // Convert '\n' in paragraphs into <br>
+      linkify: true // Autoconvert URL-like text to links
+    };
 
-  let figoptions = {
-    figcaption: true
-  };
-  // configure the library with options
-  let markdownLib =  markdownIt(options)
-    .use(markdownItFootnote)
-    .use(mdfigcaption, figoptions);
-  // set the library to process markdown files
-  eleventyConfig.setLibrary("md", markdownLib);
+    let figoptions = {
+      figcaption: true
+    };
+    // configure the library with options
+    let markdownLib =  markdownIt(options)
+      .use(markdownItFootnote)
+      .use(mdfigcaption, figoptions);
+    // set the library to process markdown files
+    eleventyConfig.setLibrary("md", markdownLib);
 
   eleventyConfig.addFilter('sortByOrder', function(values) {
     return values.sort((a, b) => Math.sign(a.data.order - b.data.order));

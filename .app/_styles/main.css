@@ -41,6 +41,30 @@ figcaption {
     font-style: italic;
 }
 
+/* Navigation */
+
+nav.breadcrumb {
+    padding: 0.5em;
+}
+
+nav.breadcrumb ol {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+nav.breadcrumb li {
+    display: inline;
+}
+
+nav.breadcrumb li + li::before {
+    display: inline-block;
+    margin: 0 1em 0 0.5em;
+    transform: rotate(15deg);
+    border-right: 0.1em solid currentcolor;
+    height: 0.8em;
+    content: "";
+}
 
 /* Page TOC */
 
