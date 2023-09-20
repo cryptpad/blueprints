@@ -9,6 +9,8 @@
 
 }
 
+/* Layout */
+
 html, body {
     color: var(--col-primary);
     background-color: var(--col-background);
@@ -28,6 +30,17 @@ main {
 #sidebar, #contents {
     max-width: 16rem;
 }
+
+/* Typography */
+
+figure {
+    max-width: 100%;
+}
+
+figcaption {
+    font-style: italic;
+}
+
 
 /* Page TOC */
 

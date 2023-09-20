@@ -36,8 +36,7 @@ display the password strength estimation and/or require a minimum score.
 
 <!-- XXX check image and caption are displayed properly -->
 
-![screenshot](/_assets/zxvbn.png "The library `zxvbn-ts` provides a score, guess times, warnings, and
-suggestions.")
+![screenshot](/_assets/zxvbn.png "The library `zxvbn-ts` provides a score, guess times, warnings, and suggestions.")
 
 ### Drawbacks:
 
