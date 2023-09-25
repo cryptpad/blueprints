@@ -1,12 +1,12 @@
 ---
 layout: layouts/base
-title: Document
+title: Document and Explain CryptPad's Security
 tags: chapter
 order: 1
 id: document
+eleventyNavigation:
+  key: Document
 ---
-
-# Document and Explain CryptPad's Security
 
 We first thoroughly document the cryptography used in CryptPad. We define the
 assumed [threat model](./threatmodel/README.md), justify it and explain why

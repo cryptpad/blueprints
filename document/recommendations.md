@@ -5,6 +5,7 @@ tags: document
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 eleventyNavigation:
+  parent: Document
   key: Recommendations
   title: Security Recommendations for CryptPad
 ---
