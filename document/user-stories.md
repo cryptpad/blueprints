@@ -4,7 +4,6 @@ order: 4
 tags: document
 ---
 
-# CryptPad User Stories
 
 The idea is to have a summary of all the use-cases/capabilities/workflows we
 want a future crypto-system to be able to express Format
@@ -14,6 +13,41 @@ want a future crypto-system to be able to express Format
 * In order to **receive benefit** as a **role**, I can **goal/desire**
 * In order to **receive benefit** as a **role**, I can **goal/desire**
 
+## Evil user stories
+
+A template that's commonly used to improve security is called the "Evil User
+Story" or "Abuse User Story" and is used as a way to think like a hacker in
+order to consider scenarios that might occur in a cyber-attack. These stories
+are written from the perspective of an attacker attempting to compromise or
+damage the application, rather the typical personae found in a user story:
+> As a **disgruntled employee**, I want to **wipe out the user database** to
+> **hurt the company**
+
+## Shit user stories
+
+> As a **registered user** I want to **access my drive** but I can't because **I
+> forgot my password**.
+
+Background:
+
+* There is no way to reset the password as the server does neither now the
+  password, nor the username, nor any other information (such as email).
+* Social Secret Sharing can help
+
+> As a **registered user** I want to **find a document I created last week** but
+> I can't because **I did not add it to my drive**.
+
+> As a **user with sensitive information in my drive** I want to **keep my data
+> secure** but I can't because **I did not log out of CryptPad before police
+> seized my laptop**.
+
+
+
+{% for story in collections.user-stories %}
+  {{ story.url }}
+{% endfor %}
+
+<!-- 
 * [Honest user stories](<./CryptPad User Stories/Honest user stories/>)
   * [Security for a single user](<./CryptPad User Stories/Honest user stories/Security for a single user/>)
     * [Passwords](<./CryptPad User Stories/Honest user stories/Security for a single user/Passwords/>)
@@ -66,4 +100,4 @@ want a future crypto-system to be able to express Format
   * [Feature telemetry](<./CryptPad User Stories/Developer stories/Feature telemetry/>)
 * [Business stories](<./CryptPad User Stories/Business stories/>)
   * [Legal operation](<./CryptPad User Stories/Business stories/Legal operation/>)
-  * [Instance telemetry](<./CryptPad User Stories/Business stories/Instance telemetry/>)
+  * [Instance telemetry](<./CryptPad User Stories/Business stories/Instance telemetry/>) -->

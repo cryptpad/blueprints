@@ -1,2 +1,0 @@
-## Honest user stories
-
