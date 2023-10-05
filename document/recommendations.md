@@ -1,13 +1,9 @@
 ---
 title: Security Recommendations for CryptPad
-order: 3
-tags: document
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 eleventyNavigation:
-  parent: Document
-  key: Recommendations
-  title: Security Recommendations for CryptPad
+  order: 3
 ---
 
 During the writing of the cryptography white paper, we discovered multiple

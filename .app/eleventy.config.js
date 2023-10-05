@@ -40,9 +40,33 @@ module.exports = (function(eleventyConfig) {
     // set the library to process markdown files
     eleventyConfig.setLibrary("md", markdownLib);
 
-  eleventyConfig.addFilter('sortByOrder', function(values) {
-    return values.sort((a, b) => Math.sign(a.data.order - b.data.order));
-  })
+  eleventyConfig.addGlobalData("eleventyComputed", {
+    eleventyNavigation: {
+      key: (data) => {
+        const url = data.page.url;
+
+        if (url === "/") {
+          return "/";
+        }
+
+        const strippedPath = url.endsWith("/") ? url.slice(0, -1) : url;
+        return strippedPath;
+      },
+      parent: (data) => {
+        const url = data.page.url;
+
+        if (url === "/") {
+          return undefined;
+        }
+
+        const strippedPath = url.endsWith("/") ? url.slice(0, -1) : url;
+        const lastSlash = strippedPath.lastIndexOf("/");
+
+        return lastSlash === 0 ? "/" : strippedPath.slice(0, lastSlash);
+      },
+      title: (data) => (data.eleventyNavigation.title || data.title),
+    }
+  });
 
   eleventyConfig.addGlobalData("site", {
     lang: "en",

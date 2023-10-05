@@ -1,6 +1,5 @@
 ---
 title: Comparison of Cryptography Libraries for CryptPad
-tags: review
 showtoc: True
 author: Theo von Arx
 published: 15/12/2022

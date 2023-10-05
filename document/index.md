@@ -1,11 +1,8 @@
 ---
 layout: layouts/base
 title: Document and Explain CryptPad's Security
-tags: chapter
-order: 1
-id: document
 eleventyNavigation:
-  key: Document
+  order: 1
 ---
 
 We first thoroughly document the cryptography used in CryptPad. We define the

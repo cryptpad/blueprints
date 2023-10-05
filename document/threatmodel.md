@@ -1,7 +1,7 @@
 ---
 title: Threat Model
-order: 1
-tags: document
+eleventyNavigation:
+  order: 1
 ---
 
 Threat Model

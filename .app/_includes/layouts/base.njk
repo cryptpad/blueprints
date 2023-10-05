@@ -14,14 +14,15 @@
 </head>
 
 <body>
+  {% set navPages = collections.all | eleventyNavigation %}
   <nav id="contents">
     <a href="/">{{ site.title }}</a>
     <ol>
-      {% for item in collections.chapter | sortByOrder %}
-      <li><a href="{{ item.url }}">{{ item.data.title }}</a>
+      {% for item in navPages %}
+      <li><a href="{{ item.url }}">{{ item.title }}</a>
         <ol>
-          {% for subitem in collections[item.data.id] | sortByOrder %}
-          <li><a href="{{ subitem.url }}">{{ subitem.data.title }}</a></li>
+          {% for subitem in item.children %}
+          <li><a href="{{ subitem.url }}">{{ subitem.title }}</a></li>
           {% endfor %}
         </ol>
       </li>
@@ -32,11 +33,10 @@
   <main>
     {# Breadcrumb navigation #}
     {% if eleventyNavigation.parent %}
-      {% set navPages = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true }) %}
-      {# {{ navPages | dump | safe }} #}
+      {% set navBreadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true, allowMissing: true }) %}
       <nav aria-label="Breadcrumb" class="breadcrumb">
         <ol>
-          {% for page in navPages %}
+          {% for page in navBreadcrumbs %}
             <li><a href={{ page.url }}>{{ page.title }}</a></li>
           {% endfor %}
         </ol>
