@@ -39,12 +39,12 @@ Some (informal) reminders about security notions:
   > Computationally infeasible to produce an decryptable
   > ciphertext not previously produced by the
   > sender, whether or not the underlying plaintext is "new"
-* **IND-CPA** (ndistinguishability of Chosen Plaintext Attack):
+* **IND-CPA** (Indistinguishability under Chosen-Plaintext Attack):
   > No adversary, given an encryption of a message randomly chosen from a
   > two-element message space determined by the adversary, can identify the
-  > message choice with probability significantly better than that of random
+  > message choice with probability noticeably better than that of random
   > guessing (1⁄2)
-* **SUF-CMA** (Strong Unforgeabililty against Chosen Message Attack):
+* **SUF-CMA** (Strong Unforgeability against Chosen-Message Attack):
   > Adversary can't create a new tag for an existing message
 
 ## Problem statement
@@ -59,7 +59,7 @@ The following cryptographic functions are required:
 * Key derivation function
   * Brute-force resistant --> Memory and time intense
   * Provide a good entropy
-* Symmetric enrcyption, that provides
+* Symmetric encryption, that provides
   * AEAD
 * Asymmetric encryption
   * IND-CPA
@@ -150,7 +150,7 @@ Nevertheless, the figure gives a raw indication to compare the performance.
 * Symmetric encryption:
   * NaCl and Sodium are the slowest libraries with a runtime of up to 60 ms.
   * SubtleCrypto functions perform much better and nearly independent of the
-    input size. AES-GCM is up to 19 times faster than NaCl (decryiption of 1MB
+    input size. AES-GCM is up to 19 times faster than NaCl (decryption of 1MB
     on webkit).
 * Asymmetric signatures:
   * NaCl performs worst.
