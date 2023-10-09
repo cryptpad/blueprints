@@ -1,9 +1,8 @@
 ---
 layout: layouts/base
 title: Roadmap
-tags: chapter
-order: 3
-id: roadmap
+eleventyNavigation:
+  order: 3
 ---
 
 <div>

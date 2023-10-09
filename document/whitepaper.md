@@ -1,7 +1,7 @@
 ---
 title: Whitepaper
-order: 2
-tags: document
+eleventyNavigation:
+  order: 2
 ---
 # Whitepaper
 

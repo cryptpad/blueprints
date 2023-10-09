@@ -1,7 +1,7 @@
 ---
 title: CryptPad User Stories
-order: 4
-tags: document
+eleventyNavigation:
+  order: 4
 ---
 
 

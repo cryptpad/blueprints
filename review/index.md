@@ -1,9 +1,8 @@
 ---
 layout: layouts/base
 title: Review
-tags: chapter
-order: 2
-id: review
+eleventyNavigation:
+  order: 2
 ---
 
 # Review of the State of the Art in Applied Cryptography

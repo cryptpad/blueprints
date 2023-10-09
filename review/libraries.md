@@ -1,12 +1,9 @@
 ---
 title: Comparison of Cryptography Libraries for CryptPad
-tags: review
 showtoc: True
 author: Theo von Arx
 published: 15/12/2022
 ---
-# Comparison of Cryptography Libraries for CryptPad
-
 
 ## Abstract
 
@@ -30,27 +27,25 @@ these algorithms.
 What could be interesting is to replace NaCl's SHA-512 hash with SubtleCrypto's
 SHA-512 since this maintains backwards compatibility.
 
-[TOC]
-
 ## Notation
 
 Some (informal) reminders about security notions:
 
 * **INT-CTXT** (Ciphertext integrity):
-  > Computationally infeasible to produce an decryptable
+  > Computationally infeasible to produce a decryptable
   > ciphertext not previously produced by the
-  > sender, whether or not the underlying plaintext is "new"
-* **IND-CPA** (ndistinguishability of Chosen Plaintext Attack):
+  > sender, whether or not the underlying plaintext is "fresh"
+* **IND-CPA** (Indistinguishability under Chosen-Plaintext Attack):
   > No adversary, given an encryption of a message randomly chosen from a
   > two-element message space determined by the adversary, can identify the
-  > message choice with probability significantly better than that of random
+  > message choice with probability noticeably better than that of random
   > guessing (1⁄2)
-* **SUF-CMA** (Strong Unforgeabililty against Chosen Message Attack):
+* **SUF-CMA** (Strong Unforgeability against Chosen-Message Attack):
   > Adversary can't create a new tag for an existing message
 
 ## Problem statement
 
-_If we deploy a new version of CrytPad's encryption schemes, should we use
+_If we deploy a new version of CrytPad's encryption layer, should we use
 another library? And which?_
 
 ### Requirements
@@ -60,7 +55,7 @@ The following cryptographic functions are required:
 * Key derivation function
   * Brute-force resistant --> Memory and time intense
   * Provide a good entropy
-* Symmetric enrcyption, that provides
+* Symmetric encryption, that provides
   * AEAD
 * Asymmetric encryption
   * IND-CPA
@@ -84,7 +79,10 @@ Further requirements are:
 
 Tweet-NaCl is the library that is currently in use for CryptPad.
 
-* [Paper](https://tweetnacl.cr.yp.to/tweetnacl-20140917.pdf) (2015)
+* [Article](https://tweetnacl.cr.yp.to/tweetnacl-20140917.pdf):
+  * Title: TweetNaCl: A crypto library in 100 tweets.
+  * Authors: D.J. Bernstein, B. van Gastel, W. Janssen, T. Lange, P. Schwabe and S. Smetsers.
+  * In proceedings of LatinCrypt 2014.
 * [Library](https://github.com/dchest/tweetnacl-js):
   * Written and maintained by [Dmitry Chestnykh](https://dchest.com/).
   * Last audit by Cure53 in 2017.
@@ -151,7 +149,7 @@ Nevertheless, the figure gives a raw indication to compare the performance.
 * Symmetric encryption:
   * NaCl and Sodium are the slowest libraries with a runtime of up to 60 ms.
   * SubtleCrypto functions perform much better and nearly independent of the
-    input size. AES-GCM is up to 19 times faster than NaCl (decryiption of 1MB
+    input size. AES-GCM is up to 19 times faster than NaCl (decryption of 1MB
     on webkit).
 * Asymmetric signatures:
   * NaCl performs worst.
