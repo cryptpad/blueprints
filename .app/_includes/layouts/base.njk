@@ -16,18 +16,14 @@
 <body>
   {% set navPages = collections.all | eleventyNavigation %}
   <nav id="contents">
-    <a href="/">{{ site.title }}</a>
-    <ol>
       {% for item in navPages %}
-      <li><a href="{{ item.url }}">{{ item.title }}</a>
+      <a href="{{ item.url }}">{{ item.title }}</a>
         <ol>
           {% for subitem in item.children %}
           <li><a href="{{ subitem.url }}">{{ subitem.title }}</a></li>
           {% endfor %}
         </ol>
-      </li>
       {% endfor %}
-    </ol>
   </nav>
 
   <main>
