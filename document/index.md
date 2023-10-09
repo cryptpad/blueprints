@@ -1,7 +1,9 @@
 ---
 layout: layouts/base
+
 title: Document and Explain CryptPad's Security
 eleventyNavigation:
+  title: Document
   order: 1
 ---
 

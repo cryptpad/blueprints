@@ -1,15 +1,14 @@
 ---
 layout: layouts/base
-title: Roadmap
+title: "Roadmap to the next-generation CryptPad"
 eleventyNavigation:
+  title: Roadmap
   order: 3
 ---
 
 <div>
 
 <!-- XXX if text is added as markdown it breaks the mermaid diagram below -->
-
-# Roadmap to the next-generation CryptPad
 
 We explore and outline desired features for the next-generation CryptPad:
 

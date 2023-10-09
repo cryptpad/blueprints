@@ -1,11 +1,12 @@
 ---
 layout: layouts/base
-title: Review
+title: "Review of the State of the Art in Applied Cryptography"
 eleventyNavigation:
+  title: Review
   order: 2
 ---
 
-# Review of the State of the Art in Applied Cryptography
+# 
 
 We review the cryptography used in CryptPad and compare it against the state of
 the art in applied cryptography. For this, we evaluate the security of
