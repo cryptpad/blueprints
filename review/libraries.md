@@ -4,8 +4,6 @@ showtoc: True
 author: Theo von Arx
 published: 15/12/2022
 ---
-# Comparison of Cryptography Libraries for CryptPad
-
 
 ## Abstract
 
@@ -29,16 +27,14 @@ these algorithms.
 What could be interesting is to replace NaCl's SHA-512 hash with SubtleCrypto's
 SHA-512 since this maintains backwards compatibility.
 
-[TOC]
-
 ## Notation
 
 Some (informal) reminders about security notions:
 
 * **INT-CTXT** (Ciphertext integrity):
-  > Computationally infeasible to produce an decryptable
+  > Computationally infeasible to produce a decryptable
   > ciphertext not previously produced by the
-  > sender, whether or not the underlying plaintext is "new"
+  > sender, whether or not the underlying plaintext is "fresh"
 * **IND-CPA** (Indistinguishability under Chosen-Plaintext Attack):
   > No adversary, given an encryption of a message randomly chosen from a
   > two-element message space determined by the adversary, can identify the
@@ -49,7 +45,7 @@ Some (informal) reminders about security notions:
 
 ## Problem statement
 
-_If we deploy a new version of CrytPad's encryption schemes, should we use
+_If we deploy a new version of CrytPad's encryption layer, should we use
 another library? And which?_
 
 ### Requirements
@@ -83,7 +79,10 @@ Further requirements are:
 
 Tweet-NaCl is the library that is currently in use for CryptPad.
 
-* [Paper](https://tweetnacl.cr.yp.to/tweetnacl-20140917.pdf) (2015)
+* [Article](https://tweetnacl.cr.yp.to/tweetnacl-20140917.pdf):
+  * Title: TweetNaCl: A crypto library in 100 tweets.
+  * Authors: D.J. Bernstein, B. van Gastel, W. Janssen, T. Lange, P. Schwabe and S. Smetsers.
+  * In proceedings of LatinCrypt 2014.
 * [Library](https://github.com/dchest/tweetnacl-js):
   * Written and maintained by [Dmitry Chestnykh](https://dchest.com/).
   * Last audit by Cure53 in 2017.
