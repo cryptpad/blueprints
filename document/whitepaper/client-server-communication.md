@@ -2,8 +2,6 @@
 title: Client-Server Communication
 ---
 
-## Client-Server Communication
-
 In this section, we show how we use the [NetFlux
 protocol](https://github.com/openpaas-ng/netflux-spec2/blob/master/specification.md)
 to enable communication between web clients and the server.
