@@ -76,19 +76,20 @@ newest improvements.
 
 The content on this section of the website is structured as follows:
 
-1. Summarizes CryptPad's underlying threat model.
+1. Summarizes CryptPad's underlying [threat model](./threat-model/).
 2. [Client-Server Communication](./client-server-communication/) explains the
 	communication between the server and the client.
 3. Notations and used algorithms are described in the [notation](./notations)
 	section.
-4. We present in the [Document](./document/) page the encryption of pads as the
+4. We present in the [document](./document/) page the encryption of pads as the
 	core functionality of CryptPad.
 5. We next show in [CryptDrive](./cryptdrive/) how the login mechanism makes the
 	documents easily accessible across multiple devices, but keeps them secure.
-6. [Messaging](./messaging/) explains the establishment of secure communication between different
-	users.
+6. [Messaging](./messaging/) explains the establishment of secure communication
+between different users.
 7. Finally, [Teams](./teams/) shows how we enable communication and access
 	control within a team.
+8. A [conclusion](./conclusion/).
 
 [^1]: Source code: <https://github.com/xwiki-labs/cryptpad>
 [^interhop21]: InterHop. 2021. “Our e-Health Software.”
