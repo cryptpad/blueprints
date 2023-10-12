@@ -1,5 +1,6 @@
 ---
 title: Social Secret Sharing
+tags: roadmap
 id: secretsharing
 ---
 

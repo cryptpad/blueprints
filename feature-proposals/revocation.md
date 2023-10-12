@@ -1,5 +1,6 @@
 ---
 title: Revocation
+tags: roadmap
 id: revocation
 ---
 

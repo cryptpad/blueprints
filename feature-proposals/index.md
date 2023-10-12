@@ -1,14 +1,10 @@
 ---
 layout: layouts/base
-title: "Roadmap to the next-generation CryptPad"
+title: "Feature proposals for the next-generation CryptPad"
 eleventyNavigation:
-  title: Roadmap
+  title: Feature Proposals
   order: 3
 ---
-
-<div>
-
-<!-- XXX if text is added as markdown it breaks the mermaid diagram below -->
 
 We explore and outline desired features for the next-generation CryptPad:
 
@@ -27,26 +23,3 @@ We anticipate that some features such as perfect forward secrecy and CRDTs may
 be accessible for users as a demo. For other features like social secret
 sharing, which are probably new to most of our users, we will create mock-ups to
 surface issues and questions in user experience.
-</div>
-
-<pre class="mermaid">
-graph LR
-{%- for item in collections.roadmap %}
-  {{item.data.id}}[{{item.data.title}}]{% if item.data.link-to %}-->{{item.data.link-to}}{% endif %}
-  click {{item.data.id}} href "{{item.url}}"
-{%- endfor %}
-</pre>
-
-<style>
-.nodeLabel {
-  text-decoration: underline;
-  color: blue !important;
-}
-</style>
-
-<script type="module">
-  import mermaid from '/node_modules/mermaid/dist/mermaid.esm.mjs';
-  mermaid.initialize({
-    startOnLoad: true,
-  });
-</script>

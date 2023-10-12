@@ -1,6 +1,8 @@
 ---
 title: Towards More Cryptographic Agility
-tags: review
+tags: roadmap
+id: agility
+link-to: revocation
 ---
 
 ## Abstract

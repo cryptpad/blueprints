@@ -23,6 +23,30 @@ CryptPad, and to plot the trajectory towards its next generation. This is
 done through a series of deliverables outlined below, ranging from a white paper
 to technical prototypes.
 
+## Roadmap
+
+<pre class="mermaid">
+graph LR
+{%- for item in collections.roadmap %}
+  {{item.data.id}}[{{item.data.title}}]{% if item.data.link-to %}-->{{item.data.link-to}}{% endif %}
+  click {{item.data.id}} href "{{item.url}}"
+{%- endfor %}
+</pre>
+
+<style>
+.nodeLabel {
+  text-decoration: underline;
+  color: blue !important;
+}
+</style>
+
+<script type="module">
+  import mermaid from '/node_modules/mermaid/dist/mermaid.esm.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+  });
+</script>
+
 <hr>
 
 This project is funded through the [NGI0 Entrust](https://nlnet.nl/entrust) Fund, a fund established by [NLnet](https://nlnet.nl) with financial support from the European Commission's [Next Generation Internet](https://ngi.eu) programme, under the aegis of DG Communications Networks, Content and Technology under grant agreement N<sup>o</sup> 101069594.
