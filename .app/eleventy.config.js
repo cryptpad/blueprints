@@ -73,6 +73,8 @@ module.exports = (function(eleventyConfig) {
     title: "CryptPad Blueprints",
   });
 
+  eleventyConfig.addFilter("mapToAttr", (elems, attr) => elems.map((e) => e[attr]));
+
   eleventyConfig.addFilter("toc", function (content) {
     // this filter is taken from the eleventy-notes project
     // https://github.com/rothsandro/eleventy-notes/blob/main/.app/lib/modules/toc/toc.filter.js

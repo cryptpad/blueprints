@@ -15,21 +15,42 @@
 
 <body>
   {% set navPages = collections.all | eleventyNavigation %}
+
+  {% if eleventyNavigation.parent %}
+  {% set navBreadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true, allowMissing: true }) %}
+  {% endif %}
+
+  {% macro renderNavListItem(entry) %}
+  {% set isCurrent = entry.url == page.url %}
+  {% set isAncestor = (eleventyNavigation.parent and entry.url in (navBreadcrumbs | mapToAttr("url"))) %}
+  <li class="nav {% if isCurrent %}current{% elif isAncestor %}ancestor{% endif %} {% if entry.children.length %}with-children{% else %}without-children{% endif %}">
+    {% if entry.children.length %}
+    <details {% if isCurrent or isAncestor %}open{% endif %}>
+      <summary><a href="{{ entry.url }}">{{ entry.title }}</a></summary>
+      <ol>
+        {% for child in entry.children %}
+        {{ renderNavListItem(child) }}
+        {% endfor %}
+      </ol>
+    </details>
+    {% else %}
+    <a href="{{ entry.url }}">{{ entry.title }}</a>
+    {% endif %}
+  {% endmacro %}
   <nav id="contents">
-      {% for item in navPages %}
-      <a href="{{ item.url }}">{{ item.title }}</a>
-        <ol>
-          {% for subitem in item.children %}
-          <li><a href="{{ subitem.url }}">{{ subitem.title }}</a></li>
-          {% endfor %}
-        </ol>
+    {% for item in navPages %}
+    <a href="{{ item.url }}">{{ item.title }}</a>
+    <ol>
+      {% for subitem in item.children %}
+      {{ renderNavListItem(subitem) }}
       {% endfor %}
+    </ol>
+    {% endfor %}
   </nav>
 
   <main>
     {# Breadcrumb navigation #}
     {% if eleventyNavigation.parent %}
-      {% set navBreadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true, allowMissing: true }) %}
       <nav aria-label="Breadcrumb" class="breadcrumb">
         <ol>
           {% for page in navBreadcrumbs %}
