@@ -8,14 +8,14 @@ eleventyNavigation:
 ---
 
 We first thoroughly document the cryptography used in CryptPad. We define the
-assumed [threat model](./threatmodel/README.md), justify it and explain why
+assumed [threat model](./threatmodel/), justify it and explain why
 CryptPad does not defend beyond this model. We further describe the platform’s
 cryptographic primitives and explain how they are used to build various key
 derivation, encryption and decryption schemes. To allow experts to independently
 verify CryptPad's security and thus increase the general trust on our platform,
-we summarize the findings in a [white paper](./whitepaper/main.pdf). During the
+we summarize the findings in a [white paper](./whitepaper/). During the
 process, we identified weaknesses and make [developer
-recommendations](./recommendations/main.pdf) to avoid these shortcomings in
+recommendations](./recommendations/) to avoid these shortcomings in
 future versions of CryptPad.
 
 Second, we document CryptPad's threat model and
