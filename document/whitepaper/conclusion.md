@@ -1,5 +1,7 @@
 ---
 title: Conclusion
+eleventyNavigation:
+  order: 8
 ---
 
 We have presented the cryptographic design of CryptPad, a web-based, end-to-end

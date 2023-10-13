@@ -1,5 +1,7 @@
 ---
 title: Messaging
+eleventyNavigation:
+  order: 6
 ---
 
 In this section we present CryptPad’s own end-to-end encrypted messaging

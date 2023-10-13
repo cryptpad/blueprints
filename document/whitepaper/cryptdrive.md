@@ -1,5 +1,7 @@
 ---
 title: CryptDrive
+eleventyNavigation:
+  order: 5
 ---
 
 Here, we introduce *CryptDrive* which provides users an interface to store and

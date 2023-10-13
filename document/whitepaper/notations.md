@@ -1,5 +1,7 @@
 ---
 title: Notations
+eleventyNavigation:
+  order: 3
 ---
 
 In this section we introduce the libraries used in CryptPad and the notation we

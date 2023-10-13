@@ -1,5 +1,7 @@
 ---
 title: Client-Server Communication
+eleventyNavigation:
+  order: 2
 ---
 
 In this section, we show how we use the [NetFlux

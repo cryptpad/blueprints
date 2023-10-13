@@ -1,5 +1,7 @@
 ---
 title: Threat Model
+eleventyNavigation:
+  order: 1
 ---
 
 Here we recall the threat model considered in the [whitepaper](..).

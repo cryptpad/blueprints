@@ -1,5 +1,7 @@
 ---
 title: Document
+eleventyNavigation:
+  order: 4
 ---
 
 In this page, we present *documents* as one of the core concepts of CryptPad.

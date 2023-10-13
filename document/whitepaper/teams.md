@@ -1,5 +1,7 @@
 ---
 title: Teams
+eleventyNavigation:
+  order: 7
 ---
 
 In this section, we present CryptPad’s team encryption which is similar
