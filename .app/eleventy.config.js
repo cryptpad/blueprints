@@ -23,6 +23,7 @@ module.exports = (function(eleventyConfig) {
     let markdownIt = require("markdown-it");
     let markdownItFootnote = require("markdown-it-footnote");
     let mdfigcaption = require('markdown-it-image-figures');
+    let markdownItAnchor = require("markdown-it-anchor");
 
     let options = {
       html: true, // Enable HTML tags in source
@@ -33,10 +34,15 @@ module.exports = (function(eleventyConfig) {
     let figoptions = {
       figcaption: true
     };
+
+    let anchoroptions = {
+        level: 1,  // Minimum level to apply anchors, or array of selected levels.
+    };
     // configure the library with options
     let markdownLib =  markdownIt(options)
       .use(markdownItFootnote)
-      .use(mdfigcaption, figoptions);
+      .use(mdfigcaption, figoptions)
+      .use(markdownItAnchor, anchoroptions);
     // set the library to process markdown files
     eleventyConfig.setLibrary("md", markdownLib);
 
