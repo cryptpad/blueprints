@@ -2,13 +2,10 @@
 title: Social Secret Sharing
 tags: roadmap
 id: secretsharing
+showtoc: true
 ---
 
-# Social Secret Sharing
-
 <!-- markdownlint-disable MD024 -->
-
-[TOC]
 
 ## Terms
 
