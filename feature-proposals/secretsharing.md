@@ -43,11 +43,12 @@ It is not easily traceable for what purpose it was created: academical, a
 It seems less feature-rich than Dark Crystal and is definitely less documented.
 
 The basic idea is not to directly distribute the secret, but rather encrypt it
-with a randomly generated key. Then we split the encryption key into shards `s1,
-..., sn` which we distribute together with the encrypted secret. This is
-visualized in the following diagram:
+with a randomly generated key. Then we split the encryption key into shards
+s<sub>1</sub>, …, s<sub>n</sub> which we distribute together with the encrypted
+secret.
+This is visualized in the following diagram:
 
-```mermaid
+<pre class="mermaid">
 graph TD
 
 Secret --> AE(Authenticated Encryption)
@@ -55,13 +56,13 @@ Secret --> AE(Authenticated Encryption)
 K[Random Key] --> AE --> ciphertext
 
 K --> SSA(Secret Sharing Algorithm)
-SSA --> s_1
+SSA --> s_1["s<sub>1</sub>"]
 SSA --> ...
-SSA --> s_n
+SSA --> s_n["s<sub>n</sub>"]
 
-ciphertext & s_1 --> custodian_1
-ciphertext & s_n --> custodian_n
-```
+ciphertext & s_1 --> custodian_1["custodian<sub>1</sub>"]
+ciphertext & s_n --> custodian_n["custodian<sub>n</sub>"]
+</pre>
 
 The purpose is that the input to the secret sharing algorithm is uniformly
 random, and does hard for the attacker to guess.
@@ -151,17 +152,15 @@ to redistribute the secret.
 
 The process is the following:
 
-```mermaid
+<pre class="mermaid">
 graph LR
 
 username/password --> scrypt --> |store in| pad
 scrypt --> |access| account
 
-random[random key]   --> |backup| DarkCrystal --> | distribute| custodian_1 & ... & custodian_n
-
+random[random key]   --> |backup| DarkCrystal --> | distribute| custodian_1["custodian<sub>1</sub>"] & ... & custodian_n["custodian<sub>n</sub>"]
 random --> | encrypt| pad --> account[full account access]
-
-```
+</pre>
 
 1. The username and password are taken as input for `scrypt`
 2. `scrypt`'s output is for accessing the account, and also stored in an
@@ -388,3 +387,10 @@ is out of scope, since we assume that the majority is not malicious.
 Once there are enough verified shards, the secret is recovered, the user must
 set a new password, and update the encrypted pad containing the output of the
 KDF as before.
+
+<script type="module">
+  import mermaid from '/node_modules/mermaid/dist/mermaid.esm.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+  });
+</script>
