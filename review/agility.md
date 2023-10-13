@@ -176,7 +176,40 @@ should also be changed after algorithm change.
 
 <figure id="fig:key_derivation">
 
-TODO
+<pre class="mermaid">
+%%{ init: { 'flowchart': { 'curve': 'stepAfter' } } }%%
+graph TD
+	editKeyStr
+	pwd
+	PK
+	SK
+	viewKeyStr
+	chanID
+	K
+	H1["H( · )"]
+	KGen["KGen( · )"]
+	H2["H( · )"]
+
+	editKeyStr --> H1
+	pwd --> H1
+	pwd --> H2
+	H1 -- "0..31" --> KGen
+	H1 -- "32..63" --> viewKeyStr
+	H1 -- "32..63" --> H2
+	H2 -- "0..15" --> chanID
+	H2 -- "16..47" --> K
+	KGen --> PK
+	KGen --> SK
+
+	classDef variable fill:none,stroke-width:0px
+	class editKeyStr variable
+	class pwd variable
+	class PK variable
+	class SK variable
+	class viewKeyStr variable
+	class chanID variable
+	class K variable
+</pre>
 
 <figcaption>Figure 1: Key derivation for editable documents</figcaption>
 </figure>
@@ -248,3 +281,10 @@ to Quantum Computing Attacks.” *IEEE Access* 8: 21091–116.
 [^1]: Note that this requires an active server-side attacker.
 
 ## 👉 [PDF](./main.pdf)
+
+<script type="module">
+  import mermaid from '/node_modules/mermaid/dist/mermaid.esm.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+  });
+</script>
