@@ -2,11 +2,8 @@
 title: Revocation
 tags: roadmap
 id: revocation
+showtoc: true
 ---
-
-# Revocation
-
-[TOC]
 
 ## Changelog
 
