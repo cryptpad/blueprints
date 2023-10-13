@@ -221,13 +221,12 @@ with the same or weaker capabilities to itself. Note that this holds only for
 the graph of keys, [not for the graph of people having
 access](#multiple-keys-for-the-same-document).
 
-```mermaid
+<pre class="mermaid">
 graph LR
 
 Document --> Alice --> TopTeam
 Document --> Bob --> folder["shared Folder <br> with Friends"] & Charlie
-
-```
+</pre>
 
 To revoke access for, e.g., Bob, the safest option is to revoke the access for
 Bob's entire subtree as well. Otherwise, Charlie could again grant Bob.
@@ -397,7 +396,7 @@ We illustrate the metadata along the following example:
    * users won't accept keys rotated by "creator" anymore
 9. "firstModerator" decides to setup a new password
 
-```mermaid
+<pre class="mermaid">
 graph LR
 
 Creator["1️⃣  Creator"] --> |"2️⃣"| firstModerator["firstModerator <br> 6️⃣ Rotate
@@ -405,7 +404,7 @@ Creator["1️⃣  Creator"] --> |"2️⃣"| firstModerator["firstModerator <br> 
 firstModerator --> |"3️⃣"| firstEditor --> |"4️⃣|"| delegatedEditor --> |"5️⃣"| delegatedViewer
 firstEditor --> |"7️⃣"| sharedFolder --> SharedFolderEdit & SharedFolderView
 firstModerator --> |"8️⃣ Revoke"| Creator
-```
+</pre>
 
 At the end of this process, the metadata will look as follows:
 
@@ -859,21 +858,21 @@ UI.
 Also note that it is therefore possible, that the graph of persons having
 access to a document might not be a tree:
 
-```mermaid
+<pre class="mermaid">
 graph LR
-Document --> A[Alice <br> K_A] & B[Bob <br> K_B]
-A --> C[Charlie <br> K_C1 & K_C2]
+Document --> A[Alice <br> K<sub>A</sub>] & B[Bob <br> K<sub>B</sub>]
+A --> C[Charlie <br> K<sub>C1</sub> & K<sub>C2</sub>]
 B --> C
-```
+</pre>
 
 while the graph of delegated keys still forms a tree:
 
-```mermaid
+<pre class="mermaid">
 graph LR
-Document --> A[K_A] & B[K_B]
-A --> K_C1
-B --> K_C2
-```
+Document --> A[K<sub>A</sub> ] & B[K<sub>B</sub> ]
+A --> K_C1[K<sub>C1</sub>]
+B --> K_C2[K<sub>C2</sub>]
+</pre>
 
 Unfortunately, there is no technical solution to this problem as we can not
 ensure that a person does never obtain two different keys to the same document.
@@ -903,3 +902,10 @@ UI. However, this does only _archive_ (`mv`) the document on the server side.
 
 We therefore propose to speak of "destroy" rights when speaking about making a
 document inaccessible.
+
+<script type="module">
+  import mermaid from '/node_modules/mermaid/dist/mermaid.esm.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+  });
+</script>
