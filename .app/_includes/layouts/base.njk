@@ -76,6 +76,12 @@
     {% if date %}
       <p>Published: {{ date }}</p>
     {% endif %}
+    {% if version %}
+      <p>Revision: {{ version }}</p>
+    {% endif %}
+    {% if version %}
+      <p>Comment: {{ comment }}</p>
+    {% endif %}
     {% set toc = content | toc %}
     {% if (toc | length) and showtoc %}
     <div class="toc">

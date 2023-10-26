@@ -2,6 +2,10 @@
 title: Revocation
 tags: roadmap
 id: revocation
+author: Theo von Arx
+version: "1.0"
+comment: First version as discussed with Yann & Aaron
+date: TBA
 showtoc: true
 ---
 
