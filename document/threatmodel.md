@@ -4,9 +4,6 @@ eleventyNavigation:
   order: 1
 ---
 
-Threat Model
-============
-
 Adversarial Capabilities
 ------------------------
 
