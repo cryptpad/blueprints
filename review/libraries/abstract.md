@@ -1,4 +1,7 @@
-# Cryptographic Libraries for CryptPad
+---
+title: Cryptography Libraries for CryptPad
+---
+
 
 Changing the cryptographic primitives in CryptPad is complex and requires a lot
 of work to maintain backwards compatibility. For this reason, a possibly new
