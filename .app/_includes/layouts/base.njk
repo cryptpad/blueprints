@@ -38,74 +38,74 @@
     {% endif %}
   {% endmacro %}
 
-  {# wrap in hamburger menu on small screens #}
-  {# https://codepen.io/impressivewebs/pen/qBbmMRJ #}
-  <nav id="contents">
-    {% for item in navPages %}
-    <a href="{{ item.url }}">{{ item.title }}</a>
-    <ol>
-      {% for subitem in item.children %}
-      {{ renderNavListItem(subitem) }}
-      {% endfor %}
-    </ol>
-    {% endfor %}
-  </nav>
-
-  <main>
-    {# Breadcrumb navigation #}
-    {% if eleventyNavigation.parent %}
-      <nav aria-label="Breadcrumb" class="breadcrumb">
-        <ol>
-          {% for page in navBreadcrumbs %}
-            <li><a href={{ page.url }}>{{ page.title }}</a></li>
-          {% endfor %}
-        </ol>
-      </nav>
-    {% endif %}
-    {# Page title #}
-    {% if title %}
-      <h1>{{ title }}</h1>
-    {% endif %}
-    {# Page content #}
-    {% block content %}
-        {{ content | safe }}
-    {% endblock %}
-  </main>
-
-  <aside id="sidebar">
-    {% if author %}
-      <p>By: {{ author }}</p>
-    {% endif %}
-    {% if authors %}
-      <p>By: {% for author in authors %}
-        {{ author }}
-      {% endfor %}</p>
-    {% endif %}
-    {% if date %}
-      <p>Published: {{ date }}</p>
-    {% endif %}
-    {% if version %}
-      <p>Revision: {{ version }}</p>
-    {% endif %}
-    {% if version %}
-      <p>Comment: {{ comment }}</p>
-    {% endif %}
-    {% set toc = content | toc %}
-    {% if (toc | length) and showtoc %}
-    <div class="toc">
-      <h2 class="toc__label" id="app-panel-toc">Page Contents</h2>
-      <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
-        {% for item in toc %}
-        <li style="--level: {{ item.level }}" class="toc__item">
-          <a href="#{{ item.id }}" class="toc__link">
-            {{ item.text | safe }}
-          </a>
-        </li>
+  <div class="container">
+    {# wrap in hamburger menu on small screens #}
+    {# https://codepen.io/impressivewebs/pen/qBbmMRJ #}
+    <nav id="contents">
+      {% for item in navPages %}
+      <a href="{{ item.url }}">{{ item.title }}</a>
+      <ol>
+        {% for subitem in item.children %}
+        {{ renderNavListItem(subitem) }}
         {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
-  </aside>
+      </ol>
+      {% endfor %}
+    </nav>
+    <main>
+      {# Breadcrumb navigation #}
+      {% if eleventyNavigation.parent %}
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+          <ol>
+            {% for page in navBreadcrumbs %}
+              <li><a href={{ page.url }}>{{ page.title }}</a></li>
+            {% endfor %}
+          </ol>
+        </nav>
+      {% endif %}
+      {# Page title #}
+      {% if title %}
+        <h1>{{ title }}</h1>
+      {% endif %}
+      {# Page content #}
+      {% block content %}
+          {{ content | safe }}
+      {% endblock %}
+    </main>
+    <aside id="sidebar">
+      {% if author %}
+        <p>By: {{ author }}</p>
+      {% endif %}
+      {% if authors %}
+        <p>By: {% for author in authors %}
+          {{ author }}
+        {% endfor %}</p>
+      {% endif %}
+      {% if date %}
+        <p>Published: {{ date }}</p>
+      {% endif %}
+      {% if version %}
+        <p>Revision: {{ version }}</p>
+      {% endif %}
+      {% if version %}
+        <p>Comment: {{ comment }}</p>
+      {% endif %}
+      {% set toc = content | toc %}
+      {% if (toc | length) and showtoc %}
+      <div class="toc">
+        <h2 class="toc__label" id="app-panel-toc">Page Contents</h2>
+        <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
+          {% for item in toc %}
+          <li style="--level: {{ item.level }}" class="toc__item">
+            <a href="#{{ item.id }}" class="toc__link">
+              {{ item.text | safe }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </aside>
+  </div>
 
 </body>
 </html>
