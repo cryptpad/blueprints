@@ -1,5 +1,6 @@
 ---
 title: Social Secret Sharing
+author: Theo von Arx
 tags: roadmap
 id: secretsharing
 showtoc: true
