@@ -2,7 +2,7 @@
 layout: layouts/base
 title: "Feature proposals for the next-generation CryptPad"
 eleventyNavigation:
-  title: Feature Proposals
+  title: Prototypes
   order: 3
 ---
 
