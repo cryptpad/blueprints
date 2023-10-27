@@ -17,7 +17,7 @@
   {% set navPages = collections.all | eleventyNavigation %}
 
   {% if eleventyNavigation.parent %}
-  {% set navBreadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true, allowMissing: true }) %}
+    {% set navBreadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true, allowMissing: true }) %}
   {% endif %}
 
   {% macro renderNavListItem(entry) %}
@@ -37,6 +37,9 @@
     <a href="{{ entry.url }}">{{ entry.title }}</a>
     {% endif %}
   {% endmacro %}
+
+  {# wrap in hamburger menu on small screens #}
+  {# https://codepen.io/impressivewebs/pen/qBbmMRJ #}
   <nav id="contents">
     {% for item in navPages %}
     <a href="{{ item.url }}">{{ item.title }}</a>
@@ -72,6 +75,11 @@
   <aside id="sidebar">
     {% if author %}
       <p>By: {{ author }}</p>
+    {% endif %}
+    {% if authors %}
+      <p>By: {% for author in authors %}
+        {{ author }}
+      {% endfor %}</p>
     {% endif %}
     {% if date %}
       <p>Published: {{ date }}</p>
