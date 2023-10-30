@@ -1,5 +1,6 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const { parse } = require("node-html-parser");
+const fs = require("fs");
 
 module.exports = (function(eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
@@ -106,6 +107,51 @@ module.exports = (function(eleventyConfig) {
 
     return toc;
   })
+
+  /**
+    * Add a shortcode to list user stories.
+    * This is called with `{% listStories %}`.
+    * cf. https://www.11ty.dev/docs/shortcodes/
+    *
+    * So far it reads the content directory structure, but it would be cleaner
+    * to use eleventy structure for that:
+    * https://stackoverflow.com/questions/55496831/how-can-an-eleventy-site-display-a-list-of-pages-in-a-directory
+    *
+    * Possible improvements:
+    * The order of the subelements is alphabetical and the order of the stories
+    * is defined by the order of the array storyType.
+    *
+    * We are also writting directly HTML, it would also be cleaner to use jsdom
+    * for instance to write in the DOM directly.
+    */
+  eleventyConfig.addShortcode("listStories", function() {
+    var associateStoryType = {
+      "admin": "Admin stories",
+      "business": "Business stories",
+      "developer": "Developer stories",
+      "evil": "Evil user stories",
+      "honest": "Honest user stories",
+      "shit": "Dishonnest user stories"
+    };
+    var storyType = ["honest", "admin", "evil", "shit", "developer", "business"];
+
+    var storiesPath = "../document/user-stories";
+
+    var subdirArray = storyType.map(function (subdir) {
+      if (subdir.includes(".json")) {
+        return '';
+      }
+      var subdirStoriesDir = fs.readdirSync(storiesPath + '/' + subdir);
+      var storyAnchors = subdirStoriesDir.map(function(url) {
+        var storyName = url.replace(/.md$/, '');
+        return '<li><a href="/' + storiesPath + '/' + subdir + '/' + storyName + '">' + storyName +'</a></li>';
+      });
+      return '<li>' + associateStoryType[subdir] +'</li>\n<ul>\n' + storyAnchors.join('\n') + '\n</ul>';
+    });
+
+    return "<ul>" + subdirArray.join("\n") + "</ul>";
+  });
+
 
   return {
     dir: {

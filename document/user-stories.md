@@ -42,10 +42,11 @@ Background:
 > seized my laptop**.
 
 
+{% listStories %}
 
-{% for story in collections.user-stories %}
-  {{ story.url }}
-{% endfor %}
+<!-- {% for story in collections.user-stories %} -->
+<!--   {{ story.url }} -->
+<!-- {% endfor %} -->
 
 <!-- 
 * [Honest user stories](<./CryptPad User Stories/Honest user stories/>)
