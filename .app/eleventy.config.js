@@ -131,7 +131,7 @@ module.exports = (function(eleventyConfig) {
       "developer": "Developer stories",
       "evil": "Evil user stories",
       "honest": "Honest user stories",
-      "shit": "Dishonnest user stories"
+      "shit": "Dishonest user stories"
     };
     var storyType = ["honest", "admin", "evil", "shit", "developer", "business"];
 
