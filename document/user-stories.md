@@ -42,7 +42,7 @@ Background:
 > seized my laptop**.
 
 
-{% listStories %}
+{% listUserStories %}
 
 <!-- {% for story in collections.user-stories %} -->
 <!--   {{ story.url }} -->

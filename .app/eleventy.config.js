@@ -124,7 +124,7 @@ module.exports = (function(eleventyConfig) {
     * We are also writting directly HTML, it would also be cleaner to use jsdom
     * for instance to write in the DOM directly.
     */
-  eleventyConfig.addShortcode("listStories", function() {
+  eleventyConfig.addShortcode("listUserStories", function() {
     var associateStoryType = {
       "admin": "Admin stories",
       "business": "Business stories",
