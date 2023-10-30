@@ -138,9 +138,6 @@ module.exports = (function(eleventyConfig) {
     var storiesPath = "../document/user-stories";
 
     var subdirArray = storyType.map(function (subdir) {
-      if (subdir.includes(".json")) {
-        return '';
-      }
       var subdirStoriesDir = fs.readdirSync(storiesPath + '/' + subdir);
       var storyAnchors = subdirStoriesDir.map(function(url) {
         var storyName = url.replace(/.md$/, '');
