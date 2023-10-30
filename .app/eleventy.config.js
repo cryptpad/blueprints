@@ -110,7 +110,7 @@ module.exports = (function(eleventyConfig) {
 
   /**
     * Add a shortcode to list user stories.
-    * This is called with `{% listStories %}`.
+    * This is called with `{% listUserStories %}`.
     * cf. https://www.11ty.dev/docs/shortcodes/
     *
     * So far it reads the content directory structure, but it would be cleaner
