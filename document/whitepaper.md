@@ -1,5 +1,8 @@
 ---
 title: Whitepaper
+author: Theo von Arx
+date: 2023-03-16
+version: 1.1.0
 eleventyNavigation:
   order: 2
 ---

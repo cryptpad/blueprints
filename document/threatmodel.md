@@ -1,5 +1,7 @@
 ---
 title: Threat Model
+author: Theo von Arx
+date: 2023-03-16
 eleventyNavigation:
   order: 1
 ---
