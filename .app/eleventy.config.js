@@ -142,7 +142,6 @@ module.exports = (function(eleventyConfig) {
     var storiesName = "";
     var subdirArray = collection.map(function (item) {
       if (!storiesName) {
-        console.log(item);
         storiesName = item.data["stories name"];
       }
       return '<li><a href="' + item.url + '">' + item.fileSlug + '</a></li>';
