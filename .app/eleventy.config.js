@@ -12,7 +12,7 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('node_modules/mermaid/');
   eleventyConfig.addPassthroughCopy('../cryptography/agility/');
   eleventyConfig.addPassthroughCopy('../feature-proposals/yjs/');
-  eleventyConfig.addPassthroughCopy('../**/*.pdf');
+  eleventyConfig.addPassthroughCopy('**/*.pdf');
 
   eleventyConfig.addGlobalData("layout", "layouts/base");
 
@@ -113,7 +113,7 @@ module.exports = (function(eleventyConfig) {
   try {
     const subfolderNames = fs
     .readdirSync("../document/user-stories/", { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
+    .filter((dir) => dir.isDirectory())
     .map((dir) => dir.name);
 
     subfolderNames.forEach((subfolderName) => {
