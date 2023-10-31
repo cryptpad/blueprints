@@ -3,6 +3,7 @@ title: Revocation
 tags: roadmap
 id: revocation
 author: Theo von Arx
+date: 2023-03-31
 version: "1.0"
 showtoc: true
 ---
