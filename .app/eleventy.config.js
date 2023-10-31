@@ -108,45 +108,52 @@ module.exports = (function(eleventyConfig) {
     return toc;
   })
 
+  /* Generate the collection depending on the file location */
+  try {
+    const subfolderNames = fs
+    .readdirSync("../document/user-stories/", { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dir) => dir.name);
+
+    subfolderNames.forEach((subfolderName) => {
+      eleventyConfig.addCollection(subfolderName, function(collectionApi) {
+        return collectionApi
+        .getAll()
+        .filter((item) => item.inputPath.includes(`/${subfolderName}/`));
+      });
+    });
+  } catch {
+    console.error("Didn't manage to create collections");
+  }
+
   /**
     * Add a shortcode to list user stories.
-    * This is called with `{% listUserStories %}`.
+    * This is called with `{% listUserStories aCollection %}`.
     * cf. https://www.11ty.dev/docs/shortcodes/
     *
-    * So far it reads the content directory structure, but it would be cleaner
-    * to use eleventy structure for that:
-    * https://stackoverflow.com/questions/55496831/how-can-an-eleventy-site-display-a-list-of-pages-in-a-directory
-    *
     * Possible improvements:
-    * The order of the subelements is alphabetical and the order of the stories
-    * is defined by the order of the array storyType.
+    * The order of the subelements is alphabetical. We can use some ordering
+    * from eleventy's collections.
     *
-    * We are also writting directly HTML, it would also be cleaner to use jsdom
-    * for instance to write in the DOM directly.
+    * So far it's using the file slug as there are no metadata in user stories,
+    * but it can be improved using the title.
     */
-  eleventyConfig.addShortcode("listUserStories", function() {
-    var associateStoryType = {
-      "admin": "Admin stories",
-      "business": "Business stories",
-      "developer": "Developer stories",
-      "evil": "Evil user stories",
-      "honest": "Honest user stories",
-      "shit": "Dishonest user stories"
-    };
-    var storyType = ["honest", "admin", "evil", "shit", "developer", "business"];
-
-    var storiesPath = "../document/user-stories";
-
-    var subdirArray = storyType.map(function (subdir) {
-      var subdirStoriesDir = fs.readdirSync(storiesPath + '/' + subdir);
-      var storyAnchors = subdirStoriesDir.map(function(url) {
-        var storyName = url.replace(/.md$/, '');
-        return '<li><a href="/' + storiesPath + '/' + subdir + '/' + storyName + '">' + storyName +'</a></li>';
-      });
-      return '<li>' + associateStoryType[subdir] +'</li>\n<ul>\n' + storyAnchors.join('\n') + '\n</ul>';
+  eleventyConfig.addShortcode("listUserStories", function(collection) {
+    var storiesName = "";
+    var subdirArray = collection.map(function (item) {
+      if (!storiesName) {
+        console.log(item);
+        storiesName = item.data["stories name"];
+      }
+      return '<li><a href="' + item.url + '">' + item.fileSlug + '</a></li>';
     });
 
-    return "<ul>" + subdirArray.join("\n") + "</ul>";
+    if (!storiesName) {
+      console.error("listUserStories: Collection not found");
+      return "";
+    } else {
+      return "<ul><li>" + storiesName +"</li><ul>" + subdirArray.join("\n") + "</ul></ul>";
+    }
   });
 
 
