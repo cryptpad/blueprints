@@ -12,7 +12,15 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('node_modules/mermaid/');
   eleventyConfig.addPassthroughCopy('../cryptography/agility/');
   eleventyConfig.addPassthroughCopy('../feature-proposals/yjs/');
-  eleventyConfig.addPassthroughCopy('**/*.pdf');
+
+  const pdfFiles = [
+    "../review/libraries/main.pdf",
+    "../review/agility/main.pdf",
+    "../document/whitepaper/main.pdf"
+  ];
+  for (pdf of pdfFiles) {
+    eleventyConfig.addPassthroughCopy(pdf);
+  }
 
   eleventyConfig.addGlobalData("layout", "layouts/base");
 
