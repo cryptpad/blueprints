@@ -2,7 +2,7 @@
 title: Towards More Cryptographic Agility
 tags: roadmap
 id: agility
-link-to: revocation
+link-to: [revocation, bit-overlap]
 showtoc: true
 ---
 

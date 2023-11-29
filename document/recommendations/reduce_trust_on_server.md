@@ -1,7 +1,8 @@
 ---
 term: long
 title: Reduce Trust on Server
-tags: recommendations
+tags: roadmap
+id: reduce-trust
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 

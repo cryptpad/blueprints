@@ -3,7 +3,7 @@ title: Social Secret Sharing
 author: Theo von Arx
 date: 2023-03-30
 tags: roadmap
-id: secretsharing
+id: secret-sharing
 showtoc: true
 ---
 

@@ -1,7 +1,9 @@
 ---
 title: More Entropy for Login Keys
 term: short
-tags: recommendations
+tags: roadmap
+id: more-entropy
+link-to: reduce-trust
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 
