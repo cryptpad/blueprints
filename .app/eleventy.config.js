@@ -89,6 +89,11 @@ module.exports = (function(eleventyConfig) {
     title: "CryptPad Blueprints",
   });
 
+  // Debug filter
+  eleventyConfig.addFilter("log", (d) => {
+    console.log(d);
+  });
+
   eleventyConfig.addFilter("mapToAttr", (elems, attr) => elems.map((e) => e[attr]));
 
   eleventyConfig.addFilter("toc", function (content) {
