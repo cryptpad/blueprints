@@ -28,17 +28,47 @@ to technical prototypes.
 <pre class="mermaid">
 graph LR
 {%- for item in collections.roadmap %}
-  {{item.data.id}}[{{item.data.title}}]{% if item.data.link-to %}-->{{item.data.link-to}}{% endif %}
-  click {{item.data.id}} href "{{item.url}}"
+  {% assign i = item.data %}
+  {% if i.link-to %}{% for l in i.link-to %}
+  {{i.id}}({{i.title}}){% if i.style %}:::{{i.style}}{% endif %}-->{{l}}
+  {% endfor %}{% else %}
+  {{i.id}}({{i.title}}){% if i.style %}:::{{i.style}}{% endif %}
+  {% endif %}{%- endfor %}
+
+{%- for item in collections.roadmap %}
+  {% assign i = item.data %}
+  click {{i.id}} href "{{item.url}}"
 {%- endfor %}
+
+subgraph Legend
+  u("User Story"):::user-story
+  r("Recommendation"):::recommendation
+  p("Prototype"):::prototype
+end
+
+classDef user-story fill:#c8d6ff
+classDef recommendation fill:#ffdeca
+classDef prototype fill:#E4CAFF
+
 </pre>
 
-<style>
+<!-- 
+  #FFD4D4,
+  #FFDECA,
+  #FFE69C,
+  #DBFFB7,
+  #AFFDC2,
+  #C9FFFE,
+  #C8D6FF,
+  #E4CAFF;
+ -->
+
+<!-- <style>
 .nodeLabel {
   text-decoration: underline;
   color: blue !important;
 }
-</style>
+</style> -->
 
 <script type="module">
   import mermaid from '/node_modules/mermaid/dist/mermaid.esm.mjs';
