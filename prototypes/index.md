@@ -12,7 +12,7 @@ We explore and outline desired features for the next-generation CryptPad:
   e.g. to the document history.
 * [Account-recovery](./secretsharing/) mechanism making use of social secret
   sharing.
-* [Offline-first editing](./yjs/README.md) by the use of Conflict-free
+* [Offline-first editing](./crdt) by the use of Conflict-free
   Replicated Data Types (CRDTs).
 
 An integral part is to plan how these features can be integrated with CryptPad

@@ -1,5 +1,6 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const { parse } = require("node-html-parser");
+const fs = require("fs");
 
 module.exports = (function(eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
@@ -11,6 +12,15 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('node_modules/mermaid/');
   eleventyConfig.addPassthroughCopy('../cryptography/agility/');
   eleventyConfig.addPassthroughCopy('../feature-proposals/yjs/');
+
+  const pdfFiles = [
+    "../review/libraries/main.pdf",
+    "../review/agility/main.pdf",
+    "../document/whitepaper/main.pdf"
+  ];
+  for (pdf of pdfFiles) {
+    eleventyConfig.addPassthroughCopy(pdf);
+  }
 
   eleventyConfig.addGlobalData("layout", "layouts/base");
 
@@ -79,6 +89,11 @@ module.exports = (function(eleventyConfig) {
     title: "CryptPad Blueprints",
   });
 
+  // Debug filter
+  eleventyConfig.addFilter("log", (d) => {
+    console.log(d);
+  });
+
   eleventyConfig.addFilter("mapToAttr", (elems, attr) => elems.map((e) => e[attr]));
 
   eleventyConfig.addFilter("toc", function (content) {
@@ -106,6 +121,54 @@ module.exports = (function(eleventyConfig) {
 
     return toc;
   })
+
+  /* Generate the collection depending on the file location */
+  try {
+    const subfolderNames = fs
+    .readdirSync("../document/user-stories/", { withFileTypes: true })
+    .filter((dir) => dir.isDirectory())
+    .map((dir) => dir.name);
+
+    subfolderNames.forEach((subfolderName) => {
+      eleventyConfig.addCollection(subfolderName, function(collectionApi) {
+        return collectionApi
+        .getAll()
+        .filter((item) => item.inputPath.includes(`/${subfolderName}/`));
+      });
+    });
+  } catch {
+    console.error("Didn't manage to create collections");
+  }
+
+  /**
+    * Add a shortcode to list user stories.
+    * This is called with `{% listUserStories aCollection %}`.
+    * cf. https://www.11ty.dev/docs/shortcodes/
+    *
+    * Possible improvements:
+    * The order of the subelements is alphabetical. We can use some ordering
+    * from eleventy's collections.
+    *
+    * So far it's using the file slug as there are no metadata in user stories,
+    * but it can be improved using the title.
+    */
+  eleventyConfig.addShortcode("listUserStories", function(collection) {
+    var storiesName = "";
+    var subdirArray = collection.map(function (item) {
+      if (!storiesName) {
+        storiesName = item.data["stories name"];
+      }
+      return '<li><a href="' + item.url + '">' + item.fileSlug + '</a></li>';
+    });
+
+    if (!storiesName) {
+      console.error("listUserStories: Collection not found");
+      return "";
+    } else {
+      return "<ul><li>" + storiesName +"</li><ul>" + subdirArray.join("\n") + "</ul></ul>";
+    }
+  });
+
 
   return {
     dir: {
