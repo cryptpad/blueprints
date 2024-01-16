@@ -1,8 +1,95 @@
 
+/*
+
+@cryptpad_color_white: #FFF;
+@cryptpad_color_grey_200: #EEEEEE;
+@cryptpad_color_grey_250: #E7E7E7;
+@cryptpad_color_grey_300: #E0E0E0;
+@cryptpad_color_grey_400: #BDBDBD;
+@cryptpad_color_grey_500: #9E9E9E;
+@cryptpad_color_grey_600: #757575;
+@cryptpad_color_grey_700: #616161;
+@cryptpad_color_grey_800: #424242;
+@cryptpad_color_grey_900: #212121;
+@cryptpad_color_grey_950: #121212;
+
+@cryptpad_color_brand: #0087FF;
+@cryptpad_color_brand_dark: #99cfff;
+
+#FFD4D4,
+#FFDECA,
+#FFE69C,
+#DBFFB7,
+#AFFDC2,
+#C9FFFE,
+#C8D6FF,
+#E4CAFF;
+
+*/
+
+
+/* save of margin adjustments */
+
+/* main.css | http://localhost:8080/_styles/main.css */
+
+/* nav#contents {
+    margin: -0.5rem 0.5rem 0 -0.5rem;
+  }
+
+  body {
+    margin: 2rem 2rem;
+    background-attachment: fixed;
+    height: calc(100vh - 4rem);
+    width: calc(100vw - 4rem);
+    box-sizing: border-box;
+  }
+
+  main {
+    margin-top: -.5rem;
+  }
+
+  .container {
+    background-attachment: fixed;
+  }
+   */
+
+
+
+/* main.css | http://localhost:8080/_styles/main.css */
+
+/* nav#contents {
+    margin: -0.5rem 0.5rem 0 -0.5rem;
+  }
+
+  body {
+    margin: 2rem 2rem;
+    background-attachment: fixed;
+    height: calc(100vh - 4rem);
+    width: calc(100vw - 4rem);
+    box-sizing: border-box;
+  }
+
+  main {
+    margin-top: -.5rem;
+  }
+
+  .container {
+    background-attachment: fixed;
+  }
+
+
+  /* Inline #8 | http://localhost:8080/ */
+
+
+
 
 :root{
     --col-primary: #212121;
     --col-background: #eeeeee;
+    --col-unit-s: #0087FF66;
+    --col-unit-l: #9838ff;
+    --corner: 1rem;
+    --shadow: 2px 2px 10px #0087FF;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,21 +102,40 @@ html, body {
     color: var(--col-primary);
     background-color: var(--col-background);
     font-family: "IBM Plex Mono", monospace;
-    font-size: 16px;
+    font-size: 15px;
     height: 100%;
 }
 
 body {
+    margin: 2rem 2rem;
+  }
+
+  #BG-grid-1, #BG-grid-2 {
+    width: calc(100vw - 4rem);
+    height: calc(100vh - 4rem);
+    position: fixed;
+  }
+
+  #BG-grid-1 {
+    background-image: linear-gradient(to right, var(--col-unit-s) 1px, transparent 1px), linear-gradient(to bottom, var(--col-unit-s) 1px, transparent 1px);
     background-size: 1rem 1rem;
-    background-image:
-      linear-gradient(to right, rgba(0, 195, 255, 0.743) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 195, 255, 0.743) 1px, transparent 1px);
+    z-index: 0;
+  }
+
+  #BG-grid-2 {
+    background-size: 10rem 10rem;
+    background-image: linear-gradient(to right, var(--col-unit-l) 1px, transparent 1px), linear-gradient(to bottom, var(--col-unit-l) 1px, transparent 1px);
+    /* border: 1px solid var(--col-unit-l); */
+    z-index: 1;
   }
 
 .container {
     display: grid;
+    /* height: 100%; */
     grid-template-columns: 20rem auto 20rem;
     column-gap: 1rem;
+    position: relative;
+    z-index: 10;
 }
 
 main {
@@ -37,6 +143,11 @@ main {
     padding: 1rem;
     background: white;
     margin: 1px;
+    border-radius: var(--corner);
+    box-shadow: var(--shadow);
+    height: fit-content;
+    margin-top: -0.5rem;
+    margin-bottom: 5rem;
 }
 
 #sidebar, #contents {
@@ -49,7 +160,6 @@ main {
     padding: 0.5rem;
     height: fit-content;
   }
-  
 
 /* Typography */
 
@@ -62,6 +172,12 @@ figcaption {
 }
 
 /* Navigation */
+
+nav#contents {
+    margin: -0.5rem 0.5rem 0 -0.5rem;
+    border-radius: var(--corner);
+    box-shadow: var(--shadow);
+}
 
 nav.breadcrumb {
     padding: 0.5em;
