@@ -13,58 +13,38 @@
     {% endblock %}
 </head>
 
+{% set navPages = collections.all | eleventyNavigation %}
+
+{% if eleventyNavigation.parent %}
+  {% set navBreadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true, allowMissing: true }) %}
+{% endif %}
+
+{% import "components/nav.njk" as nav %}
+
 <body>
-  {% set navPages = collections.all | eleventyNavigation %}
-
-  {% if eleventyNavigation.parent %}
-    {% set navBreadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true, allowMissing: true }) %}
-  {% endif %}
-
-  {% macro renderNavListItem(entry) %}
-  {% set isCurrent = entry.url == page.url %}
-  {% set isAncestor = (eleventyNavigation.parent and entry.url in (navBreadcrumbs | mapToAttr("url"))) %}
-  <li class="nav {% if isCurrent %}current{% elif isAncestor %}ancestor{% endif %} {% if entry.children.length %}with-children{% else %}without-children{% endif %}">
-    {% if entry.children.length %}
-    <details {% if isCurrent or isAncestor %}open{% endif %}>
-      <summary><a href="{{ entry.url }}">{{ entry.title }}</a></summary>
-      <ol>
-        {% for child in entry.children %}
-        {{ renderNavListItem(child) }}
-        {% endfor %}
-      </ol>
-    </details>
-    {% else %}
-    <a href="{{ entry.url }}">{{ entry.title }}</a>
-    {% endif %}
-  {% endmacro %}
 
   <div id="BG-grid-1"></div>
   <div id="BG-grid-2"></div>
 
   <div class="container">
-    {# wrap in hamburger menu on small screens #}
+    {# TODO wrap in hamburger menu on small screens #}
     {# https://codepen.io/impressivewebs/pen/qBbmMRJ #}
     <nav id="site-contents">
       {% for item in navPages %}
       <a href="{{ item.url }}">{{ item.title }}</a>
       <ol>
         {% for subitem in item.children %}
-        {{ renderNavListItem(subitem) }}
+        {{ nav.renderNavListItem(subitem) }}
         {% endfor %}
       </ol>
       {% endfor %}
     </nav>
+
     <div class="page-content">
       <main>
         {# Breadcrumb navigation #}
         {% if eleventyNavigation.parent %}
-          <nav aria-label="Breadcrumb" class="breadcrumb">
-            <ol>
-              {% for page in navBreadcrumbs %}
-                <li><a href={{ page.url }}>{{ page.title }}</a></li>
-              {% endfor %}
-            </ol>
-          </nav>
+          {{ nav.breadcrumbs(navBreadcrumbs) }}
         {% endif %}
         {# Page title #}
         {% if title %}
@@ -75,40 +55,9 @@
             {{ content | safe }}
         {% endblock %}
       </main>
-      <aside id="sidebar">
-        {% if author %}
-          <p>By: {{ author }}</p>
-        {% endif %}
-        {% if authors %}
-          <p>By: {% for author in authors %}
-            {{ author }}
-          {% endfor %}</p>
-        {% endif %}
-        {% if date %}
-            <p title="Date published">{{ date | dateformat }}</p>
-        {% endif %}
-        {% if version %}
-          <p title="Revision">v{{ version }}</p>
-        {% endif %}
-        {% if comment %}
-          <p>Comment: {{ comment }}</p>
-        {% endif %}
-        {% set toc = content | toc %}
-        {% if (toc | length) and showtoc %}
-        <div class="toc">
-          <h2 class="toc__label" id="app-panel-toc">Page Contents</h2>
-          <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
-            {% for item in toc %}
-            <li style="--level: {{ item.level }}" class="toc__item">
-              <a href="#{{ item.id }}" class="toc__link">
-                {{ item.text | safe }}
-              </a>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% endif %}
-      </aside>
+
+      {% include "components/sidebar.njk" %}
+
     </div>
   </div>
 

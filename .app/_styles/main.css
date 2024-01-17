@@ -85,7 +85,7 @@ body {
 .page-content {
     display: flex;
     flex-direction: row;
-    margin: 0 auto;
+    margin: 0;
 }
 
 main {
@@ -161,7 +161,7 @@ nav.breadcrumb li + li::before {
 /*  sIdebar */
 
 
-.page-content aside#sidebar  {
+.page-content aside#sidebar {
     background-color: white;
     height: fit-content;
     width: fit-content;
