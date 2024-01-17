@@ -41,13 +41,11 @@ Background:
 > secure** but I can't because **I did not log out of CryptPad before police
 > seized my laptop**.
 
+{% for story in user-stories %}
+  {{ story.title }}
+{% endfor %}
 
-{% listUserStories collections.honest %}
-{% listUserStories collections.admin %}
-{% listUserStories collections.evil %}
-{% listUserStories collections.shit %}
-{% listUserStories collections.developer %}
-{% listUserStories collections.business %}
+
 
 <!-- {% for story in collections.user-stories %} -->
 <!--   {{ story.url }} -->

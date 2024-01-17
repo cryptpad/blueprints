@@ -158,22 +158,22 @@ module.exports = (function(eleventyConfig) {
     * So far it's using the file slug as there are no metadata in user stories,
     * but it can be improved using the title.
     */
-  eleventyConfig.addShortcode("listUserStories", function(collection) {
-    var storiesName = "";
-    var subdirArray = collection.map(function (item) {
-      if (!storiesName) {
-        storiesName = item.data["stories name"];
-      }
-      return '<li><a href="' + item.url + '">' + item.fileSlug + '</a></li>';
-    });
+  // eleventyConfig.addShortcode("listUserStories", function(collection) {
+  //   var storiesName = "";
+  //   var subdirArray = collection.map(function (item) {
+  //     if (!storiesName) {
+  //       storiesName = item.data["stories name"];
+  //     }
+  //     return '<li><a href="' + item.url + '">' + item.fileSlug + '</a></li>';
+  //   });
 
-    if (!storiesName) {
-      console.error("listUserStories: Collection not found");
-      return "";
-    } else {
-      return "<ul><li>" + storiesName +"</li><ul>" + subdirArray.join("\n") + "</ul></ul>";
-    }
-  });
+  //   if (!storiesName) {
+  //     console.error("listUserStories: Collection not found");
+  //     return "";
+  //   } else {
+  //     return "<ul><li>" + storiesName +"</li><ul>" + subdirArray.join("\n") + "</ul></ul>";
+  //   }
+  // });
 
 
   return {
