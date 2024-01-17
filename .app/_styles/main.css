@@ -27,69 +27,13 @@
 
 */
 
-
-/* save of margin adjustments */
-
-/* main.css | http://localhost:8080/_styles/main.css */
-
-/* nav#contents {
-    margin: -0.5rem 0.5rem 0 -0.5rem;
-  }
-
-  body {
-    margin: 2rem 2rem;
-    background-attachment: fixed;
-    height: calc(100vh - 4rem);
-    width: calc(100vw - 4rem);
-    box-sizing: border-box;
-  }
-
-  main {
-    margin-top: -.5rem;
-  }
-
-  .container {
-    background-attachment: fixed;
-  }
-   */
-
-
-
-/* main.css | http://localhost:8080/_styles/main.css */
-
-/* nav#contents {
-    margin: -0.5rem 0.5rem 0 -0.5rem;
-  }
-
-  body {
-    margin: 2rem 2rem;
-    background-attachment: fixed;
-    height: calc(100vh - 4rem);
-    width: calc(100vw - 4rem);
-    box-sizing: border-box;
-  }
-
-  main {
-    margin-top: -.5rem;
-  }
-
-  .container {
-    background-attachment: fixed;
-  }
-
-
-  /* Inline #8 | http://localhost:8080/ */
-
-
-
-
 :root{
     --col-primary: #212121;
-    --col-background: #eeeeee;
+    --col-background: hsl(208, 76%, 95%);
     --col-unit-s: #0087FF66;
     --col-unit-l: #9838ff;
     --corner: 1rem;
-    --shadow: 2px 2px 10px #0087FF;
+    --shadow: 2px 2px 8px #0087FF;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -132,10 +76,16 @@ body {
 .container {
     display: grid;
     /* height: 100%; */
-    grid-template-columns: 20rem auto 20rem;
+    grid-template-columns: 20rem auto;
     column-gap: 1rem;
     position: relative;
     z-index: 10;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
 }
 
 main {
@@ -145,21 +95,22 @@ main {
     margin: 1px;
     border-radius: var(--corner);
     box-shadow: var(--shadow);
+    max-width: 65ch;
     height: fit-content;
     margin-top: -0.5rem;
     margin-bottom: 5rem;
+    position: relative;
+    z-index: 9;
 }
 
-#sidebar, #contents {
+main p {
+    max-width: 75ch;
+}
+
+#sidebar, #site-contents {
     /* max-width: 16rem; */
 }
 
-#contents {
-    background: white;
-    margin: 1px;
-    padding: 0.5rem;
-    height: fit-content;
-  }
 
 /* Typography */
 
@@ -173,10 +124,15 @@ figcaption {
 
 /* Navigation */
 
-nav#contents {
+nav#site-contents {
+    background: white;
+    padding: 0.5rem;
+    height: fit-content;
     margin: -0.5rem 0.5rem 0 -0.5rem;
     border-radius: var(--corner);
     box-shadow: var(--shadow);
+    position: sticky;
+    top: 1.5rem;
 }
 
 nav.breadcrumb {
@@ -200,6 +156,25 @@ nav.breadcrumb li + li::before {
     border-right: 0.1em solid currentcolor;
     height: 0.8em;
     content: "";
+}
+
+/*  sIdebar */
+
+
+.page-content aside#sidebar  {
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 0 var(--corner) var(--corner) 0;
+    margin: 2rem 0 0 -1px;
+    padding: 1rem;
+    position: relative;
+    z-index: 8;
+    box-shadow: var(--shadow);
+}
+
+.page-content aside#sidebar p {
+    margin: 0 0 0.5rem 0;
 }
 
 /* Page TOC */
