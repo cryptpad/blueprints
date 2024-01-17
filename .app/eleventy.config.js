@@ -1,6 +1,7 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const { parse } = require("node-html-parser");
 const fs = require("fs");
+const { DateTime } = require("luxon");
 
 module.exports = (function(eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
@@ -28,6 +29,11 @@ module.exports = (function(eleventyConfig) {
   // eleventyConfig.setServerOptions({
   //   watch: ["dist/app.js", "dist/app.*.css"],
   // });
+
+  // Dates
+  eleventyConfig.addFilter("dateformat", (dateObj) => {
+    return DateTime.fromJSDate(dateObj).toFormat('dd-MM-yyyy');
+  });
 
   // Markdown
     let markdownIt = require("markdown-it");
