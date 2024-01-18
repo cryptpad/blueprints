@@ -128,24 +128,6 @@ module.exports = (function(eleventyConfig) {
     return toc;
   })
 
-  /* Generate the collection depending on the file location */
-  try {
-    const subfolderNames = fs
-    .readdirSync("../document/user-stories/", { withFileTypes: true })
-    .filter((dir) => dir.isDirectory())
-    .map((dir) => dir.name);
-
-    subfolderNames.forEach((subfolderName) => {
-      eleventyConfig.addCollection(subfolderName, function(collectionApi) {
-        return collectionApi
-        .getAll()
-        .filter((item) => item.inputPath.includes(`/${subfolderName}/`));
-      });
-    });
-  } catch {
-    console.error("Didn't manage to create collections");
-  }
-
   /**
     * Add a shortcode to list user stories.
     * This is called with `{% listUserStories aCollection %}`.

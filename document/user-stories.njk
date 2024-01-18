@@ -1,0 +1,17 @@
+---
+pagination:
+    data: user-stories 
+    size: 1
+    alias: story
+    addAllPagesToCollections: true
+permalink: "document/user-stories/{{ story.category | slugify }}/{{ story.title | slugify }}/"
+eleventyComputed:
+    title: "{{ story.title }}"
+    tags:
+        - user-stories
+        - "{{ story.category | slugify }}"
+---
+
+<p>
+As an <strong>{{ story.stories[0].role }}</strong>, I want to <strong>{{ story.stories[0].what }}</strong> because <strong>{{ story.stories[0].why }}</strong>.
+</p>
