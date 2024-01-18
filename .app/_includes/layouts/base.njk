@@ -19,12 +19,39 @@
   {% set navBreadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, { includeSelf: true, allowMissing: true }) %}
 {% endif %}
 
-{% import "components/nav.njk" as nav %}
-
 <body>
 
   <div id="BG-grid-1"></div>
   <div id="BG-grid-2"></div>
+
+  {% macro renderNavListItem(entry) %}
+    {% set isCurrent = entry.url == page.url %}
+    {% set isAncestor = (eleventyNavigation.parent and entry.url in (navBreadcrumbs | mapToAttr("url"))) %}
+
+    <li class="nav {% if isCurrent %}current{% elif isAncestor %}ancestor{% endif %} {% if entry.children.length %}with-children{% else %}without-children{% endif %}">
+    {% if entry.children.length %}
+        <details {% if isCurrent or isAncestor %}open{% endif %}>
+            <summary><a href="{{ entry.url }}">{{ entry.title }}</a></summary>
+                <ol>
+                {% for child in entry.children %}
+                {{ renderNavListItem(child) }}
+                {% endfor %}
+                </ol>
+        </details>
+    {% else %}
+        <a href="{{ entry.url }}">{{ entry.title }}</a>
+    {% endif %}
+  {% endmacro %}
+
+  {% macro breadcrumbs(navBreadcrumbs) %}
+  <nav aria-label="Breadcrumb" class="breadcrumb">
+      <ol>
+        {% for page in navBreadcrumbs %}
+          <li><a href={{ page.url }}>{{ page.title }}</a></li>
+        {% endfor %}
+      </ol>
+    </nav>
+  {% endmacro %}
 
   <div class="container">
     {# TODO wrap in hamburger menu on small screens #}
@@ -34,7 +61,7 @@
       <a href="{{ item.url }}">{{ item.title }}</a>
       <ol>
         {% for subitem in item.children %}
-        {{ nav.renderNavListItem(subitem) }}
+        {{ renderNavListItem(subitem) }}
         {% endfor %}
       </ol>
       {% endfor %}
@@ -44,7 +71,7 @@
       <main>
         {# Breadcrumb navigation #}
         {% if eleventyNavigation.parent %}
-          {{ nav.breadcrumbs(navBreadcrumbs) }}
+          {{ breadcrumbs(navBreadcrumbs) }}
         {% endif %}
         {# Page title #}
         {% if title %}
