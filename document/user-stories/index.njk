@@ -7,7 +7,7 @@ eleventyNavigation:
 
 <ul>
 {% for story in user_stories %}
-  <li><a href="{{ story.url }}">
+  <li><a href="/document/user-stories/{{ story.category | slugify }}/{{ story.title | slugify }}/">
     {{ story.title }}
   </a></li>
 {% endfor %}
