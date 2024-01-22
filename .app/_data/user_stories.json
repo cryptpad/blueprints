@@ -8,13 +8,9 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "who": "instance administrator",
-        "what": "generate individualized or multiple user invitation codes",
-        "why": "I can onboard my friends while keeping registration closed to the public"
-      }
-    ],
+    "who": "instance administrator",
+    "what": "generate individualized or multiple user invitation codes",
+    "why": "I can onboard my friends while keeping registration closed to the public",
     "title": "Admin onboarding",
     "category": "Admin stories"
   },
@@ -30,37 +26,25 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "who": "administrator with limited disk space",
-        "what": "prevent malicious users from registering many accounts to bypass the storage quotas",
-        "why": "I can continue to provide a public service for honest users"
-      }
-    ],
+    "who": "administrator with limited disk space",
+    "what": "prevent malicious users from registering many accounts to bypass the storage quotas",
+    "why": "I can continue to provide a public service for honest users",
     "title": "Limited account creation",
     "category": "Admin stories"
   },
   {
-    "stories": [
-      {
-        "who": "CEO of XWiki",
-        "what": "collect telemetry indicating the number of active users and  documents on a third-party instance",
-        "why": "I can include those metrics as a KPI in grant proposals"
-      }
-    ],
+    "who": "CEO of XWiki",
+    "what": "collect telemetry indicating the number of active users and  documents on a third-party instance",
+    "why": "I can include those metrics as a KPI in grant proposals",
     "title": "Instance telemetry",
     "category": "Business stories"
   },
   {
     "title": "Legal operation",
     "category": "Business stories",
-    "stories": [
-      {
-        "who": "CEO of an SME",
-        "what": "offer hosting of premium CryptPad accounts to individual users",
-        "why": "I can help sustain the development of the software and eventually make a profit"
-      }
-    ]
+    "who": "CEO of an SME",
+    "what": "offer hosting of premium CryptPad accounts to individual users",
+    "why": "I can help sustain the development of the software and eventually make a profit"
   },
   {
     "extra": [
@@ -70,13 +54,9 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "who": "CryptPad developer",
-        "what": "measure how often a feature is used and by how many people",
-        "why": "I can decide whether its possible improvements should be prioritized"
-      }
-    ],
+    "who": "CryptPad developer",
+    "what": "measure how often a feature is used and by how many people",
+    "why": "I can decide whether its possible improvements should be prioritized",
     "title": "Feature telemetry",
     "category": "Developer stories"
   },
@@ -88,13 +68,9 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "what": "appear to be the account of a known target in a group",
-        "who": "malicious actor",
-        "why": "their friends will add me as a contact and share documents with me"
-      }
-    ],
+    "what": "appear to be the account of a known target in a group",
+    "who": "malicious actor",
+    "why": "their friends will add me as a contact and share documents with me",
     "title": "Account impersonation",
     "category": "Evil user stories"
   },
@@ -110,13 +86,9 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "what": "list my malicious server as a public instance on cryptpad.org",
-        "who": "intelligence agent",
-        "why": "I can compromise a particular demographic of users"
-      }
-    ],
+    "what": "list my malicious server as a public instance on cryptpad.org",
+    "who": "intelligence agent",
+    "why": "I can compromise a particular demographic of users",
     "title": "Honeypot operator",
     "category": "Evil user stories"
   },
@@ -128,24 +100,16 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "what": "seize a heavily used CryptPad server and serve malicious JavaScript",
-        "who": "state actor",
-        "why": "I can actively collect the keys to every document when users visit the site"
-      }
-    ],
+    "what": "seize a heavily used CryptPad server and serve malicious JavaScript",
+    "who": "state actor",
+    "why": "I can actively collect the keys to every document when users visit the site",
     "title": "Malicious JavaScript",
     "category": "Evil user stories"
   },
   {
-    "stories": [
-      {
-        "what": "compel DNS server operators to direct users to my custom CryptPad front end",
-        "who": "authoritarian regime",
-        "why": "I can serve whatever JS I want and use people's keys to load from the actual API server"
-      }
-    ],
+    "what": "compel DNS server operators to direct users to my custom CryptPad front end",
+    "who": "authoritarian regime",
+    "why": "I can serve whatever JS I want and use people's keys to load from the actual API server",
     "title": "Malicious JS - DNS variant",
     "category": "Evil user stories",
     "extra": [
@@ -165,24 +129,16 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "what": "see who edited a document over its history",
-        "who": "law enforcement officer",
-        "why": "I can add to the data I am collecting about a movement to track it down"
-      }
-    ],
+    "what": "see who edited a document over its history",
+    "who": "law enforcement officer",
+    "why": "I can add to the data I am collecting about a movement to track it down",
     "title": "Police informant",
     "category": "Evil user stories"
   },
   {
-    "stories": [
-      {
-        "what": "take advantage of free online services which make it difficult/impossible to analyze my social graph and similar metadata",
-        "who": "white supremacist",
-        "why": "I can coordinate with my local, national, and international terrorist networks without facing any consequences for my horrendous behaviour and beliefs"
-      }
-    ],
+    "what": "take advantage of free online services which make it difficult/impossible to analyze my social graph and similar metadata",
+    "who": "white supremacist",
+    "why": "I can coordinate with my local, national, and international terrorist networks without facing any consequences for my horrendous behaviour and beliefs",
     "title": "Terrorist cells",
     "category": "Evil user stories",
     "extra": [
@@ -233,18 +189,28 @@
         ]
       }
     ],
-    "stories": [
+    "what": "see the timestamps of access for different users",
+    "who": "document author",
+    "why": "I know who has which state of information",
+    "title": "Access History 2",
+    "category": "Honest user stories"
+  },
+  {
+    "extra": [
       {
-        "what": "see the timestamps of access for different users",
-        "who": "document author",
-        "why": "I know who has which state of information"
+        "background": [
+          "The stories are obviously conflicting, but both valid."
+        ]
       },
       {
-        "what": "hide the timestamps of my access",
-        "who": "participator",
-        "why": "my collaborators can not infer when and how long I worked"
+        "acceptance criteria": [
+          "Ideally, this is changeable on a per-instance basis, so that, e.g., companies deploying CryptPad can prioritize accountability over anonymity"
+        ]
       }
     ],
+    "what": "hide the timestamps of my access",
+    "who": "participator",
+    "why": "my collaborators can not infer when and how long I worked",
     "title": "Access History",
     "category": "Honest user stories"
   },
@@ -264,13 +230,9 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "what": "verify the identity of my contacts",
-        "who": "activist",
-        "why": "be sure that I share my sensitive documents with the right peers"
-      }
-    ],
+    "what": "verify the identity of my contacts",
+    "who": "activist",
+    "why": "be sure that I share my sensitive documents with the right peers",
     "title": "Account verification",
     "category": "Honest user stories"
   },
@@ -282,13 +244,9 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "goal": "I can effectively exercise control over who accesses them without having to perform a tedious, repetitive task",
-        "what": "select a group of folders and/or files and recursively apply a metadata change",
-        "who": "user with many documents"
-      }
-    ],
+    "goal": "I can effectively exercise control over who accesses them without having to perform a tedious, repetitive task",
+    "what": "select a group of folders and/or files and recursively apply a metadata change",
+    "who": "user with many documents",
     "title": "Bulk settings updates",
     "category": "Honest user stories"
   },
@@ -300,13 +258,9 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "goal": "I can onboard my whole class without wasting a lot of time clicking to generate invitations",
-        "what": "simultaneously invite many (20+) users to a team",
-        "who": "teacher with many students"
-      }
-    ],
+    "goal": "I can onboard my whole class without wasting a lot of time clicking to generate invitations",
+    "what": "simultaneously invite many (20+) users to a team",
+    "who": "teacher with many students",
     "title": "Bulk team onboarding",
     "category": "Honest user stories"
   },
@@ -329,13 +283,9 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "goal": "I spend less of my time manually clicking through tedious browser UI",
-        "what": "automate some actions on my account with a headless JavaScript API",
-        "who": "self-identified power-user"
-      }
-    ],
+    "goal": "I spend less of my time manually clicking through tedious browser UI",
+    "what": "automate some actions on my account with a headless JavaScript API",
+    "who": "self-identified power-user",
     "title": "CLI API",
     "category": "Honest user stories"
   },
@@ -358,13 +308,9 @@
         ]
       }
     ],
-    "stories": [
-      {
-        "goal": "accurately assign credit or blame",
-        "what": "see who made which changes",
-        "who": "document's creator"
-      }
-    ],
+    "goal": "accurately assign credit or blame",
+    "what": "see who made which changes",
+    "who": "document's creator",
     "title": "Contributor attribution",
     "category": "Honest user stories"
   },
@@ -396,24 +342,16 @@
         }
       ]
     },
-    "stories": [
-      {
-        "goal": "people can submit images/files as part of their response",
-        "what": "add an upload question to my form",
-        "who": "registered form author"
-      }
-    ],
+    "goal": "people can submit images/files as part of their response",
+    "what": "add an upload question to my form",
+    "who": "registered form author",
     "title": "Delegated upload quotas",
     "category": "Honest user stories"
   },
   {
-    "stories": [
-      {
-        "goal": "I can enjoy its new configuration options without great inconvenience",
-        "what": "upgrade my document to a new format without fully breaking existing",
-        "who": "document owner"
-      }
-    ],
+    "goal": "I can enjoy its new configuration options without great inconvenience",
+    "what": "upgrade my document to a new format without fully breaking existing",
+    "who": "document owner",
     "title": "Document format upgrade",
     "category": "Honest user stories"
   },
@@ -426,64 +364,46 @@
         "Risk: users get confused with this QR code and share it mistakenly with an attacker, the only way to redeem is to change the password"
       ]
     },
-    "stories": [
-      {
-        "goal": "I can bypass the slow and battery-consuming key derivation process that happens at login",
-        "what": "generate a short-lived QR code to authenticate my secondary devices",
-        "who": "mobile device user"
-      }
-    ],
+    "goal": "I can bypass the slow and battery-consuming key derivation process that happens at login",
+    "what": "generate a short-lived QR code to authenticate my secondary devices",
+    "who": "mobile device user",
     "title": "Efficient smartphone login",
     "category": "Honest user stories"
   },
   {
-    "stories": [
-      {
-        "inline": "(???)",
-        "what": "add someone to the document's access list without actually giving them its keys",
-        "who": "owner of a sensitive document",
-        "why": "it remains secure"
-      }
-    ],
-    "title": "\"Access lists\" without \"access\"",
+    "inline": "(???)",
+    "what": "add someone to the document's access list without actually giving them its keys",
+    "who": "owner of a sensitive document",
+    "why": "it remains secure",
+    "title": "“Access lists” without “access”",
     "category": "Shit user stories"
   },
   {
-    "stories": [
-      {
-        "problem": "it doesn't load",
-        "what": "open a CryptPad document",
-        "who": "smartphone user"
-      }
-    ],
+    "problem": "it doesn't load",
+    "what": "open a CryptPad document",
+    "who": "smartphone user",
     "title": "Loading docs on mobile",
     "category": "Shit user stories"
   },
   {
-    "stories": [
-      {
-        "problem": "I did not choose to be an owner when I created the document",
-        "what": "destroy a document I created",
-        "who": "registered user"
-      },
-      {
-        "inline": "(I have no idea what \"owner\" means)",
-        "solution": "add them as an owner",
-        "what": "share it with one of my contacts",
-        "who": "owner of the document"
-      }
-    ],
+    "problem": "I did not choose to be an owner when I created the document",
+    "what": "destroy a document I created",
+    "who": "registered user",
+    "title": "Ownership 2",
+    "category": "Shit user stories"
+  },
+  {
+    "inline": "(I have no idea what \"owner\" means)",
+    "solution": "add them as an owner",
+    "what": "share it with one of my contacts",
+    "who": "owner of the document",
     "title": "Ownership",
     "category": "Shit user stories"
   },
   {
-    "stories": [
-      {
-        "goal": "cannot accidentally reveal confidential information",
-        "what": "lose track of who has access to the folder",
-        "who": "creator of a shared folder"
-      }
-    ],
+    "goal": "cannot accidentally reveal confidential information",
+    "what": "lose track of who has access to the folder",
+    "who": "creator of a shared folder",
     "title": "Uncertain folder membership",
     "category": "Shit user stories"
   }
