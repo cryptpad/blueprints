@@ -1,5 +1,23 @@
 # YAML user stories
 
+## TODO / Notes 
+
+- working with one JSON global data files is showing limits that may not be owrkable (e.g. not possible to add user stories to the mermaid roadmap on front page)
+- trying again to break down the one YAML file into one individual file per story 
+
+with the new `user-stories-source.yml` I am running
+
+```bash
+yq -s '.[].title' user-stories-source.yml
+```
+
+but so far always getting errors, probably due to YAML syntax subtleties
+
+```
+Error: bad file 'user-stories-source.yml': yaml: line 10: did not find expected key
+```
+
+
 ## Goal
 
 Noticing that the user stories follow a specific template (namely the… [user
