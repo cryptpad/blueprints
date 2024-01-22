@@ -213,6 +213,7 @@
     "goal": "my old documents are not readable by modern adversaries with new capabilities",
     "id": "ciphersuites",
     "linkto": "TweetNaCl",
+    "style": "user-story",
     "tags": "roadmap",
     "title": "ciphersuites",
     "category": "Honest user stories",
