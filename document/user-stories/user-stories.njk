@@ -1,10 +1,11 @@
 ---
 pagination:
-    data: user-stories
+    data: user_stories
     size: 1
     alias: story
     addAllPagesToCollections: true
 permalink: "document/user-stories/{{ story.category | slugify }}/{{ story.title | slugify }}/"
+style: "user-story"
 eleventyComputed:
     title: "{{ story.title }}"
     tags:

@@ -2,19 +2,13 @@
 title: CryptPad User Stories
 eleventyNavigation:
   order: 4
-eleventyImport:
-  collections: ["business-stories"]
 ---
 
 
 <ul>
-{% for story in collections.all %}
-  {% for tag in story.data.tags %}
-    {% if story.data.title and tag === "user-stories" %}
-      <li><a href="{{ story.url }}">
-        {{ story.data.title }}
-      </a></li>
-    {% endif %}
-  {% endfor %}
+{% for story in user_stories %}
+  <li><a href="{{ story.url }}">
+    {{ story.title }}
+  </a></li>
 {% endfor %}
 </ul>
