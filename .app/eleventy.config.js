@@ -62,6 +62,11 @@ module.exports = (function(eleventyConfig) {
     // set the library to process markdown files
     eleventyConfig.setLibrary("md", markdownLib);
 
+    // compile markdown attributes
+    eleventyConfig.addFilter("markdown", (content) => {
+      return markdownLib.render(content);
+      });
+
   eleventyConfig.addGlobalData("eleventyComputed", {
     eleventyNavigation: {
       key: (data) => {
@@ -98,6 +103,13 @@ module.exports = (function(eleventyConfig) {
   // Debug filter
   eleventyConfig.addFilter("log", (d) => {
     console.log(d);
+  });
+
+  // Key / Value filter for user story extras
+  eleventyConfig.addFilter("keyValue", (d) => {
+    let key = Object.keys(d)[0];
+    let value = Object.values(d)[0];
+    return {"key": key, "value": value};
   });
 
   eleventyConfig.addFilter("mapToAttr", (elems, attr) => elems.map((e) => e[attr]));

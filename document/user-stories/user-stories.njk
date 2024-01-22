@@ -26,5 +26,29 @@ so that <strong>{{ story.goal }}</strong>.
 {% if story.inline %}
 {{ story.inline }}
 {% endif %}
+</p>
 
+<p>
+    {% if story.extra %}
+        {% for item in story.extra %}
+            {% set i = item | keyValue %}
+            {{ i.key }}:
+            {% if i.value is iterable %}
+                {% if i.key == "issues" %}
+                    <ul>
+                        {% for issue in i.value %}
+                            <li><a href="https://github.com/cryptpad/cryptpad/issues/{{ issue.reference }}">#{{ issue.reference}} {{ issue.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else  %}  {#  #}
+                    {% for line in i.value %}
+                        {{ line | safe }}
+                    {% endfor %}
+                {% endif %}
+            {% else %}
+                {{ i.value | safe }}
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
 </p>

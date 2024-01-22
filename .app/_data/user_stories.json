@@ -296,8 +296,14 @@
           "There `are author colors` in the `Code` app providing the same feature",
           {
             "issues": [
-              "[FEATURE REQUEST: Color by author #41](https://github.com/xwiki-labs/cryptpad/issues/41#issuecomment-464351139)",
-              "[Allow to see authors of changes in history #969](https://github.com/xwiki-labs/cryptpad/issues/969)"
+              {
+                "reference": 41,
+                "title": "FEATURE REQUEST: Color by author"
+              },
+              {
+                "reference": 969,
+                "title": "Allow to see authors of changes in history"
+              }
             ]
           }
         ]
