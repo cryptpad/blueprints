@@ -10,6 +10,9 @@ eleventyComputed:
     tags:
         - user-stories
         - "{{ story.category | slugify }}"
+        - "{{ story.tags }}"
+    link-to: "{{ story.linkto }}"
+    id: "{{ story.id }}"
 ---
 
 <p>
