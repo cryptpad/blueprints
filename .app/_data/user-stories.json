@@ -10,7 +10,7 @@
     ],
     "stories": [
       {
-        "role": "instance administrator",
+        "who": "instance administrator",
         "what": "generate individualized or multiple user invitation codes",
         "why": "I can onboard my friends while keeping registration closed to the public"
       }
@@ -32,7 +32,7 @@
     ],
     "stories": [
       {
-        "role": "administrator with limited disk space",
+        "who": "administrator with limited disk space",
         "what": "prevent malicious users from registering many accounts to bypass the storage quotas",
         "why": "I can continue to provide a public service for honest users"
       }
@@ -43,7 +43,7 @@
   {
     "stories": [
       {
-        "role": "CEO of XWiki",
+        "who": "CEO of XWiki",
         "what": "collect telemetry indicating the number of active users and  documents on a third-party instance",
         "why": "I can include those metrics as a KPI in grant proposals"
       }
@@ -56,7 +56,7 @@
     "category": "Business stories",
     "stories": [
       {
-        "role": "CEO of an SME",
+        "who": "CEO of an SME",
         "what": "offer hosting of premium CryptPad accounts to individual users",
         "why": "I can help sustain the development of the software and eventually make a profit"
       }
@@ -72,7 +72,7 @@
     ],
     "stories": [
       {
-        "role": "CryptPad developer",
+        "who": "CryptPad developer",
         "what": "measure how often a feature is used and by how many people",
         "why": "I can decide whether its possible improvements should be prioritized"
       }
