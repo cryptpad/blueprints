@@ -1,14 +1,27 @@
 ---
+layout: "layouts/blocks-page.njk"
 title: CryptPad User Stories
 eleventyNavigation:
   order: 4
 ---
 
 
-<ul>
+
 {% for story in user_stories %}
-  <li><a href="/document/user-stories/{{ story.category | slugify }}/{{ story.title | slugify }}/">
-    {{ story.title }}
-  </a></li>
+  <article class="block">
+    <h2>{{ story.title }}</h2>
+    <p>
+      As a <strong>{{ story.who }}</strong>, I want to <strong>{{ story.what }}</strong>
+      {% if story.why %}
+      because <strong>{{ story.why }}</strong>.
+      {% elif story.goal %}
+      so that <strong>{{ story.goal }}</strong>.
+      {% endif %}
+      {% if story.inline %}
+      {{ story.inline }}
+      {% endif %}
+    </p>
+    <a href="/document/user-stories/{{ story.category | slugify }}/{{ story.title | slugify }}/">Open Story</a>
+  </article>
 {% endfor %}
-</ul>
+
