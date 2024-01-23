@@ -3,6 +3,7 @@ layout: "layouts/blocks-page.njk"
 title: CryptPad User Stories
 eleventyNavigation:
   order: 4
+  title: User Stories
 ---
 
 {% import "components/user-stories.njk" as user %}
@@ -11,7 +12,13 @@ eleventyNavigation:
   <article class="block">
     <h2>{{ story.data.title }}</h2>
     {{ user.story(story.data) }}
-    <a href="{{ story.url }}">Open Story</a>
+    <a href="{{ story.url }}">
+    {% if story.data.extra %}
+      Read More
+    {% else %}
+      Open Story
+    {% endif %}
+    </a>
   </article>
 {% endfor %}
 
