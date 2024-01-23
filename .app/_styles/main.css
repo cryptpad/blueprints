@@ -32,6 +32,7 @@
     --col-background: hsl(208, 76%, 95%);
     --col-unit-s: #0087FF66;
     --col-unit-l: #9838ff;
+    --col-badge: #e0e0e0;
     --corner: 1rem;
     --shadow: 2px 2px 8px #0087FF;
 }
@@ -146,6 +147,12 @@ figure {
 
 figcaption {
     font-style: italic;
+}
+
+.badge {
+    background-color: var(--col-badge);
+    border-radius: var(--corner);
+    padding: 0 1em;
 }
 
 /* Navigation */
