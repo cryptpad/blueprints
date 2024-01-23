@@ -105,6 +105,13 @@ module.exports = (function(eleventyConfig) {
     console.log(d);
   });
 
+  eleventyConfig.addFilter("shuffle", (arr) => {
+    arr.sort(() => {
+      return 0.5 - Math.random();
+    });
+    return arr;
+  });
+
   // Key / Value filter for user story extras
   eleventyConfig.addFilter("keyValue", (d) => {
     let key = Object.keys(d)[0];
