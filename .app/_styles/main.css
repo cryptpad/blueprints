@@ -32,6 +32,7 @@
     --col-background: hsl(208, 76%, 95%);
     --col-unit-s: #0087FF66;
     --col-unit-l: #9838ff;
+    --col-badge: #e0e0e0;
     --corner: 1rem;
     --shadow: 2px 2px 8px #0087FF;
 }
@@ -90,12 +91,7 @@ body {
 
 main {
     /* flex-grow: 1; */
-    padding: 1rem;
-    background: white;
     margin: 1px;
-    border-radius: var(--corner);
-    box-shadow: var(--shadow);
-    max-width: 65ch;
     height: fit-content;
     margin-top: -0.5rem;
     margin-bottom: 5rem;
@@ -103,16 +99,47 @@ main {
     z-index: 9;
 }
 
+main.single-page, article.block{
+    padding: 1rem;
+    border-radius: var(--corner);
+    box-shadow: var(--shadow);
+    background: white;
+    max-width: 65ch;
+}
+
 main p {
     max-width: 75ch;
 }
 
-#sidebar, #site-contents {
-    /* max-width: 16rem; */
+.block-container {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
+article.block {
+    padding: 1rem;
+    margin: 1rem;
+    max-width: 40ch;
+    display: block;
+    height: min-content;
+}
+
+article.header {
+    margin: 0 0 1rem 0;
+    max-width: 65ch;
+}
 
 /* Typography */
+
+article h1 {
+    font-size: 2rem;
+}
+
+article.block h2 {
+    margin-top: .2rem;
+}
 
 figure {
     max-width: 100%;
@@ -120,6 +147,12 @@ figure {
 
 figcaption {
     font-style: italic;
+}
+
+.badge {
+    background-color: var(--col-badge);
+    border-radius: var(--corner);
+    padding: 0 1em;
 }
 
 /* Navigation */

@@ -62,6 +62,11 @@ module.exports = (function(eleventyConfig) {
     // set the library to process markdown files
     eleventyConfig.setLibrary("md", markdownLib);
 
+    // compile markdown attributes
+    eleventyConfig.addFilter("markdown", (content) => {
+      return markdownLib.render(content);
+      });
+
   eleventyConfig.addGlobalData("eleventyComputed", {
     eleventyNavigation: {
       key: (data) => {
@@ -100,6 +105,20 @@ module.exports = (function(eleventyConfig) {
     console.log(d);
   });
 
+  eleventyConfig.addFilter("shuffle", (arr) => {
+    arr.sort(() => {
+      return 0.5 - Math.random();
+    });
+    return arr;
+  });
+
+  // Key / Value filter for user story extras
+  eleventyConfig.addFilter("keyValue", (d) => {
+    let key = Object.keys(d)[0];
+    let value = Object.values(d)[0];
+    return {"key": key, "value": value};
+  });
+
   eleventyConfig.addFilter("mapToAttr", (elems, attr) => elems.map((e) => e[attr]));
 
   eleventyConfig.addFilter("toc", function (content) {
@@ -127,24 +146,6 @@ module.exports = (function(eleventyConfig) {
 
     return toc;
   })
-
-  /* Generate the collection depending on the file location */
-  try {
-    const subfolderNames = fs
-    .readdirSync("../document/user-stories/", { withFileTypes: true })
-    .filter((dir) => dir.isDirectory())
-    .map((dir) => dir.name);
-
-    subfolderNames.forEach((subfolderName) => {
-      eleventyConfig.addCollection(subfolderName, function(collectionApi) {
-        return collectionApi
-        .getAll()
-        .filter((item) => item.inputPath.includes(`/${subfolderName}/`));
-      });
-    });
-  } catch {
-    console.error("Didn't manage to create collections");
-  }
 
   /**
     * Add a shortcode to list user stories.

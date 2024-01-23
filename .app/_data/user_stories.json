@@ -1,0 +1,416 @@
+[
+  {
+    "extra": [
+      {
+        "background": [
+          "See issue [close registration unless you have been invited into a team](https://forum.cryptpad.org/d/118-close-registration-unless-you-have-been-invited-into-a-team)",
+          "Helps to prevent against spam/DoS registrations"
+        ]
+      }
+    ],
+    "who": "instance administrator",
+    "what": "generate individualized or multiple user invitation codes",
+    "why": "I can onboard my friends while keeping registration closed to the public",
+    "title": "Admin onboarding",
+    "category": "Admin stories"
+  },
+  {
+    "extra": [
+      {
+        "background": [
+          "(D)DoS attackers can register many users and upload large files",
+          "As attackers can bypass the (client-side) `scrypt` key derivation, it is cheap to register users",
+          "Captchas could be an option, however, it is questionable how effective they are. Furthermore they are bad for UI and accessibility. Captchas are [discussed for Mastodon](https://github.com/mastodon/mastodon/issues/877)",
+          "Another idea is to allow only invited participants to register, see",
+          "Alternatively, we can enable admin onboarding"
+        ]
+      }
+    ],
+    "who": "administrator with limited disk space",
+    "what": "prevent malicious users from registering many accounts to bypass the storage quotas",
+    "why": "I can continue to provide a public service for honest users",
+    "title": "Limited account creation",
+    "category": "Admin stories"
+  },
+  {
+    "who": "CEO of XWiki",
+    "what": "collect telemetry indicating the number of active users and  documents on a third-party instance",
+    "why": "I can include those metrics as a KPI in grant proposals",
+    "title": "Instance telemetry",
+    "category": "Business stories"
+  },
+  {
+    "title": "Legal operation",
+    "category": "Business stories",
+    "who": "CEO of an SME",
+    "what": "offer hosting of premium CryptPad accounts to individual users",
+    "why": "I can help sustain the development of the software and eventually make a profit"
+  },
+  {
+    "extra": [
+      {
+        "background": [
+          "Currently possible to report back to CryptPad as soon as a button is clicked"
+        ]
+      }
+    ],
+    "who": "CryptPad developer",
+    "what": "measure how often a feature is used and by how many people",
+    "why": "I can decide whether its possible improvements should be prioritized",
+    "title": "Feature telemetry",
+    "category": "Developer stories"
+  },
+  {
+    "extra": [
+      {
+        "countermeasures": [
+          "Account verification"
+        ]
+      }
+    ],
+    "what": "appear to be the account of a known target in a group",
+    "who": "malicious actor",
+    "why": "their friends will add me as a contact and share documents with me",
+    "title": "Account impersonation",
+    "category": "Evil user stories"
+  },
+  {
+    "extra": [
+      {
+        "inline": "(e.g., climate activists in France)"
+      },
+      {
+        "background": [
+          "We cannot technically stop malicious actors from running CryptPad instances.",
+          "What helps, however, is to provide a verified client, so that no malicious code can be delivered, and e2ee is still guaranteed."
+        ]
+      }
+    ],
+    "what": "list my malicious server as a public instance on cryptpad.org",
+    "who": "intelligence agent",
+    "why": "I can compromise a particular demographic of users",
+    "title": "Honeypot operator",
+    "category": "Evil user stories"
+  },
+  {
+    "extra": [
+      {
+        "countermeasures": [
+          "Verified client"
+        ]
+      }
+    ],
+    "what": "seize a heavily used CryptPad server and serve malicious JavaScript",
+    "who": "state actor",
+    "why": "I can actively collect the keys to every document when users visit the site",
+    "title": "Malicious JavaScript",
+    "category": "Evil user stories"
+  },
+  {
+    "what": "compel DNS server operators to direct users to my custom CryptPad front end",
+    "who": "authoritarian regime",
+    "why": "I can serve whatever JS I want and use people's keys to load from the actual API server",
+    "title": "Malicious JS - DNS variant",
+    "category": "Evil user stories",
+    "extra": [
+      {
+        "countermeasures": [
+          "[HSTS](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) and [Certificate Transparency](https://en.wikipedia.org/wiki/Certificate_Transparency) can partially help"
+        ]
+      }
+    ]
+  },
+  {
+    "extra": [
+      {
+        "countermeasures": [
+          "As [stated in the docs](https://docs.cryptpad.org/en/user_guide/security.html#trust-assumptions) we cannot protect metadata.",
+          "The user's best bet is therefore to use Tor"
+        ]
+      }
+    ],
+    "what": "see who edited a document over its history",
+    "who": "law enforcement officer",
+    "why": "I can add to the data I am collecting about a movement to track it down",
+    "title": "Police informant",
+    "category": "Evil user stories"
+  },
+  {
+    "what": "take advantage of free online services which make it difficult/impossible to analyze my social graph and similar metadata",
+    "who": "white supremacist",
+    "why": "I can coordinate with my local, national, and international terrorist networks without facing any consequences for my horrendous behaviour and beliefs",
+    "title": "Terrorist cells",
+    "category": "Evil user stories",
+    "extra": [
+      {
+        "countermeasures": [
+          "We search social media and known problematic websites for links to <cryptpad.fr>",
+          "Independent instances probably lack the knowledge and resources to do that, so they could need some guidance from our side"
+        ]
+      }
+    ]
+  },
+  {
+    "extra": [
+      {
+        "background": [
+          "There is currently no way to re-encrypt documents under new algorithms",
+          "Since documents may contain long-term secrets, they should be protected even against new vulnerabilities"
+        ]
+      },
+      {
+        "acceptance criteria": [
+          "Shared URLs should still work",
+          "User's are not bothered with crypto details",
+          "There is one button to update _all_ documents"
+        ]
+      }
+    ],
+    "goal": "my old documents are not readable by modern adversaries with new capabilities",
+    "id": "ciphersuites",
+    "linkto": "TweetNaCl",
+    "style": "user-story",
+    "tags": "roadmap",
+    "title": "ciphersuites",
+    "category": "Honest user stories",
+    "what": "use the most-secure cryptography for all my documents",
+    "who": "high-risk user"
+  },
+  {
+    "extra": [
+      {
+        "background": [
+          "The stories are obviously conflicting, but both valid."
+        ]
+      },
+      {
+        "acceptance criteria": [
+          "Ideally, this is changeable on a per-instance basis, so that, e.g., companies deploying CryptPad can prioritize accountability over anonymity"
+        ]
+      }
+    ],
+    "what": "see the timestamps of access for different users",
+    "who": "document author",
+    "why": "I know who has which state of information",
+    "title": "Access History 2",
+    "category": "Honest user stories"
+  },
+  {
+    "extra": [
+      {
+        "background": [
+          "The stories are obviously conflicting, but both valid."
+        ]
+      },
+      {
+        "acceptance criteria": [
+          "Ideally, this is changeable on a per-instance basis, so that, e.g., companies deploying CryptPad can prioritize accountability over anonymity"
+        ]
+      }
+    ],
+    "what": "hide the timestamps of my access",
+    "who": "participator",
+    "why": "my collaborators can not infer when and how long I worked",
+    "title": "Access History",
+    "category": "Honest user stories"
+  },
+  {
+    "extra": [
+      {
+        "background": [
+          "[Verifying contacts](https://docs.cryptpad.org/en/user_guide/security.html#verifying-contacts) in our docs",
+          "There is no easy way to verify whether a CryptPad contact corresponds to the expected person. Profile pages contain the public key of the users, but they are not signed and hence spoofable.",
+          "[_Safety number updates_](https://www.signal.org/blog/safety-number-updates/) on Signal's blog"
+        ]
+      },
+      {
+        "acceptance criteria": [
+          "Easy doable, both in-person and also over an off-band channel",
+          "User's should be encouraged to do this"
+        ]
+      }
+    ],
+    "what": "verify the identity of my contacts",
+    "who": "activist",
+    "why": "be sure that I share my sensitive documents with the right peers",
+    "title": "Account verification",
+    "category": "Honest user stories"
+  },
+  {
+    "extra": [
+      {
+        "background": [
+          "This can be solved on the UI level to keep it simple"
+        ]
+      }
+    ],
+    "goal": "I can effectively exercise control over who accesses them without having to perform a tedious, repetitive task",
+    "what": "select a group of folders and/or files and recursively apply a metadata change",
+    "who": "user with many documents",
+    "title": "Bulk settings updates",
+    "category": "Honest user stories"
+  },
+  {
+    "extra": [
+      {
+        "background": [
+          "Introduced in [5.2.0](https://github.com/xwiki-labs/cryptpad/blob/main/CHANGELOG.md#520)"
+        ]
+      }
+    ],
+    "goal": "I can onboard my whole class without wasting a lot of time clicking to generate invitations",
+    "what": "simultaneously invite many (20+) users to a team",
+    "who": "teacher with many students",
+    "title": "Bulk team onboarding",
+    "category": "Honest user stories"
+  },
+  {
+    "extra": [
+      {
+        "issues": [
+          {
+            "reference": 939,
+            "title": "Create a way to access to files uncrypted"
+          },
+          {
+            "reference": 617,
+            "title": "(File system) clients – Understanding document & communication structure"
+          },
+          {
+            "reference": 734,
+            "title": "[question] Pulling a pads content in an automated way (Code / Markdown)"
+          }
+        ]
+      }
+    ],
+    "goal": "I spend less of my time manually clicking through tedious browser UI",
+    "what": "automate some actions on my account with a headless JavaScript API",
+    "who": "self-identified power-user",
+    "title": "CLI API",
+    "category": "Honest user stories"
+  },
+  {
+    "extra": [
+      {
+        "background": [
+          "There `are author colors` in the `Code` app providing the same feature",
+          {
+            "issues": [
+              {
+                "reference": 41,
+                "title": "FEATURE REQUEST: Color by author"
+              },
+              {
+                "reference": 969,
+                "title": "Allow to see authors of changes in history"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "acceptance criteria": [
+          "The contributor attribution is cryptographically bound, i.e., you cannot pretend to act as someone else"
+        ]
+      }
+    ],
+    "goal": "accurately assign credit or blame",
+    "what": "see who made which changes",
+    "who": "document's creator",
+    "title": "Contributor attribution",
+    "category": "Honest user stories"
+  },
+  {
+    "extra": {
+      "acceptance criteria": [
+        {
+          "done": false,
+          "title": "The upload is limited in size"
+        },
+        {
+          "done": false,
+          "title": "The form author is not the owner of the uploads"
+        },
+        {
+          "done": false,
+          "title": "Ideally there is a system where registered users can arbitrarily delegate their quota"
+        }
+      ],
+      "background": [
+        "To protect from DoS attacks, we only allow registered users to upload files",
+        "Registered form authors could delegate their right and allow unsigned users to upload files on their behalf",
+        "The form author should not be the owner, as otherwise malicious user can put illegal content to other users"
+      ],
+      "issues": [
+        {
+          "reference": 790,
+          "title": "Allow file upload in forms"
+        }
+      ]
+    },
+    "goal": "people can submit images/files as part of their response",
+    "what": "add an upload question to my form",
+    "who": "registered form author",
+    "title": "Delegated upload quotas",
+    "category": "Honest user stories"
+  },
+  {
+    "goal": "I can enjoy its new configuration options without great inconvenience",
+    "what": "upgrade my document to a new format without fully breaking existing",
+    "who": "document owner",
+    "title": "Document format upgrade",
+    "category": "Honest user stories"
+  },
+  {
+    "extra": {
+      "background": [
+        "`scrypt` is designed to consume a lot of resources, so that bruteforcing is expensive (impossible)",
+        "Comment [Cryptpad is blank on mobile #266](https://github.com/xwiki-labs/cryptpad/issues/266#issuecomment-411040206)",
+        "People probably have regularly a computer besides their phone. They could therefore do the key derivation on the computer and then transfer the derived value to their phone via a code. As long as they do not log-out, they can always read the content.",
+        "Risk: users get confused with this QR code and share it mistakenly with an attacker, the only way to redeem is to change the password"
+      ]
+    },
+    "goal": "I can bypass the slow and battery-consuming key derivation process that happens at login",
+    "what": "generate a short-lived QR code to authenticate my secondary devices",
+    "who": "mobile device user",
+    "title": "Efficient smartphone login",
+    "category": "Honest user stories"
+  },
+  {
+    "inline": "(???)",
+    "what": "add someone to the document's access list without actually giving them its keys",
+    "who": "owner of a sensitive document",
+    "why": "it remains secure",
+    "title": "“Access lists” without “access”",
+    "category": "Shit user stories"
+  },
+  {
+    "problem": "it doesn't load",
+    "what": "open a CryptPad document",
+    "who": "smartphone user",
+    "title": "Loading docs on mobile",
+    "category": "Shit user stories"
+  },
+  {
+    "problem": "I did not choose to be an owner when I created the document",
+    "what": "destroy a document I created",
+    "who": "registered user",
+    "title": "Ownership 2",
+    "category": "Shit user stories"
+  },
+  {
+    "inline": "(I have no idea what \"owner\" means)",
+    "solution": "add them as an owner",
+    "what": "share it with one of my contacts",
+    "who": "owner of the document",
+    "title": "Ownership",
+    "category": "Shit user stories"
+  },
+  {
+    "goal": "cannot accidentally reveal confidential information",
+    "what": "lose track of who has access to the folder",
+    "who": "creator of a shared folder",
+    "title": "Uncertain folder membership",
+    "category": "Shit user stories"
+  }
+]

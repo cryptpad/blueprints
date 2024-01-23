@@ -1,0 +1,23 @@
+{% extends "layouts/base.njk" %}
+
+{% block page_content %}
+<main>
+
+  <article class="header block">
+      {# Breadcrumb navigation #}
+      {% if eleventyNavigation.parent %}
+        {{ nav.breadcrumbs(navBreadcrumbs) }}
+      {% endif %}
+      {# Page title #}
+      {% if title %}
+      <h1>{{ title }}</h1>
+      {% endif %}
+  </article>
+  {# Page content #}
+  <div class="block-container">
+      {% block content %}
+      {{ content | safe }}
+      {% endblock %}
+  </div>
+</main>
+{% endblock page_content %}

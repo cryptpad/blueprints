@@ -1,0 +1,25 @@
+---
+layout: "layouts/blocks-page.njk"
+title: CryptPad User Stories
+eleventyNavigation:
+  order: 4
+  title: User Stories
+---
+
+{% import "components/user-stories.njk" as user %}
+
+{% for story in collections.user_stories | shuffle %}
+  <article class="block">
+    <h2>{{ story.data.title }}</h2>
+    {{ user.story(story.data) }}
+    <span class="badge">{{ story.data.category }}</span>
+    <a href="{{ story.url }}">
+    {% if story.data.extra %}
+      Read More
+    {% else %}
+      Open Story
+    {% endif %}
+    </a>
+  </article>
+{% endfor %}
+

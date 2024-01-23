@@ -1,0 +1,48 @@
+{% extends "layouts/base.njk" %}
+
+{% import "components/user-stories.njk" as user %}
+
+{% block content %}
+
+  {% set story = {
+    "goal": goal,
+    "who": who,
+    "what": what,
+    "why": why,
+    "inline": inline
+  } %}
+
+  <p>
+    <span class="badge">{{ category }}</span>
+  </p>
+
+  {{ user.story(story) }}
+
+  <p>
+    {% if extra %}
+        {% for item in extra %}
+            {% set i = item | keyValue %}
+            <b>{{ i.key }}</b>:<br>
+            {% if i.value is iterable %}
+                {% if i.key == "issues" %}
+                    <ul>
+                        {% for issue in i.value %}
+                            <li><a href="https://github.com/cryptpad/cryptpad/issues/{{ issue.reference }}">#{{ issue.reference}} {{ issue.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <ul>
+                    {% for line in i.value %}
+                       <li>{{ line | markdown | safe }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+            {% else %}
+                {{ i.value | safe }}
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+  </p>
+
+{% endblock content %}

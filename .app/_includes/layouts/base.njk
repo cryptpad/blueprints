@@ -68,20 +68,22 @@
     </nav>
 
     <div class="page-content">
-      <main>
-        {# Breadcrumb navigation #}
-        {% if eleventyNavigation.parent %}
-          {{ breadcrumbs(navBreadcrumbs) }}
-        {% endif %}
-        {# Page title #}
-        {% if title %}
+      {% block page_content %}
+        <main class="single-page">
+          {# Breadcrumb navigation #}
+          {% if eleventyNavigation.parent %}
+            {{ nav.breadcrumbs(navBreadcrumbs) }}
+          {% endif %}
+          {# Page title #}
+          {% if title %}
           <h1>{{ title }}</h1>
-        {% endif %}
-        {# Page content #}
-        {% block content %}
-            {{ content | safe }}
-        {% endblock %}
-      </main>
+          {% endif %}
+          {# Page content #}
+          {% block content %}
+          {{ content | safe }}
+          {% endblock %}
+        </main>
+      {% endblock page_content %}
 
       {% include "components/sidebar.njk" %}
 
