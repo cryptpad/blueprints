@@ -12,6 +12,7 @@ eleventyNavigation:
   <article class="block">
     <h2>{{ story.data.title }}</h2>
     {{ user.story(story.data) }}
+    <span class="badge">{{ story.data.category }}</span>
     <a href="{{ story.url }}">
     {% if story.data.extra %}
       Read More

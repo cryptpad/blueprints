@@ -12,9 +12,12 @@
     "inline": inline
   } %}
 
+  <p>
+    <span class="badge">{{ category }}</span>
+  </p>
+
   {{ user.story(story) }}
 
-  {# XXX TODO extra metadata to complete #}
   <p>
     {% if extra %}
         {% for item in extra %}
