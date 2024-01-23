@@ -1,0 +1,14 @@
+
+{% macro story(story) %}
+    <p>
+        As a <strong>{{ story.who }}</strong>, I want to <strong>{{ story.what }}</strong>
+        {% if story.why %}
+        because <strong>{{ story.why }}</strong>.
+        {% elif story.goal %}
+        so that <strong>{{ story.goal }}</strong>.
+        {% endif %}
+        {% if story.inline %}
+        {{ story.inline }}
+        {% endif %}
+    </p>
+{% endmacro %}

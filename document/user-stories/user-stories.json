@@ -1,0 +1,5 @@
+{
+    "tags": "user_stories",
+    "style": "user-story",
+    "layout": "layouts/user-story.njk"
+}
