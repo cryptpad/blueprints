@@ -34,7 +34,7 @@
       <a href="{{ item.url }}">{{ item.title }}</a>
       <ol>
         {% for subitem in item.children %}
-        {{ nav.renderNavListItem(subitem) }}
+        {{ nav.renderNavListItem(subitem, page, navBreadcrumbs, eleventyNavigation.parent) }}
         {% endfor %}
       </ol>
       {% endfor %}

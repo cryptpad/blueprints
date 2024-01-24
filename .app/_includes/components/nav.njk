@@ -1,7 +1,7 @@
 
-{% macro renderNavListItem(entry) %}
+{% macro renderNavListItem(entry, page, navBreadcrumbs, parent) %}
     {% set isCurrent = entry.url == page.url %}
-    {% set isAncestor = (eleventyNavigation.parent and entry.url in (navBreadcrumbs | mapToAttr("url"))) %}
+    {% set isAncestor = (parent and entry.url in (navBreadcrumbs | mapToAttr("url"))) %}
 
     <li class="nav {% if isCurrent %}current{% elif isAncestor %}ancestor{% endif %} {% if entry.children.length %}with-children{% else %}without-children{% endif %}">
     {% if entry.children.length %}
@@ -9,7 +9,7 @@
             <summary><a href="{{ entry.url }}">{{ entry.title }}</a></summary>
                 <ol>
                 {% for child in entry.children %}
-                {{ renderNavListItem(child) }}
+                {{ renderNavListItem(child, page, navBreadcrumbs, parent) }}
                 {% endfor %}
                 </ol>
         </details>
