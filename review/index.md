@@ -8,7 +8,7 @@ eleventyNavigation:
 
 We review the cryptography used in CryptPad and compare it against the state of
 the art in applied cryptography. For this, we evaluate the security of
-third-party libraries, and [benchmark](./libraries/performance) their
+third-party libraries, and [benchmark](./libraries/#performance-comparison) their
 performance. We summarize our findings in a detailed [comparison of cryptography
 libraries](libraries/).
 
