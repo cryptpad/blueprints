@@ -11,8 +11,6 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("_styles");
   eleventyConfig.addPassthroughCopy('../_assets');
   eleventyConfig.addPassthroughCopy('node_modules/mermaid/');
-  eleventyConfig.addPassthroughCopy('../cryptography/agility/');
-  eleventyConfig.addPassthroughCopy('../feature-proposals/yjs/');
 
   eleventyConfig.addGlobalData("layout", "layouts/base");
 
