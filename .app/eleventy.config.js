@@ -19,6 +19,13 @@ module.exports = (function(eleventyConfig) {
   //   watch: ["dist/app.js", "dist/app.*.css"],
   // });
 
+
+  // File Size
+  eleventyConfig.addFilter("filesize", (path) => {
+    let fd = fs.openSync(path);
+    let stats = fs.fstatSync(fd);
+    return Math.ceil(stats.size / 1024).toString() + ' kB';
+  });
   // Dates
   eleventyConfig.addFilter("dateformat", (dateObj) => {
     return DateTime.fromJSDate(dateObj).toFormat('dd-MM-yyyy');

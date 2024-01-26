@@ -3,6 +3,8 @@ title: Whitepaper
 author: Theo von Arx
 date: 2023-03-16
 version: 1.1.0
+pdf: ./main.pdf
+pdfpath: ../_assets/document/whitepaper/main.pdf
 eleventyNavigation:
   order: 2
 ---
@@ -25,4 +27,4 @@ fine-graded access control, private messaging, and team collaboration. Despite
 the common perception that cryptography is too complicated for the average user,
 CryptPad remains simple to use and has a large and growing user base.
 
-## 👉 [PDF](./main.pdf)
+## 👉 [PDF]({{ pdf | url }})

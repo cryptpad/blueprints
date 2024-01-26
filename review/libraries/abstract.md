@@ -1,5 +1,7 @@
 ---
 title: Cryptography Libraries for CryptPad
+pdf: ../main.pdf
+pdfpath: ../_assets/review/libraries/main.pdf
 ---
 
 
@@ -23,4 +25,4 @@ only when a bigger refactoring happens anyway.
 **The benchmark suite for testing the performance of various libraries is in
 [`performance`](../performance/).**
 
-## 👉 [PDF](../main.pdf)
+## 👉 [PDF]({{ pdf | url }})

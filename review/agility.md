@@ -2,6 +2,8 @@
 title: Towards More Cryptographic Agility
 tags: roadmap
 id: agility
+pdf: ./main.pdf
+pdfpath: ../_assets/review/agility/main.pdf
 link-to: [revocation, bit-overlap]
 showtoc: true
 ---
@@ -281,7 +283,7 @@ to Quantum Computing Attacks.” *IEEE Access* 8: 21091–116.
 
 [^1]: Note that this requires an active server-side attacker.
 
-## 👉 [PDF](./main.pdf)
+## 👉 [PDF]({{ pdf | url }})
 
 <script type="module">
   import mermaid from '/node_modules/mermaid/dist/mermaid.esm.mjs';
