@@ -147,36 +147,6 @@ module.exports = (function(eleventyConfig) {
     return toc;
   })
 
-  /**
-    * Add a shortcode to list user stories.
-    * This is called with `{% listUserStories aCollection %}`.
-    * cf. https://www.11ty.dev/docs/shortcodes/
-    *
-    * Possible improvements:
-    * The order of the subelements is alphabetical. We can use some ordering
-    * from eleventy's collections.
-    *
-    * So far it's using the file slug as there are no metadata in user stories,
-    * but it can be improved using the title.
-    */
-  // eleventyConfig.addShortcode("listUserStories", function(collection) {
-  //   var storiesName = "";
-  //   var subdirArray = collection.map(function (item) {
-  //     if (!storiesName) {
-  //       storiesName = item.data["stories name"];
-  //     }
-  //     return '<li><a href="' + item.url + '">' + item.fileSlug + '</a></li>';
-  //   });
-
-  //   if (!storiesName) {
-  //     console.error("listUserStories: Collection not found");
-  //     return "";
-  //   } else {
-  //     return "<ul><li>" + storiesName +"</li><ul>" + subdirArray.join("\n") + "</ul></ul>";
-  //   }
-  // });
-
-
   return {
     dir: {
       input: "./../",
