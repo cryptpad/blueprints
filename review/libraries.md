@@ -142,7 +142,8 @@ Hence, the only reason to change it would be performance (or quantum-restistant 
 <!-- <media-tag src="https://files.cryptpad.fr/blob/0b/0bbc8f4328d02dec7dcde1301d758752a4e92a6f64cc18bb" data-crypto-key="cryptpad:jGZ4/aYTf32uLNfby/AniubyV44LQD4V131hEnJerFs="></media-tag> -->
 <img src="/_assets/review/libraries/performance/performance.png" alt="Comparison Graph" width=100% />
 
-The figure above shows the performance of the different Crytpographic Libraries
+<!-- XXX add a link to github repo for the generation of the benchmarks -->
+The figure above shows the performance of the different Cryptographic Libraries
 mentioned above (SC stands for SubtleCrypto) on
 Firefox, Chromium, and Webkit.
 The measurements where done using playwright on a Lenovo ThinkPad X1 Carbon 5th Generation (Intel® Core™ i5-7200U CPU @ 2.50GHz × 4), the actual results might be different.
