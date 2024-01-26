@@ -58,7 +58,7 @@
     {# https://codepen.io/impressivewebs/pen/qBbmMRJ #}
     <nav id="site-contents">
       {% for item in navPages %}
-      <a href="{{ item.url }}">{{ item.title }}</a>
+      <a id="nav-title" href="{{ item.url }}">{{ item.title }}</a>
       <ol>
         {% for subitem in item.children %}
         {{ renderNavListItem(subitem) }}
@@ -72,7 +72,7 @@
         <main class="single-page">
           {# Breadcrumb navigation #}
           {% if eleventyNavigation.parent %}
-            {{ nav.breadcrumbs(navBreadcrumbs) }}
+            {{ breadcrumbs(navBreadcrumbs) }}
           {% endif %}
           {# Page title #}
           {% if title %}

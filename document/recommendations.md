@@ -3,6 +3,7 @@ title: Security Recommendations for CryptPad
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 eleventyNavigation:
+  title: Security Recommendations
   order: 3
 ---
 
