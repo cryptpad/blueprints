@@ -31,5 +31,5 @@ Third, to ensure that security concerns and cryptography are considered in the
 context of usability we pool from the extensive feedback gathered by the team
 over the last few years (support tickets, case studies, GitHub issues, forum
 threads, user reports, etc). We adopt a [user stories
-approach](<./userstories/CryptPad User Stories.md>) to link technical
+approach](./user-stories/) to link technical
 choices/constraints with user experience.

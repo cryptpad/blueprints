@@ -21,6 +21,6 @@ enough to justify the workload on adapting these algorithms immediately, but
 only when a bigger refactoring happens anyway.
 
 **The benchmark suite for testing the performance of various libraries is in
-[`performance`](performance/).**
+[`performance`](../performance/).**
 
-## 👉 [PDF](./main.pdf)
+## 👉 [PDF](../main.pdf)

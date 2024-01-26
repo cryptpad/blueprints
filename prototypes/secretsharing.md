@@ -324,7 +324,7 @@ related information (except the IP address).
 
 When a user changes a password, then the KDF of the password and the
 username will change. Therefore, only the content of the [encrypted
-pad](what-is-the-secret?) has to be updated, but no secret sharing process has
+pad](#what-is-the-secret%3F) has to be updated, but no secret sharing process has
 to be re-done.
 
 Shards need also to be regenerated in case of adding users to the trusted
