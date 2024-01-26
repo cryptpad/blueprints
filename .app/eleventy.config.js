@@ -11,25 +11,6 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("_styles");
   eleventyConfig.addPassthroughCopy('../_assets');
   eleventyConfig.addPassthroughCopy('node_modules/mermaid/');
-  eleventyConfig.addPassthroughCopy('../cryptography/agility/');
-  eleventyConfig.addPassthroughCopy('../feature-proposals/yjs/');
-
-  /* Pass PDF files as is */
-  const pdfFiles = [
-    "../review/libraries/main.pdf",
-    "../review/agility/main.pdf",
-    "../document/whitepaper/main.pdf"
-  ];
-  for (pdf of pdfFiles) {
-    eleventyConfig.addPassthroughCopy(pdf);
-  }
-  /* Pass some example files as is */
-  const exampleFiles = [
-    "../document/recommendations/prng.js"
-  ];
-  for (example of exampleFiles) {
-    eleventyConfig.addPassthroughCopy(example);
-  }
 
   eleventyConfig.addGlobalData("layout", "layouts/base");
 
