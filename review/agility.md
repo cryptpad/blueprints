@@ -1,8 +1,10 @@
 ---
 title: Towards More Cryptographic Agility
+author: Theo von Arx
+date: 2023-10-12
 tags: roadmap
 id: agility
-pdf: ./main.pdf
+pdf: /_assets/review/agility/main.pdf
 pdfpath: ../_assets/review/agility/main.pdf
 link-to: [revocation, bit-overlap]
 showtoc: true

@@ -3,7 +3,7 @@ title: Whitepaper
 author: Theo von Arx
 date: 2023-03-16
 version: 1.1.0
-pdf: ./main.pdf
+pdf: /_assets/document/whitepaper/main.pdf
 pdfpath: ../_assets/document/whitepaper/main.pdf
 eleventyNavigation:
   order: 2
