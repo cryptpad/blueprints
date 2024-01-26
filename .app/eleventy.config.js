@@ -14,6 +14,7 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('../cryptography/agility/');
   eleventyConfig.addPassthroughCopy('../feature-proposals/yjs/');
 
+  /* Pass PDF files as is */
   const pdfFiles = [
     "../review/libraries/main.pdf",
     "../review/agility/main.pdf",
@@ -21,6 +22,13 @@ module.exports = (function(eleventyConfig) {
   ];
   for (pdf of pdfFiles) {
     eleventyConfig.addPassthroughCopy(pdf);
+  }
+  /* Pass some example files as is */
+  const exampleFiles = [
+    "../document/recommendations/prng.js"
+  ];
+  for (example of exampleFiles) {
+    eleventyConfig.addPassthroughCopy(example);
   }
 
   eleventyConfig.addGlobalData("layout", "layouts/base");
