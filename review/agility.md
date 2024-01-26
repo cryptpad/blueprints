@@ -283,7 +283,7 @@ to Quantum Computing Attacks.” *IEEE Access* 8: 21091–116.
 
 [^1]: Note that this requires an active server-side attacker.
 
-## 👉 [PDF]({{ pdf | url }})
+## [PDF]({{ pdf | url }})
 
 <script type="module">
   import mermaid from '/node_modules/mermaid/dist/mermaid.esm.mjs';

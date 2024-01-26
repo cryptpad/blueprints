@@ -27,4 +27,4 @@ fine-graded access control, private messaging, and team collaboration. Despite
 the common perception that cryptography is too complicated for the average user,
 CryptPad remains simple to use and has a large and growing user base.
 
-## 👉 [PDF]({{ pdf | url }})
+## [PDF]({{ pdf | url }})

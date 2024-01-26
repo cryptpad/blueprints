@@ -25,4 +25,4 @@ only when a bigger refactoring happens anyway.
 **The benchmark suite for testing the performance of various libraries is in
 [`performance`](../performance/).**
 
-## 👉 [PDF]({{ pdf | url }})
+## [PDF]({{ pdf | url }})
