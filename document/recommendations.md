@@ -19,6 +19,7 @@ current version of CryptPad, mid-term improvements that require the introduction
 of a new version of the encryption schemes, and long-term improvements that can
 only be addressed with architectural changes.
 
+<!-- XXX make it a link to the github repository (`prng.js`)  -->
 The file [`prng.js`](prng.js) sketches the idea of generating an "infinite"
 stream of derived seeds.
 
