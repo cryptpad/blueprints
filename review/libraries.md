@@ -138,7 +138,9 @@ Hence, the only reason to change it would be performance (or quantum-restistant 
 
 ### Performance Comparison
 
-<media-tag src="https://files.cryptpad.fr/blob/0b/0bbc8f4328d02dec7dcde1301d758752a4e92a6f64cc18bb" data-crypto-key="cryptpad:jGZ4/aYTf32uLNfby/AniubyV44LQD4V131hEnJerFs="></media-tag>
+<!-- XXX maybe find a better image ? -->
+<!-- <media-tag src="https://files.cryptpad.fr/blob/0b/0bbc8f4328d02dec7dcde1301d758752a4e92a6f64cc18bb" data-crypto-key="cryptpad:jGZ4/aYTf32uLNfby/AniubyV44LQD4V131hEnJerFs="></media-tag> -->
+<img src="/_assets/review/libraries/performance/performance.png" alt="Comparison Graph" width=100% />
 
 The figure above shows the performance of the different Crytpographic Libraries
 mentioned above (SC stands for SubtleCrypto) on
