@@ -55,7 +55,7 @@ with their own problems:
 These limitations impose a set of requirements:
 
 1. Make access to a document/team revocable
-2. Hand-out multiple URLs for the same document to allow backtracing and
+2. Hand-out multiple URLs for the same document to allow backtracking and
    revoking the one that was leaked
 3. Protect against kicked (document/team) members that collude with the server.
 4. Design a capability system that is flexible enough to handle use-cases we
@@ -205,7 +205,7 @@ description of the moderator's log.
 
 ### Delegation
 
-Due to the inherent possibility to give a third party access to their keys, users
+Due to the inherent possibility to give third party access to their keys, users
 can always delegate their capabilities. In spite of trying to hinder users to
 delegate their capabilities, we therefore propose to allow them to generate new
 access keys and append them to the document's metadata.
@@ -236,13 +236,13 @@ The same capabilities also hold for team, and we can apply the proposed channel
 capabilities to the access of the team roster:
 
 | Role    | Read | Write           | Moderate | Destroy | Create |
-| --------|:----:|:-------------- |:--------:|:-------:|:------:|
+| --------|:----:|:--------------- |:--------:|:-------:|:------:|
 | Viewers | ✅   |  ✅ (1)         |   ❌     | ❌      |  ❌    |
 | Members | ✅   |  ✅             |   ❌     | ❌      |  ❌    |
 | Admins  | ✅   |  ✅             |   ✅     | ✅      |  ❌    |
 | Owners  | ✅   |  ✅             |   ✅     | ✅      |  ✅    |
 
-(1):  Viewers need to be able to confirm an invitation to a team, and also to
+(1): Viewers need to be able to confirm an invitation to a team, and also to
 enter their keys when being added via a link. The peers have to check that they
 perform only these legitimate actions, and ignore any illegitimate ones. After
 this initial phase, write rights can be withdrawn from the viewers.
@@ -565,7 +565,7 @@ Explications:
     mailbox.
   * `label` indicates a name given by the parent node. The server should not
     be able to read it, we therefore encrypt it with the document keys. To
-    favour privacy, the server serves non-moderator users only with their
+    favor privacy, the server serves non-moderator users only with their
     subtree.
   * `linked` indicates other keys that are directly tied to this mailbox. This
     includes not all siblings, but only certain types such as the read and the
@@ -582,7 +582,7 @@ Explications:
     * the hash of the previous one to guarantee the ordering, i.e., we do neither
       rely on time nor on the server for this.
     * a signature of all other components by signature key that is valid at this
-      point in time. This guarantees that the content is not mallable. However,
+      point in time. This guarantees that the content is not malleable. However,
       the server can drop the last messages. To prevent this, users should store
       the hash of the latest message in their drive.
     * the public key that signed the message to make the signature more easily
@@ -596,13 +596,13 @@ Explications:
       hash of the new document encryption key to allow users to check that the key
       they received is the correct one. We also add the new public verification
       key for the same reason. Furthermore, we add a unique identifier (`uid`)
-      to facilitate refering to this message, e.g., from a mailbox message.
+      to facilitate referring to this message, e.g., from a mailbox message.
     * **`PASSWORDCHANGE`** messages indicate a password change. We add the hash of
       the password and use the channel ID as a salt (to prevent [rainbow table
       attacks](https://en.wikipedia.org/wiki/Rainbow_table)). This message allows
       users to easily verify whether they know an old password to decrypt history.
       Furthermore, we also add a unique identifier (`uid`) to facilitate
-      refering to this message, e.g., from a mailbox message.
+      referring to this message, e.g., from a mailbox message.
 
 ## Key rotation
 
@@ -691,7 +691,7 @@ Disadvantages:
 
 1. Increased latency when opening a document since you need to load the mailbox
    messages to get the most recent keys, then open the related document. Some of
-   this could probably be parallelized to some degree with undecryptable
+   this could probably be parallelized to some degree with undecipherable
    messages being queued.
 2. Increased fragility:
    1. A server-side delay in opening either channel will result in slower
