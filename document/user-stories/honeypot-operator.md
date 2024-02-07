@@ -10,4 +10,7 @@ what: list my malicious server as a public instance on cryptpad.org
 who: intelligence agent
 why: I can compromise a particular demographic of users
 inline: (e.g., climate activists in France)
+id: honeypot-operator
+link-to: contact-verification
+tags: roadmap
 ---
