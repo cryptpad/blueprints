@@ -147,8 +147,8 @@ changing the password which is quite a burden for users. Changing the password
 moreover requires setting up and redistributing shards - another laborious
 process.
 
-We therefore favour the third option that leverages a layer of indirection. This
-has the advantage of making shared secrets revokable without having to change
+We therefore favor the third option that leverages a layer of indirection. This
+has the advantage of making shared secrets revocable without having to change
 the password. It is furthermore possible to change the password without having
 to redistribute the secret.
 
@@ -277,7 +277,7 @@ shards are sent back.
 
 * Upon successful combination, they see their username and are asked to reset
   their password. Their account is recovered!
-* Otherwise they see which shard is bogus, and informed that they should
+* Otherwise, they see which shard is bogus, and informed that they should
   either wait for more shards or get into contact with this person.
 
 ## Technical implementation
