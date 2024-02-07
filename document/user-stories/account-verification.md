@@ -16,4 +16,7 @@ title: Account verification
 what: verify the identity of my contacts
 who: activist
 why: be sure that I share my sensitive documents with the right peers
+tags: roadmap
+link-to: contact-verification
+id: account-verification
 ---
