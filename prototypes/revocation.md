@@ -21,8 +21,8 @@ confidence:
 * Account credentials can be lost or compromised.
 * Document access rights can accidentally be delivered to the wrong person.
 
-Presently (as of CryptPad `v5.2.1`) there are a few ways to deal with this, each
-with their own problems:
+As of CryptPad `v5.2.1` there are a few ways to deal with this, each with their
+own problems:
 
 1. We can copy the document's contents to a new location, distribute it to the
    relevant actors, and destroy the original version.
