@@ -227,7 +227,7 @@ Bob's entire subtree as well. Otherwise, Charlie could again grant Bob.
 Nevertheless, we may want to inform Bob's children why their access was revoked
 and provide them a way to ask the moderators for new access.
 
-For a full example on how to store this information in the documents metadata,
+For a full example on how to store this information in the documents' metadata,
 we refer to the subsection [Metadata - an example](#metadata---an-example).
 
 ### Team capabilities
