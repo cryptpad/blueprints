@@ -1,10 +1,13 @@
 ---
 title: Transition to New Encryption Schemes
 term: medium
-tags: recommendations
+tags:
+  - recommendations
+  - roadmap
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
-
+id: transition-new-encryption
+link-to: reduce-trust
 ---
 
 ### Problem:

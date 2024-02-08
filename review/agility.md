@@ -6,7 +6,7 @@ tags: roadmap
 id: agility
 pdf: /_assets/review/agility/main.pdf
 pdfpath: ../_assets/review/agility/main.pdf
-link-to: [revocation, bit-overlap]
+link-to: [revocation, bit-overlap, transition-new-encryption]
 showtoc: true
 ---
 

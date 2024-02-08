@@ -14,7 +14,7 @@ Users have to trust the server to deliver the correct client code.
 
 ### Consequences:
 
-The threat model is reduced to a honest-but-curious server. Without the
+The threat model is reduced to an honest-but-curious server. Without the
 limitation of trusting correct client code delivery, CryptPad could
 defend against an attacker with more active capabilities.
 
