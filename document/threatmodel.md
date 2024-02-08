@@ -48,7 +48,7 @@ list  does not indicate any ranking.
   owned documents. They can selectively delegate specific access rights such as
   view-only or write access.
 
-* **Resistant to <abbrv title="Machine in the Middle">MITM</abbrv> attacks.** No
+* **Resistant to <abbr title="Machine in the Middle">MITM</abbr> attacks.** No
   entity can secretly relay and alter the communication between the server and
   the user to obtain sensitive data.
 

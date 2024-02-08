@@ -47,18 +47,18 @@ Some (informal) reminders about security notions:
 
 ## Problem statement
 
-_If we deploy a new version of CrytPad's encryption layer, should we use
+_If we deploy a new version of CryptPad's encryption layer, should we use
 another library? And which?_
 
 ### Requirements
 
 The following cryptographic functions are required:
 
-* Key derivation function
-  * Brute-force resistant --> Memory and time intense
+* Key derivation function (KDF)
+  * Brute-force resistant ⇒ Memory and time intense
   * Provide a good entropy
 * Symmetric encryption, that provides
-  * AEAD
+  * <abbr title="Authenticated Encryption with Associated Data">AEAD</abbr>
 * Asymmetric encryption
   * IND-CPA
 * Asymmetric signatures
@@ -73,7 +73,7 @@ Further requirements are:
 * Javascript library
 * Fast loadable
 * Compatible with Firefox, Chrome, and Safari
-* Fast (except KDF)
+* Fast (except for KDF)
 
 ## Libraries
 
@@ -93,8 +93,8 @@ Tweet-NaCl is the library that is currently in use for CryptPad.
     * License: [Unlicense License](https://en.wikipedia.org/wiki/Unlicense)
       (FSF approved and GPL compatible)
 * Security:
-  * > Protects against simple timing attacks, cache-timing attacks, etc
-  * > thread-safe, and has no dynamic memory allocation
+  * Protects against simple timing attacks, cache-timing attacks, etc
+  * Thread-safe, and has no dynamic memory allocation
   * Symmetric encryption: XSalsa20-Poly1305 which is AEAD
   * Asymmetric encryption: x25519-XSalsa20-Poly1305 which is AEAD
   * Asymmetric signatures: ed25519 which is AEAD
@@ -103,15 +103,15 @@ Tweet-NaCl is the library that is currently in use for CryptPad.
 * Availability: as a client-side dependency
 
 To sum up, Tweet-NaCl is considered to be secure and to meet CryptPad's requirements.
-Hence, the only reason to change it would be performance (or quantum-restistant cryptography).
+Hence, the only reason to change it would be performance (or quantum-resistant cryptography).
 
 ### LibSodium
 
 * [Library](https://github.com/jedisct1/libsodium.js)
   * Last audit by Private Internet Access in 2017.
-  * compiled to WebAssembly
+  * Compiled to WebAssembly
   * 188 KB
-  * > portable, cross-compilable, [...] fork of NaCl, with a compatible API
+  * Portable, cross-compilable, [...] fork of NaCl, with a compatible API
   * License: [ISC License](https://en.wikipedia.org/wiki/ISC_license)
   (FSF approved and GPL compatible)
 * Security:
@@ -121,8 +121,9 @@ Hence, the only reason to change it would be performance (or quantum-restistant 
   * Hashing: [BLAKE2b](https://www.blake2.net/) (faster than SHA-2, SHA-3,
     but same security) or SipHash-2-4 (only suitable as MAC)
 * Drawbacks:
-  * > you can call `crypto_secretbox` and allow your cryptography to be
-    > "upgraded" in the future if a newer version emerges that modifies default behaviour.
+  * you can call `crypto_secretbox` and allow your cryptography to be
+    "upgraded" in the future if a newer version emerges that modifies default
+    behavior.
 * Availability: as a client-side dependency
 
 ### SubtleCrypto
@@ -154,7 +155,7 @@ Nevertheless, the figure gives a raw indication to compare the performance.
 * Symmetric encryption:
   * NaCl and Sodium are the slowest libraries with a runtime of up to 60 ms.
   * SubtleCrypto functions perform much better and nearly independent of the
-    input size. AES-GCM is up to 19 times faster than NaCl (decryption of 1MB
+    input size. AES-GCM is up to 19 times faster than NaCl (decryption of 1 MB
     on webkit).
 * Asymmetric signatures:
   * NaCl performs worst.
