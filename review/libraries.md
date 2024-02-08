@@ -153,9 +153,9 @@ Nevertheless, the figure gives a raw indication to compare the performance.
 
 * Almost all functions seem to run slower on Firefox.
 * Symmetric encryption:
-  * NaCl and Sodium are the slowest libraries with a runtime of up to 60 ms.
+  * NaCl and Sodium are the slowest libraries with a runtime of up to 60 ms.
   * SubtleCrypto functions perform much better and nearly independent of the
-    input size. AES-GCM is up to 19 times faster than NaCl (decryption of 1 MB
+    input size. AES-GCM is up to 19 times faster than NaCl (decryption of 1 MB
     on webkit).
 * Asymmetric signatures:
   * NaCl performs worst.
