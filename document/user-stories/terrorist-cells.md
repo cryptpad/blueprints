@@ -2,7 +2,8 @@
 category: Evil user stories
 extra:
 - countermeasures:
-  - We search social media and known problematic websites for links to <cryptpad.fr>
+  - We search social media and known problematic websites for links to
+      [cryptpad.fr](https://cryptpad.fr/)
   - Independent instances probably lack the knowledge and resources to do that, so
     they could need some guidance from our side
 title: Terrorist cells
