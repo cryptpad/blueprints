@@ -8,6 +8,8 @@
         so that <strong>{{ story.goal }}</strong>.
         {% elif story.problem %}
         but <strong>{{ story.problem }}</strong>.
+        {% elif story.solution %}
+        so I <strong>{{ story.solution }}</strong>.
         {% endif %}
         {% if story.inline %}
         {{ story.inline }}
