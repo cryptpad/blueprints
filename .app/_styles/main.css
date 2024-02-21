@@ -80,6 +80,9 @@ body {
     display: grid;
     /* height: 100%; */
     grid-template-columns: 20rem auto;
+    grid-template-areas:
+        "nav main"
+        ". footer";
     column-gap: 1rem;
     position: relative;
     z-index: 10;
@@ -90,6 +93,7 @@ body {
     display: flex;
     flex-direction: row;
     margin: 0;
+    grid-area: main;
 }
 
 main {
@@ -103,7 +107,7 @@ main {
     z-index: 9;
 }
 
-main.single-page, article.block{
+main.single-page, article.block, footer{
     padding: 1rem;
     border-radius: var(--corner);
     box-shadow: var(--shadow);
@@ -133,6 +137,11 @@ article.block {
 article.header {
     margin: 0 0 1rem 0;
     max-width: 65ch;
+}
+
+footer {
+    max-width: unset;
+    grid-area: footer;
 }
 
 /* Typography */
