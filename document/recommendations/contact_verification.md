@@ -3,7 +3,7 @@ title: Contact Verification
 term: short
 tags: roadmap
 id: contact-verification
-link-to: [reduce-trust, secret-sharing, revocation]
+linkto: [reduce-trust, secret-sharing, revocation]
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 ---

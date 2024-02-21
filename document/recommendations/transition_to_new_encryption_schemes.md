@@ -7,7 +7,7 @@ tags:
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 id: transition-new-encryption
-link-to: reduce-trust
+linkto: [reduce-trust]
 ---
 
 ### Problem:

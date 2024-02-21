@@ -3,7 +3,7 @@ title: Update TweetNaCl
 term: short
 tags: roadmap
 id: TweetNaCl
-link-to: async-crypto
+linkto: [async-crypto]
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 

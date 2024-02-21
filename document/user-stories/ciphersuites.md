@@ -11,7 +11,7 @@ extra:
   - There is one button to update _all_ documents
 id: ciphersuites
 tags: roadmap
-link-to: TweetNaCl
+linkto: [TweetNaCl]
 title: ciphersuites
 who: high-risk user
 what: use the most-secure cryptography for all my documents

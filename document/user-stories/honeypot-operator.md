@@ -11,6 +11,6 @@ who: intelligence agent
 why: I can compromise a particular demographic of users
 inline: (e.g., climate activists in France)
 id: honeypot-operator
-link-to: contact-verification
+linkto: [contact-verification]
 tags: roadmap
 ---

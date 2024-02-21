@@ -3,7 +3,7 @@ title: Prevent replay of old patches
 term: short
 tags: roadmap
 id: prevent-replay
-link-to: reduce-trust
+linkto: [reduce-trust]
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 

@@ -2,7 +2,7 @@
 title: Fix Bit Overlap in ViewCryptor2
 tags: roadmap
 id: bit-overlap
-link-to: dedup-viewcryptor
+linkto: [dedup-viewcryptor]
 author: Theo von Arx, Aaron MacSween
 date: 2023-03-14
 term: medium
