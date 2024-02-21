@@ -96,6 +96,7 @@ main {
     /* flex-grow: 1; */
     margin: 1px;
     height: fit-content;
+    width: 100%;
     margin-top: -0.5rem;
     margin-bottom: 5rem;
     position: relative;
@@ -208,8 +209,23 @@ nav.breadcrumb li + li::before {
     content: "";
 }
 
-/*  sIdebar */
+/* home page */
+.block-container-home {
+    width: auto;
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; */
+}
 
+article.block.roadmap {
+    max-width: unset;
+}
+
+article.block.home-intro {
+    max-width: 75ch;
+}
+
+/*  sIdebar */
 
 .page-content aside#sidebar {
     background-color: white;
