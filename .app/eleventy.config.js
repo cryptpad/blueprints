@@ -30,6 +30,10 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addFilter("dateformat", (dateObj) => {
     return DateTime.fromJSDate(dateObj).toFormat('dd-MM-yyyy');
   });
+  // Array -1
+  eleventyConfig.addFilter("popfirst", (array) => {
+    return array.shift();
+  });
 
   // Markdown
     let markdownIt = require("markdown-it");
