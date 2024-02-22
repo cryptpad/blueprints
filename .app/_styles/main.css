@@ -187,7 +187,7 @@ nav #nav-title {
 }
 
 nav#site-contents ol {
-    padding: 0;
+    padding: 0 0.5rem;
     list-style-type: none;
 }
 
@@ -226,9 +226,18 @@ nav.breadcrumb li + li::before {
     flex-wrap: wrap; */
 }
 
-article.block.roadmap {
-    max-width: unset;
+
+article.block.header h1 {
+    margin: 0.5rem 0;
 }
+
+article.block.roadmap {
+    max-width: 1280px;
+}
+
+pre.mermaid {
+    max-width: 1280px;
+  }
 
 article.block.home-intro {
     max-width: 75ch;

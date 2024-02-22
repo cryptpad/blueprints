@@ -30,7 +30,7 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addFilter("dateformat", (dateObj) => {
     return DateTime.fromJSDate(dateObj).toFormat('dd-MM-yyyy');
   });
-  // Array -1
+  // Remove the first item of the array, used for breadcrumb navigation
   eleventyConfig.addFilter("popfirst", (array) => {
     return array.shift();
   });

@@ -20,15 +20,18 @@
 
 {% macro breadcrumbs(navBreadcrumbs) %}
 
-{% set breadItems = navBreadcrumbs | popfirst %}
+  {% set breadItems = navBreadcrumbs | popfirst %}
+  {% set breadLen = navBreadcrumbs | length %}
 
-<nav aria-label="Breadcrumb" class="breadcrumb">
-  <ol>
-    {% for page in navBreadcrumbs %}
-    <li><a href={{ page.url }}>{{ page.title }}</a></li>
-    {% endfor %}
-  </ol>
-</nav>
+  {% if breadLen > 0 %}
+  <nav aria-label="Breadcrumb" class="breadcrumb">
+    <ol>
+      {% for page in navBreadcrumbs %}
+      <li><a href={{ page.url }}>{{ page.title }}</a></li>
+      {% endfor %}
+    </ol>
+  </nav>
+  {% endif %}
 
 {% endmacro %}
 
