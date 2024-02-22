@@ -18,7 +18,7 @@
       <p>Comment: {{ comment }}</p>
     {% endif %}
     {% if pdf %}
-      <p><a href="{{ pdf | url }}">Download PDF</a> ({{ pdfpath | filesize }})</p>
+      <p><a href="{{ pdf | url }}">Download PDF</a> ({{ pdf | filesize }})</p>
     {% endif %}
     {% set toc = content | toc %}
     {% if (toc | length) and showtoc %}

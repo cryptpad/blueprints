@@ -22,7 +22,7 @@ module.exports = (function(eleventyConfig) {
 
   // File Size
   eleventyConfig.addFilter("filesize", (path) => {
-    let fd = fs.openSync(path);
+    let fd = fs.openSync('../' + path);
     let stats = fs.fstatSync(fd);
     return (Math.ceil(10 * stats.size / 1024) / 10.).toString() + ' kiB';
   });
