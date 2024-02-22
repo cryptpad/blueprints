@@ -136,7 +136,7 @@ Hence, the only reason to change it would be performance (or quantum-resistant c
 * AES-GCM has authentication
 * Availability: Natively supported by all [current versions of popular browsers](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt#browser_compatibility)
 
-### Performance Comparison
+## Performance Comparison
 
 <!-- XXX maybe find a better image ? -->
 <!-- <media-tag src="https://files.cryptpad.fr/blob/0b/0bbc8f4328d02dec7dcde1301d758752a4e92a6f64cc18bb" data-crypto-key="cryptpad:jGZ4/aYTf32uLNfby/AniubyV44LQD4V131hEnJerFs="></media-tag> -->
