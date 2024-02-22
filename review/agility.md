@@ -117,7 +117,7 @@ of the following criteria are met:
     that provide at least the same security level.
 
 
-## Strategies
+## General strategies
 
 ### Login Block
 
