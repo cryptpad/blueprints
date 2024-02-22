@@ -192,10 +192,17 @@ nav#site-contents ol {
 }
 
 nav#site-contents ol li {
-    padding-left: .7rem;
+    margin-left: .7rem;
 }
 
-li.current > details > summary > a {
+li.nav.without-children {
+    list-style-type: disc;
+}
+
+li.current > details > summary > a,
+li.current > details > summary > a:visited,
+li.current > a,
+li.current > a:visited {
     color: var(--col-primary);
 }
 
@@ -279,3 +286,8 @@ article.block.home-intro {
     margin-block: var(--space-1);
     margin-inline-start: calc((var(--level, 1) - 1) * 1rem);
 }
+
+ul.toc__list {
+    padding-left: 1rem;
+    list-style-type: disc;
+  }
