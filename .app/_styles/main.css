@@ -195,6 +195,18 @@ nav#site-contents ol li {
     padding-left: .7rem;
 }
 
+li.current > details > summary > a {
+    color: var(--col-primary);
+}
+
+a, a:visited {
+    color: var(--col-unit-l);
+}
+
+a:hover, a:focus-visible {
+    color: var(--col-primary);
+}
+
 nav.breadcrumb {
     padding: 0.5em;
 }
