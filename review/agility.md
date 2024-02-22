@@ -117,7 +117,7 @@ of the following criteria are met:
     that provide at least the same security level.
 
 
-## General strategies
+## Strategies
 
 ### Login Block
 
@@ -141,7 +141,7 @@ associated to premium accounts), social media, and the blog. If a
 discovered vulnerability is so severe that passwords could be cracked,
 then users should be forced to set a new password upon login.
 
-### Change of the KDF
+#### Change of the KDF
 
 Since the server does not have any information about the user, there is no easy
 way to know in advance which KDF should be used. Hence, the best way is to
@@ -152,15 +152,15 @@ Unfortunately, since KDFs are required to be slow, this will take quite some
 time. After a successful login, the login block has to be automatically
 re-encrypted using the latest KDF.
 
-### Change of the symmetric encryption algorithm
+#### Change of the symmetric encryption algorithm
 
 By putting the used algorithm into the plaintext metadata associated to a login
 block, we know which algorithm to use. Similar to the above, a legacy algorithm
 should be updated to the latest one after a successful login.
 
-## Documents
+### Documents
 
-### Re-encrypt under same seed
+#### Re-encrypt under same seed
 
 One difficulty of changing the algorithms involved in documents is that
 we want the URL still to be valid so that users do not have to
@@ -219,7 +219,7 @@ graph TD
 <figcaption>Figure 1: Key derivation for editable documents</figcaption>
 </figure>
 
-### Re-encrypt under new seed
+#### Re-encrypt under new seed
 
 There might be the case of a severe vulnerability in SHA-512 that violates the
 one-way property. Attackers could consequently deduce the editKeyStr as well as
@@ -231,7 +231,7 @@ re-encrypt the document under a new algorithm using a new, randomly generated
 seed. Since this involves broken links, old links should inform users that the
 content was changed and that they need to request the new access link.
 
-### About the seed length
+#### About the seed length
 
 When planning to re-use the seed for different encryption schemes, it
 should be long enough to provide good entropy for future usages. While
@@ -240,7 +240,7 @@ safe beyond 2030.[^Giry2020] To keep the URLs short, we can add
 additional characters to the alphabet such as emojis (up to 1874
 characters).
 
-## Messaging
+### Messaging
 
 The problem in messaging differs from the one of documents in that there
 is no seed to derive keys from. However, all users can pin algorithms
@@ -258,7 +258,7 @@ but that is further accentuated: the profile pages are not
 cryptographically secured and could be spoofed.[^1] A mechanism such as
 Signal’s safety numbers can help to prevent against this.
 
-## Teams
+### Teams
 
 In contrast to documents, teams have a clear set of users that should be
 directly informed about changes of cryptographic algorithms. We can take
