@@ -1,7 +1,6 @@
 ---
 title: Cryptography Libraries for CryptPad
 pdf: /_assets/review/libraries/main.pdf
-pdfpath: ../_assets/review/libraries/main.pdf
 ---
 
 

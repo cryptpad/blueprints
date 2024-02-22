@@ -5,7 +5,6 @@ date: 2023-10-12
 tags: roadmap
 id: agility
 pdf: /_assets/review/agility/main.pdf
-pdfpath: ../_assets/review/agility/main.pdf
 linkto: [revocation, bit-overlap, transition-new-encryption]
 showtoc: true
 ---
