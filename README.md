@@ -43,11 +43,31 @@ linkto: [reduce-trust, secret-sharing, revocation]
 - `linkto: [reduce-trust, secret-sharing, revocation]` specify the `id`s of the
   nodes which the “contact verification” node links to.
 
+### Pages
+
+Pages are markdown (`.md`) files containing… the content of the file.
+
+Their metadata contains information that serves multiple purposes, as shown in
+the roadmap section above:
+- `title`: the title of the page.
+- Right sidebar: some of these metadata are used to populate the sidebar:
+  - `author`: the author of the page.
+  - `authors`: the authors of the page if many, in a YAML array.
+  - `date`: the publication date (in
+    [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-mm-dd`) of
+    the page that will be converted in `dd-mm-YYYY` in the sidebar.
+  - `revision`: the version number of the document.
+  - `pdf`: the absolute path from the root of this Git repository of a related
+    portable document file. More information available below.
+  - `showtoc`: a Boolean value specifying whether the table of content should be
+    generated and included in the sidebar.
+  - `comment`: extra comments to be added.
+
 ### Security recommendations
 
-In `document/recommendations/`, the pages are simply markdown (`.md`) files,
-including the `term` property in their metadata indicating if it is a `short`,
-`medium` or `long` term recommendation.
+In `document/recommendations/`, the pages are also markdown files, including the
+`term` property in their metadata indicating if it is a `short`, `medium` or
+`long` term recommendation.
 
 ### User stories
 
