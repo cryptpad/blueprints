@@ -35,7 +35,7 @@
                 {% elif i.key == "acceptance criteria" %}
                     <ul>
                         {% for criterion in i.value %}
-                        <li>{{ criterion.title }}</li>
+                        <li>{{ criterion.title | markdown | safe }}</li>
                         {% endfor %}
                     </ul>
                 {% else %}
