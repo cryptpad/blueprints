@@ -187,16 +187,18 @@ nav #nav-title {
 }
 
 nav#site-contents ol {
-    padding: 0 0.5rem;
+    padding: 0;
     list-style-type: none;
-}
-
-nav#site-contents ol li {
-    margin-left: .7rem;
+    margin-left: .75rem;
 }
 
 li.nav.without-children {
     list-style-type: disc;
+    list-style-position: inside;
+}
+
+li.nav.without-children a {
+    margin-left: -0.70rem;
 }
 
 li.current > details > summary > a,
