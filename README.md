@@ -1,17 +1,17 @@
 ## Usage
 
-Enter the subdirectory with all the 11ty config
-```
+Enter the subdirectory with all the 11ty config:
+```sh
 cd .app
 ```
 
-Install 11ty nd dependencies
-```
+Install 11ty nd dependencies:
+```sh
 npm i
 ```
 
-development server
-```
+Run the development server:
+```sh
 npm run dev
 ```
 
