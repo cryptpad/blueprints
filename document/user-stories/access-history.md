@@ -4,8 +4,8 @@ extra:
 - background:
   - The stories are obviously conflicting, but both valid.
 - acceptance criteria:
-  - Ideally, this is changeable on a per-instance basis, so that, e.g., companies
-    deploying CryptPad can prioritize accountability over anonymity
+  - title: Ideally, this is changeable on a per-instance basis, so that, e.g., companies
+      deploying CryptPad can prioritize accountability over anonymity
 - see also:
   - "[Access history 2](/document/user-stories/access-history-2/)"
 title: Access History

@@ -6,9 +6,9 @@ extra:
   - Since documents may contain long-term secrets, they should be protected even against
     new vulnerabilities
 - acceptance criteria:
-  - Shared URLs should still work
-  - User's are not bothered with crypto details
-  - There is one button to update _all_ documents
+  - title: Shared URLs should still work
+  - title: User's are not bothered with crypto details
+  - title: There is one button to update _all_ documents
 id: ciphersuites
 tags: roadmap
 linkto: [TweetNaCl]

@@ -10,8 +10,10 @@ extra:
   - '[_Safety number updates_](https://www.signal.org/blog/safety-number-updates/)
     on Signal''s blog'
 - acceptance criteria:
-  - Easy doable, both in-person and also over an off-band channel
-  - User's should be encouraged to do this
+  - done: false
+    title: Easy doable, both in-person and also over an off-band channel
+  - done: false
+    title: User's should be encouraged to do this
 title: Account verification
 what: verify the identity of my contacts
 who: activist

@@ -32,6 +32,12 @@
                             <li><a href="https://github.com/cryptpad/cryptpad/issues/{{ issue.reference }}">#{{ issue.reference}} {{ issue.title }}</a></li>
                         {% endfor %}
                     </ul>
+                {% elif i.key == "acceptance criteria" %}
+                    <ul>
+                        {% for criterion in i.value %}
+                        <li>{{ criterion.title }}</li>
+                        {% endfor %}
+                    </ul>
                 {% else %}
                     <ul>
                     {% for line in i.value %}
