@@ -2,7 +2,7 @@
 category: Honest user stories
 extra:
 - background:
-  - There `are author colors` in the `Code` app providing the same feature
+  - There are _author colors_ in the `Code` app providing the same feature
 - issues:
   - reference: 41
     title: 'FEATURE REQUEST: Color by author'

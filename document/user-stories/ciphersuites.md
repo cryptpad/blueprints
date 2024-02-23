@@ -9,11 +9,11 @@ extra:
   - title: Shared URLs should still work
   - title: User's are not bothered with crypto details
   - title: There is one button to update _all_ documents
-id: ciphersuites
-tags: roadmap
-linkto: [TweetNaCl]
 title: ciphersuites
 who: high-risk user
 what: use the most-secure cryptography for all my documents
 goal: my old documents are not readable by modern adversaries with new capabilities
+id: ciphersuites
+tags: roadmap
+linkto: [TweetNaCl]
 ---
