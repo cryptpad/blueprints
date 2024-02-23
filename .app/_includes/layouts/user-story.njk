@@ -29,7 +29,7 @@
                 {% if i.key == "issues" %}
                     <ul>
                         {% for issue in i.value %}
-                            <li><a href="https://github.com/cryptpad/cryptpad/issues/{{ issue.reference }}">#{{ issue.reference}} {{ issue.title }}</a></li>
+                            <li><a href="https://github.com/cryptpad/cryptpad/issues/{{ issue.reference }}">#{{ issue.reference}} &ndash; {{ issue.title }}</a></li>
                         {% endfor %}
                     </ul>
                 {% elif i.key == "acceptance criteria" %}
