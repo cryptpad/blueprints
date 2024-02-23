@@ -45,9 +45,9 @@ linkto: [reduce-trust, secret-sharing, revocation]
 
 ### Security recommendations
 
-In `document/recommendations/`, the pages are simply .md files, including the
-`term` property in their metadata indicating if it is a `short`, `medium` or
-`long` term recommendation.
+In `document/recommendations/`, the pages are simply markdown (`.md`) files,
+including the `term` property in their metadata indicating if it is a `short`,
+`medium` or `long` term recommendation.
 
 ### User stories
 
