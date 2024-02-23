@@ -6,6 +6,6 @@ title: Ownership
 what: share it with one of my contacts
 who: owner of the document
 extra:
-- See also:
+- see also:
   - "[Ownership 2](/document/user-stories/ownership-2/)"
 ---

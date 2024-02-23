@@ -5,6 +5,6 @@ title: Ownership 2
 what: destroy a document I created
 who: registered user
 extra:
-- See also:
+- see also:
   - "[Ownership](/document/user-stories/ownership/)"
 ---
