@@ -95,11 +95,6 @@ module.exports = (function(eleventyConfig) {
     }
   });
 
-  eleventyConfig.addGlobalData("site", {
-    lang: "en",
-    title: "CryptPad Blueprints",
-  });
-
   // Debug filter
   eleventyConfig.addFilter("log", (d) => {
     console.log(d);
