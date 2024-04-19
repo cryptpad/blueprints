@@ -24,6 +24,8 @@ pages from the Blueprints summary website.
 
 ### Roadmap and index.njk
 
+<!-- XXX Document "automatically generated mermaid.js roadmap diagram" -->
+
 This file contains the home page of the project with roadmap generation.
 
 The roadmap is generated using the metadata of the different pages. For

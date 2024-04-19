@@ -1,6 +1,7 @@
 ---
 title: Comparison of Cryptography Libraries for CryptPad
 pdf: /_assets/review/libraries/main.pdf
+git: https://github.com/cryptpad/blueprints/tree/main/review/libraries/performance
 showtoc: True
 author: Theo von Arx
 date: 2022-12-15
@@ -31,6 +32,8 @@ SHA-512 since this maintains backwards compatibility.
 ## Notation
 
 Some (informal) reminders about security notions:
+
+<!-- XXX Check use of blockquotes here, is it appropriate? -->
 
 * **INT-CTXT** (Ciphertext integrity):
   > Computationally infeasible to produce a decryptable
