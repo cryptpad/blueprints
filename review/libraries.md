@@ -34,18 +34,17 @@ SHA-512 since this maintains backwards compatibility.
 Some (informal) reminders about security notions:
 
 <!-- XXX Check use of blockquotes here, is it appropriate? -->
+<!-- XXX Seems better without -->
 
 * **INT-CTXT** (Ciphertext integrity):
-  > Computationally infeasible to produce a decryptable
-  > ciphertext not previously produced by the
-  > sender, whether or not the underlying plaintext is "fresh"
+  Computationally infeasible to produce a decryptable ciphertext not previously
+  produced by the sender, whether or not the underlying plaintext is “fresh”;
 * **IND-CPA** (Indistinguishability under Chosen-Plaintext Attack):
-  > No adversary, given an encryption of a message randomly chosen from a
-  > two-element message space determined by the adversary, can identify the
-  > message choice with probability noticeably better than that of random
-  > guessing (1⁄2)
+  No adversary, given an encryption of a message randomly chosen from a
+  two-element message space determined by the adversary, can identify the message
+  choice with probability noticeably better than that of random guessing (1⁄2);
 * **SUF-CMA** (Strong Unforgeability against Chosen-Message Attack):
-  > Adversary can't create a new tag for an existing message
+  Adversary can't create a new tag for an existing message.
 
 ## Problem statement
 

@@ -22,15 +22,19 @@ Static site builds to the `.app/dist` folder which is ignored by GIT
 This folder contains the templates and the content to generate the different
 pages from the Blueprints summary website.
 
-### Roadmap and index.njk
+### `index.njk`
 
 <!-- XXX Document "automatically generated mermaid.js roadmap diagram" -->
 
-This file contains the home page of the project with roadmap generation.
+This file contains the home page of the project with automatic roadmap
+generation.
 
-The roadmap is generated using the metadata of the different pages. For
-instance, the `document/recommendations/contact_verification.md` page contains
-the following metadata:
+#### Roadmap
+
+The roadmap appearing on the home page is automatically generated as a
+`mermaid.js` graph using the metadata of the different pages.
+For instance, the `document/recommendations/contact_verification.md` page
+contains the following metadata:
 
 ```yaml
 tags: roadmap
