@@ -4,7 +4,7 @@ author: Theo von Arx
 date: 2023-03-16
 version: 1.1.0
 pdf: /_assets/document/whitepaper/main.pdf
-git: https://github.com/cryptpad/blueprints/document/whitepaper
+git: https://github.com/cryptpad/blueprints/tree/main/document/whitepaper
 eleventyNavigation:
   order: 2
 ---
