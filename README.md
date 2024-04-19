@@ -26,7 +26,8 @@ pages from the Blueprints summary website.
 
 <!-- XXX Document "automatically generated mermaid.js roadmap diagram" -->
 
-This file contains the home page of the project with roadmap generation.
+This file contains the home page of the project with automatic roadmap
+generation.
 
 #### Roadmap
 
