@@ -24,8 +24,8 @@ guide](https://docs.cryptpad.org/en/user_guide/security.html). In particular, we
 clarify against which types of attacks CryptPad can defend and which entities
 the users need to trust. Moreover, we show high-risk users the [most secure way
 to use
-CryptPad](https://git.xwikisas.com/xwiki-labs/cryptpad-blog/-/merge_requests/3)
-in a blog post. <!-- todo: Update blog link ☝ -->
+CryptPad](https://blog.cryptpad.org/2024/03/14/Most-Secure-CryptPad-Usage/)
+in a blog post.
 
 Third, to ensure that security concerns and cryptography are considered in the
 context of usability we pool from the extensive feedback gathered by the team
