@@ -1,5 +1,8 @@
-{% if author or showtoc or version or pdf %}
+{% if author or showtoc or version or pdf or git or demo %}
   <aside id="sidebar">
+    {% if demo %}
+      <p><a class="btn" href="{{ demo | url }}">📺 Demo</a></p>
+    {% endif %}
     {% if pdf %}
       <p><a class="btn" href="{{ pdf | url }}">📄 PDF ({{ pdf | filesize }})</a></p>
     {% endif %}
