@@ -11,9 +11,9 @@ term: medium
 ### Problem:
 
 In the function
-[`createViewCryptor2`](https://github.com/xwiki-labs/chainpad-crypto/blob/c8b76b895f67719a3b799daac3d832fdfea45613/crypto.js#L206-L214),
-there is a bit overlap of 128 when generating a symmetric key and a
-signing key pair.
+[`createViewCryptor2`](https://github.com/cryptpad/chainpad-crypto/blob/c8b76b895f67719a3b799daac3d832fdfea45613/crypto.js#L206-L214),
+there is an overlap of 128 bit when generating a symmetric key and a signing key
+pair.
 
 ### Consequences:
 
@@ -24,19 +24,17 @@ version.
 
 ### Suggestions:
 
-There are several ways to resolve the issue:
+There are several ways to resolve this issue:
 
-<!-- XXX Check links -->
-
-1.  Increase the size of the seed to have enough bits to make the keys
-    independent.
-2.  Hash bytes 16 to 64 to get again a string of 64 bytes.
-3.  Use a [consumer-based programming
-    pattern](https://git.xwikisas.com/xwiki-labs/blueprints/-/blob/8ade62e6245dd6d39106ac91376886bafa9ca9c5/prng.js)
-    (similarly as it is already done for [the
-    credentials](https://github.com/xwiki-labs/cryptpad/blob/ce56447031c7644d87d802d5f5b22afbc7b7b923/www/common/common-credential.js#L50-L86))
-    that can produce "infinitely" many pseudo-random bytes. This
-    essentially hinders us from making such mistakes in the futures.
+1. Increase the size of the seed to have enough bits to make the keys
+   independent.
+2. Hash bytes 16 to 64 to get again a string of 64 bytes.
+3. Use a [consumer-based programming
+   pattern](https://github.com/cryptpad/blueprints/blob/main/document/recommendations/prng.js)
+   (similarly as it is already done for [the
+   credentials](https://github.com/cryptpad/cryptpad/blob/ce56447031c7644d87d802d5f5b22afbc7b7b923/www/common/common-credential.js#L50-L86))
+   that can produce “infinitely” many pseudo-random bytes. This essentially
+   hinders us from making such mistakes in the futures.
 
 ### Drawbacks:
 
