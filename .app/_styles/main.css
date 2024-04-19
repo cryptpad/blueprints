@@ -43,6 +43,8 @@
 
 /* Layout */
 
+/* XXX add IBM Plex as web font properly */
+
 html, body {
     color: var(--col-primary);
     background-color: var(--col-background);
@@ -117,6 +119,10 @@ main.single-page, article.block, footer{
 
 main p {
     max-width: 75ch;
+}
+
+main ul {
+    padding-left: 1rem;
 }
 
 .block-container {
@@ -284,6 +290,7 @@ article.block.home-intro {
 
 a.btn {
     display: inline-block;
+    font-weight: bold;
     text-decoration: none;
     border: 1px solid var(--col-unit-l);
     padding: 1rem;
