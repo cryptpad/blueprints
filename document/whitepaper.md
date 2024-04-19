@@ -4,6 +4,7 @@ author: Theo von Arx
 date: 2023-03-16
 version: 1.1.0
 pdf: /_assets/document/whitepaper/main.pdf
+git: https://github.com/cryptpad/blueprints/document/whitepaper
 eleventyNavigation:
   order: 2
 ---
@@ -25,5 +26,3 @@ a mix of asymmetric and symmetric encryption, as well as signing, to allow
 fine-graded access control, private messaging, and team collaboration. Despite
 the common perception that cryptography is too complicated for the average user,
 CryptPad remains simple to use and has a large and growing user base.
-
-## [PDF]({{ pdf | url }})
