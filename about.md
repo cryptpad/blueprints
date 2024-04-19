@@ -18,3 +18,6 @@ migration path has to be carefully outlined to go from the current state of the
 product to a proposed "next generation".
 
 In the spirit of open-source software development, this site documents the long-term roadmap for CryptPad. We invite feedback, questions, contributions, please [get in touch](mailto:blueprints@cryptpad.org)
+
+
+<!-- XXX Add names of contributors to the research -->
