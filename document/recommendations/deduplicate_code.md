@@ -11,9 +11,9 @@ date: 2023-03-14
 ### Problem:
 
 The functions
-[`createViewCryptor2`](https://github.com/xwiki-labs/chainpad-crypto/blob/c8b76b895f67719a3b799daac3d832fdfea45613/crypto.js#L191)
+[`createViewCryptor2`](https://github.com/cryptpad/chainpad-crypto/blob/c8b76b895f67719a3b799daac3d832fdfea45613/crypto.js#L191)
 and
-[`createFileCryptor2`](https://github.com/xwiki-labs/chainpad-crypto/blob/c8b76b895f67719a3b799daac3d832fdfea45613/crypto.js#L276)
+[`createFileCryptor2`](https://github.com/cryptpad/chainpad-crypto/blob/c8b76b895f67719a3b799daac3d832fdfea45613/crypto.js#L276)
 essentially provide the same functionality: provide a read-only access
 to a document.
 
