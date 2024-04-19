@@ -282,6 +282,14 @@ article.block.home-intro {
     margin: 0 0 0.5rem 0;
 }
 
+a.btn {
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid var(--col-unit-l);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
 /* Page TOC */
 
 .toc__item {

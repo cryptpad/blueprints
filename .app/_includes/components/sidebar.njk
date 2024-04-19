@@ -1,5 +1,11 @@
 {% if author or showtoc or version or pdf %}
   <aside id="sidebar">
+    {% if pdf %}
+      <p><a class="btn" href="{{ pdf | url }}">📄 PDF ({{ pdf | filesize }})</a></p>
+    {% endif %}
+    {% if git %}
+      <p><a class="btn" href="{{ git | url }}">📂 Repository</a></p>
+    {% endif %}
     {% if author %}
       <p>By: {{ author }}</p>
     {% endif %}
@@ -16,9 +22,6 @@
     {% endif %}
     {% if comment %}
       <p>Comment: {{ comment }}</p>
-    {% endif %}
-    {% if pdf %}
-      <p><a href="{{ pdf | url }}">Download PDF</a> ({{ pdf | filesize }})</p>
     {% endif %}
     {% set toc = content | toc %}
     {% if (toc | length) and showtoc %}

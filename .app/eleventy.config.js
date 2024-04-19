@@ -24,7 +24,7 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addFilter("filesize", (path) => {
     let fd = fs.openSync('../' + path);
     let stats = fs.fstatSync(fd);
-    return (Math.ceil(10 * stats.size / 1024) / 10.).toString() + ' kiB';
+    return (Math.ceil(stats.size / 1000)).toString() + ' KB';
   });
   // Dates
   eleventyConfig.addFilter("dateformat", (dateObj) => {
