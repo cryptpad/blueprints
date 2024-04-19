@@ -45,5 +45,5 @@ display the password strength estimation and/or require a minimum score.
 Users are annoyed by password requirements.
 
 
-[^1]: MrWook, and Daniel Lowe Wheeler. 2022. “Zxcvbn-Ts.” https://github.com/zxcvbn-ts/zxcvbn.  
-Wheeler, Daniel Lowe. 2016. “Zxcvbn: Low-Budget Password Strength Estimation.” In USENIX SEC ’16. https://www.usenix.org/conference/usenixsecurity16/technical-sessions/presentation/wheeler.
+[^1]: MrWook, and Daniel Lowe Wheeler. 2022. “zxcvbn-ts.” https://github.com/zxcvbn-ts/zxcvbn.  
+Wheeler, Daniel Lowe. 2016. “zxcvbn: Low-Budget Password Strength Estimation.” In USENIX SEC ’16. https://www.usenix.org/conference/usenixsecurity16/technical-sessions/presentation/wheeler.
