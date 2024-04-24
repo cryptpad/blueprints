@@ -69,8 +69,9 @@ ciphertext & s_n --> custodian_n["custodian<sub>n</sub>"]
 The purpose is that the input to the secret sharing algorithm is uniformly
 random, and does hard for the attacker to guess.
 Another advantage is that two independently generated sets of shards cannot be
-combined, i.e., an adversary having s1 and s1' from two independent sets does
-not have an advantage over an adversary having only s1.
+combined, i.e., an adversary having s<sub>1</sub> and s<sub>1</sub>' from two
+independent sets does not have an advantage over an adversary having only
+s<sub>1</sub>.
 
 ## Design choices
 
