@@ -103,8 +103,8 @@ Based on the assumptions above, we have to make a few design choices.
 There are three ways of distributing:
 
 * No consent: Custodians are not asked at all if they will keep it or not.
-* Weak consent: Custodian receives, but can reject shard
-* Strong consent: Custodian must first accept before receiving shard
+* Weak consent: Custodian receives, but can reject shard.
+* Strong consent: Custodian must first accept before receiving shard.
 
 Since we want to only require minimal interaction s.t. the distribution can be
 done in an asynchronous manner, we favor "no consent".
@@ -254,7 +254,7 @@ redirected to a page with a URL like
 2. provides the lists of shards they already received (in case that
    the threshold is fixed, this might be status bar), including the senders
    usernames, and that
-3. will them finally allow setting a new password.
+3. will finally allow them to set a new password.
 
 #### Sending Shards
 
