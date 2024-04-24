@@ -139,14 +139,12 @@ While the first one is extremely simple, it has the disadvantage that
 maliciously colluding custodians could recover a password that is also used on
 other websites, and thus do a lot of harm even beyond CryptPad.
 
-The second one integrates nicely with CryptPad's login
-system. This mechanism
+The second one integrates nicely with CryptPad's login system. This mechanism
 could also serve as a precedent for other applications, e.g., to distribute the
 derived secret via a QR code to an older mobile device that struggles with key
-derivation. However, the only way to make shards "revokable" is by
-changing the password which is quite a burden for users. Changing the password
-moreover requires setting up and redistributing shards - another laborious
-process.
+derivation. However, the only way to make shards "revokable" is by changing the
+password which is quite a burden for users. Changing the password moreover
+requires setting up and redistributing shards — another laborious process.
 
 We therefore favor the third option that leverages a layer of indirection. This
 has the advantage of making shared secrets revocable without having to change
