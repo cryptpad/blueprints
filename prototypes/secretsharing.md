@@ -80,7 +80,7 @@ s<sub>1</sub>.
 We rely to trust on the following:
 
 * Users will choose custodians that they know and with whom they can communicate
-  over a secure out of band (OOB) channel (e.g., Signal, email, ...).
+  over a secure out of band (OOB) channel (e.g., Signal, email, …).
 * There will never be `k` out of `n` users that collude, otherwise they can
   directly recover the secret.
 * The threat model is the same as in the white paper, e.g., the server is
@@ -117,7 +117,7 @@ the risks for custodians to be targeted by an attacker.
 
 The downside is that the custodians cannot recover the secret
 and, e.g., delete an account in case that the secret owner is not reachable
-(e.g., dead, arrested, ...).
+(e.g., dead, arrested, …).
 
 ### Threshold
 
