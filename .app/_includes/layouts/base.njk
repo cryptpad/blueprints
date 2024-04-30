@@ -27,8 +27,6 @@
   <div id="BG-grid-2"></div>
 
   <div class="container">
-    {# TODO wrap in hamburger menu on small screens #}
-    {# https://codepen.io/impressivewebs/pen/qBbmMRJ #}
     <nav id="site-contents">
       {% for item in navPages %}
       <a id="nav-title" href="{{ item.url }}">{{ item.title }}</a>
@@ -54,6 +52,9 @@
           {% if title %}
           <h1>{{ title }}</h1>
           {% endif %}
+          <section class="metadata">
+            {% include "components/metadata.njk" %}
+          </section>
           {# Page content #}
           {% block content %}
           {{ content | safe }}

@@ -1,45 +1,5 @@
 {% if author or showtoc or version or pdf or git or demo %}
   <aside id="sidebar">
-    {% if demo %}
-      <p><a class="btn" href="{{ demo | url }}">📺 Demo</a></p>
-    {% endif %}
-    {% if pdf %}
-      <p><a class="btn" href="{{ pdf | url }}">📄 PDF ({{ pdf | filesize }})</a></p>
-    {% endif %}
-    {% if git %}
-      <p><a class="btn" href="{{ git | url }}">📂 Repository</a></p>
-    {% endif %}
-    {% if author %}
-      <p>By: {{ author }}</p>
-    {% endif %}
-    {% if authors %}
-      <p>By: {% for author in authors %}
-        {{ author }}
-      {% endfor %}</p>
-    {% endif %}
-    {% if date %}
-        <p title="Date published">{{ date | dateformat }}</p>
-    {% endif %}
-    {% if version %}
-      <p title="Revision">v{{ version }}</p>
-    {% endif %}
-    {% if comment %}
-      <p>Comment: {{ comment }}</p>
-    {% endif %}
-    {% set toc = content | toc %}
-    {% if (toc | length) and showtoc %}
-    <div class="toc">
-      <h2 class="toc__label" id="app-panel-toc">Page Contents</h2>
-      <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
-        {% for item in toc %}
-        <li style="--level: {{ item.level }}" class="toc__item">
-          <a href="#{{ item.id }}" class="toc__link">
-            {{ item.text | safe }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
+    {% include "components/metadata.njk" %}
   </aside>
 {% endif %}

@@ -1,0 +1,56 @@
+{% if author %}
+    <p class="author">By: {{ author }}</p>
+{% endif %}
+{% if authors %}
+    <p>By: {% for author in authors %}
+    {{ author }}
+    {% endfor %}</p>
+{% endif %}
+{% if date %}
+    <p title="Date published">{{ date | dateformat }}</p>
+{% endif %}
+{% if version %}
+    <p title="Revision">v{{ version }}</p>
+{% endif %}
+{% if comment %}
+    <p>Comment: {{ comment }}</p>
+{% endif %}
+<div class="meta-buttons">
+    {% if demo %}
+        <p><a class="btn" href="{{ demo | url }}">📺&nbsp;Demo</a></p>
+    {% endif %}
+    {% if pdf %}
+        <p><a class="btn" href="{{ pdf | url }}">📄&nbsp;PDF&nbsp;({{ pdf | filesize }})</a></p>
+    {% endif %}
+    {% if git %}
+        <p><a class="btn" href="{{ git | url }}">📂&nbsp;Repository</a></p>
+    {% endif %}
+</div>
+{% set toc = content | toc %}
+{% if (toc | length) and showtoc %}
+<details>
+    <summary><h3>Page Contents</h3></summary>
+    <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
+    {% for item in toc %}
+    <li style="--level: {{ item.level }}" class="toc__item">
+        <a href="#{{ item.id }}" class="toc__link">
+        {{ item.text | safe }}
+        </a>
+    </li>
+    {% endfor %}
+    </ul>
+</details>
+
+{# <div class="toc">
+    <h2 class="toc__label" id="app-panel-toc">Page Contents</h2>
+    <ul class="toc__list" role="list" aria-labelledby="app-panel-toc">
+    {% for item in toc %}
+    <li style="--level: {{ item.level }}" class="toc__item">
+        <a href="#{{ item.id }}" class="toc__link">
+        {{ item.text | safe }}
+        </a>
+    </li>
+    {% endfor %}
+    </ul>
+</div> #}
+{% endif %}
