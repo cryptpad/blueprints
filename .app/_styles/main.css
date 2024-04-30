@@ -272,6 +272,14 @@ article.block.home-intro {
 
 /*  sIdebar */
 
+details {
+    h3 {
+        display: inline-block;
+        margin: 0.5rem 0;
+    }
+}
+
+
 .page-content aside#sidebar {
     background-color: white;
     height: fit-content;
@@ -297,6 +305,15 @@ a.btn {
     border-radius: 1rem;
 }
 
+.page-content {
+    .metadata {
+        display: none;
+        p {
+            display: inline-block;
+        }
+    }
+}
+
 /* Page TOC */
 
 .toc__item {
@@ -307,4 +324,34 @@ a.btn {
 ul.toc__list {
     padding-left: 1rem;
     list-style-type: disc;
+  }
+
+/* Small screens */
+
+@media screen and (max-width: 940px) {
+    .container{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "main"
+        "nav"
+        "footer";
+    }
+
+    nav#site-contents {
+        margin: 1rem 0;
+    }
+
+    aside#sidebar {
+        display: none;
+    }
+
+    .page-content {
+        .metadata {
+            display: unset;
+            p {
+                display: inline-block;
+            }
+        }
+    }
+    /* todo: single page side bar on small screens? */
   }
