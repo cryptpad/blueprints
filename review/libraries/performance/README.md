@@ -3,7 +3,7 @@
 The scripts in this folder allow to measure the performance of various
 cryptographic libraries.
 
-The commented evaluation can be found [here](https://cryptpad.fr/code/#/2/code/view/XrCBEbzwVcL4m+xBH+g2aPqH4jZ6f-C4vg5cBjoRfw0/present/).
+The commented evaluation can be found [on this page](https://blueprints.cryptpad.org/review/libraries/).
 
 ## Measure
 
