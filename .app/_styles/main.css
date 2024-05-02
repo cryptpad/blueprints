@@ -171,6 +171,11 @@ article.block h2 {
 
 figure {
     max-width: 100%;
+    margin: 0;
+}
+
+figure img {
+    max-width: 100%;
 }
 
 figcaption {
