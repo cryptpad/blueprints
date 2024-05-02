@@ -3,10 +3,15 @@ title: Revocation
 tags: roadmap
 id: revocation
 author: Theo von Arx
+demo: https://revocation.blueprints.cryptpad.org/
+repo: https://github.com/cryptpad/cryptpad/tree/revocation
 date: 2023-03-31
 version: "1.0"
 showtoc: true
 ---
+
+<!-- XXX provide some guidance on what to test in the demo -->
+<!-- XXX check with Yann that repo branch is hte right on to link -->
 
 ## Introduction
 

@@ -25,7 +25,7 @@ sketches the idea of generating an “infinite”
 stream of derived seeds.
 
 
-<!-- XXX there is probably a better way of doing the iterations below -->
+<!-- TODO there is probably a better way of doing the iterations below -->
 ## Short term improvements
 
 <ul>

@@ -33,9 +33,6 @@ SHA-512 since this maintains backwards compatibility.
 
 Some (informal) reminders about security notions:
 
-<!-- XXX Check use of blockquotes here, is it appropriate? -->
-<!-- XXX Seems better without -->
-
 * **INT-CTXT** (Ciphertext integrity):
   Computationally infeasible to produce a decryptable ciphertext not previously
   produced by the sender, whether or not the underlying plaintext is “fresh”;

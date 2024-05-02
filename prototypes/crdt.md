@@ -23,7 +23,6 @@ Future work: [adding offline persistence](https://docs.yjs.dev/getting-started/a
 
 ## Quick Start
 
-<!-- XXX add code block styles -->
 
 ```sh
 npm i
