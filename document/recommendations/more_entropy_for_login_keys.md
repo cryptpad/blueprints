@@ -36,8 +36,6 @@ on a score from 0 to 4 and provides, guessing times, indicators what
 makes the password weak and how it can be improved. We may
 display the password strength estimation and/or require a minimum score.
 
-<!-- XXX check image and caption are displayed properly -->
-
 ![screenshot](/_assets/zxvbn.png "The library `zxvbn-ts` provides a score, guess times, warnings, and suggestions.")
 
 ### Drawbacks:

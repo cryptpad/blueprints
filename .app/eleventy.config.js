@@ -12,13 +12,8 @@ module.exports = (function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('../_assets');
   eleventyConfig.addPassthroughCopy('node_modules/mermaid/');
 
+  // TODO find a clearer way of assigning the base layout, this is hidden
   eleventyConfig.addGlobalData("layout", "layouts/base");
-
-  // XXX is this needed?
-  // eleventyConfig.setServerOptions({
-  //   watch: ["dist/app.js", "dist/app.*.css"],
-  // });
-
 
   // File Size
   eleventyConfig.addFilter("filesize", (path) => {
