@@ -43,14 +43,23 @@
 
 /* Layout */
 
-/* XXX add IBM Plex as web font properly */
+@font-face {
+    font-family: 'IBM Plex Mono';
+    font-style: normal;
+    font-weight: 500;
+    src: url("/_styles/fonts/IBMPlexMono-Medium.woff2") format("woff2"), url("/_styles/fonts/IBMPlexMono-Medium.woff") format("woff");
+}
 
 html, body {
     color: var(--col-primary);
     background-color: var(--col-background);
-    font-family: "IBM Plex Mono", monospace;
+    font-family: monospace;
     font-size: 15px;
     /* height: 100%; */
+}
+
+h1, h2, h3, h4, nav {
+    font-family: "IBM Plex Mono";
 }
 
 body {
@@ -263,12 +272,21 @@ article.block.roadmap {
 }
 
 pre.mermaid {
+    background-color: transparent;
     max-width: 1280px;
   }
 
 article.block.home-intro {
     max-width: 75ch;
 }
+
+
+pre {
+    background: #eee;
+    overflow-y: scroll;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+  }
 
 /*  sIdebar */
 
