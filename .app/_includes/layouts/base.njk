@@ -9,6 +9,27 @@
     <!-- HTML Meta Tags -->
     <title>{% if title %}{{title}} - {% endif %}{{site.title}}</title>
 
+    <meta name="description" content="{{description or site.description}}">
+    <meta property="og:url" content="{{site.url}}{{page.url}}">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{site.url}}{{page.url}}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{title or site.title}}">
+    <meta property="og:description" content="{{description or site.description}}">
+    {# <meta property="og:image" content="{{site.url}}{{image or site.image}}"> #}
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="{{site.url}}">
+    <meta property="twitter:url" content="{{site.url}}{{page.url}}">
+    <meta name="twitter:title" content="{{title or site.title}}">
+    <meta name="twitter:description" content="{{description or site.description}}">
+    {# <meta name="twitter:image" content="{{site.url}}{{image or site.image}}"> #}
+
+    <meta name="robots" content="index, archive" />
+    <meta name="canonical" href="{{site.url}}{{page.url}}" />
+
     {% block head %}
     {% endblock %}
 </head>
