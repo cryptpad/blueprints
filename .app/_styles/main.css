@@ -218,7 +218,7 @@ li.nav.without-children {
 }
 
 li.nav.without-children a {
-    margin-left: -0.70rem;
+    margin-left: -0.40rem;
 }
 
 li.current > details > summary > a,
