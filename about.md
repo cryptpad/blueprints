@@ -21,3 +21,10 @@ In the spirit of open-source software development, this site documents the long-
 
 
 <!-- XXX Add names of contributors to the research -->
+### Team & alumni
+
+- Current maintainers
+  - Fabrice Mouhartem - Cryptography researcher
+  - David Benqué - CryptPad project lead
+- Alumni
+  - Aaron MacSween - Blueprints project initiator and former CryptPad project lead
