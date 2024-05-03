@@ -14,12 +14,20 @@ mpl.use("pgf")
 mpl.rcParams.update(
     {
         "pgf.texsystem": "pdflatex",
-        "font.family": "serif",
+        "font.family": "monospace",
+        "font.monospace": ["IBM Plex Mono"],
+        # XXX: mathtext.* don’t seem to have any effects
+        "mathtext.fontset": "custom",
+        "mathtext.rm": "IBM Plex Mono",
+        "mathtext.it": "IBM Plex Mono:italic",
+        "mathtext.bf": "IBM Plex Mono:bold",
         "text.usetex": True,
         "pgf.rcfonts": False,
-        "ytick.labelsize": 8,
-        "xtick.labelsize": 8,
-        "axes.labelsize": 8,
+        "figure.titlesize": 20,
+        "ytick.labelsize": 12,
+        "xtick.labelsize": 12,
+        "axes.labelsize":  16,
+        "legend.fontsize":  18,
     }
 )
 
@@ -168,13 +176,22 @@ def plot_all(timestamp: str) -> None:
 
             if i == 0:
                 AX[i][j].set_title(IDX2BROWSER[j].capitalize())
+                # XXX: for some reasons, I cannot find this parameter in rcParams…
+                AX[i][j].title.set_size(18)
     FIG.suptitle("Performance of Different Crypto Libraries on Various Browsers")
 
+    # Plot generation for the PDF File
     width = 4.983
     height = width * 3 / 4
     FIG.set_size_inches(width, height)
     # FIG.tight_layout()
     plt.savefig("performance.pgf", bbox_inches="tight")
+
+    # Plot generation for the website
+    width = 10
+    height = width * 3 / 4
+    FIG.set_size_inches(width, height)
+    plt.savefig("performance.svg", bbox_inches="tight")
 
 
 def main(timestamp: Union[str, None]):
